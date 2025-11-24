@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  pqr-frontend-prod:
+    build:
+      context: ../../
+      dockerfile: devops/main/dockerfile
+    container_name: pqr-frontend-prod
+    restart: always
+    ports:
+      - "80:3000"    # Puerto 80 para producción (HTTP)
+      - "443:3000"   # Puerto 443 para HTTPS (si configuras SSL)
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://api.electrohuila.com.co}
+      - NEXT_PUBLIC_ENV=production
+    env_file:
+      - ./properties/.env.prod
+    networks:
+      - pqr-network-prod
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  pqr-network-prod:
+    driver: bridge

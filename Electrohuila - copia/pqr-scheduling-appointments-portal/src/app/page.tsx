@@ -1,0 +1,119 @@
+"use client";
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FixedHeader } from '@/shared/layouts';
+import { Footer } from '@/shared/components';
+import { FaCalendarAlt } from 'react-icons/fa';
+
+export default function Home() {
+  const router = useRouter();
+  const [, setKeySequence] = useState('');
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Solo letras y números
+      if (event.key.match(/^[a-zA-Z0-9]$/)) {
+        setKeySequence(prev => {
+          const newSequence = (prev + event.key).toLowerCase();
+          
+          // Secuencia secreta: "admin123"
+          if (newSequence.includes('admin123')) {
+            // Usar setTimeout para mover la navegación fuera del setState
+            setTimeout(() => router.push('/login'), 0);
+            return '';
+          }
+          
+          // Mantener solo los últimos 10 caracteres
+          return newSequence.slice(-10);
+        });
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, [router]);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 overflow-x-hidden">
+      {/* Header */}
+      <FixedHeader />
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#1797D5] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#56C2E1] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-6xl mx-auto px-4 py-20">
+          <div className="text-center mb-16"> 
+            <h1 className="text-6xl font-bold text-[#203461] mb-4 leading-tight">
+              Sistema de
+              <span className="bg-gradient-to-r from-[#1797D5] to-[#56C2E1] bg-clip-text text-transparent"> Servicios</span>
+            </h1>
+            <h2 className="text-2xl font-semibold text-[#203461] mb-6">ElectroHuila</h2>
+          </div>
+
+ 
+{/* Service Cards Grid */}
+          <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
+            {/* Sistema de Gestión Unificado Card */}
+            <div className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
+              {/* Gradient Border Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#203461] via-[#1797D5] to-[#56C2E1] rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-3xl m-[1px] p-8">
+                {/* Icon Container */}
+                <div className="mb-8 relative">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-[#97D4E3] to-[#56C2E1] rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                    <FaCalendarAlt className="w-10 h-10 text-black" />
+                  </div>
+                  {/* Floating Elements */}
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#56C2E1] rounded-full animate-bounce opacity-60"></div>
+                  <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-[#1797D5] rounded-full animate-bounce opacity-40"></div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-[#203461] mb-4">Sistema de Gestión de Citas</h3>
+                  <p className="text-gray-600 text-base mb-8 leading-relaxed">
+                    Gestione todos sus servicios eléctricos de forma rápida y segura: 
+                    <span className="font-semibold text-[#1A6192]"> agende citas, consulte estados de las citas  </span>
+                  </p>
+                  
+                  {/* Features List */}
+                  <div className="grid grid-cols-2 gap-3 mb-8 text-sm">
+                    <div className="flex items-center text-[#1A6192]">
+                      <div className="w-2 h-2 bg-[#56C2E1] rounded-full mr-2"></div>
+                      Agendar Citas
+                    </div>
+                    <div className="flex items-center text-[#1A6192]">
+                      <div className="w-2 h-2 bg-[#56C2E1] rounded-full mr-2"></div>
+                      Consultar Citas
+                    </div>
+                  </div>
+
+                  <Link 
+                    href="/servicios"
+                    className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#203461] to-[#1797D5] text-white px-8 py-4 rounded-xl font-semibold hover:from-[#1A6192] hover:to-[#56C2E1] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 group-hover:scale-105"
+                  >
+                    <span>Acceder al Sistema</span>
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+}

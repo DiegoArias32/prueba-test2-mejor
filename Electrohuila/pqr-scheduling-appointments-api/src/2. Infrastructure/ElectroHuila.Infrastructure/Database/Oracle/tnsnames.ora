@@ -1,0 +1,12 @@
+pqragendamiento_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=gbba379145239a3_pqragendamiento_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pqragendamiento_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=gbba379145239a3_pqragendamiento_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pqragendamiento_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=gbba379145239a3_pqragendamiento_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pqragendamiento_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=gbba379145239a3_pqragendamiento_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+pqragendamiento_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=gbba379145239a3_pqragendamiento_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+

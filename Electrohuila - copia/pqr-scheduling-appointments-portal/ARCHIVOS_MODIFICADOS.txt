@@ -1,0 +1,213 @@
+═══════════════════════════════════════════════════════════════════════════════
+  LISTADO DE ARCHIVOS MODIFICADOS/CREADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+📁 PROYECTO: C:\Users\User\Desktop\ad\pqr-scheduling-appointments-portal
+
+═══════════════════════════════════════════════════════════════════════════════
+✨ ARCHIVOS CREADOS (1)
+═══════════════════════════════════════════════════════════════════════════════
+
+📄 src/features/appointments/views/components/NewClientForm.tsx
+   Líneas: ~350
+   Descripción: Componente de formulario para registro de clientes nuevos
+   Funcionalidades:
+   - Captura de datos del cliente (documento, nombre, email, teléfono, etc.)
+   - Validaciones en tiempo real
+   - Feedback visual de errores
+   - Notificación de validez al componente padre
+
+═══════════════════════════════════════════════════════════════════════════════
+📝 ARCHIVOS MODIFICADOS (7)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. 📄 src/features/appointments/views/steps/ClientValidationStep.tsx
+   Líneas modificadas: ~70
+   Cambios:
+   - Añadidas props para manejo de cliente nuevo (5 props nuevas)
+   - UI mejorada con mensaje de error cuando cliente no existe
+   - Botón "¿No tienes número de cliente? Regístrate aquí"
+   - Integración del componente NewClientForm
+   - Botón "Continuar con agendamiento" con validación
+   - Botón "Volver a ingresar número de cliente"
+
+2. 📄 src/features/appointments/views/AppointmentSchedulingView.tsx
+   Líneas modificadas: ~40
+   Cambios:
+   - Integración de 6 nuevos estados del viewmodel
+   - Lógica dual en paso 'form' (cliente existente vs nuevo)
+   - Creación de displayClientData temporal para clientes nuevos
+   - Props adicionales pasadas a ClientValidationStep
+
+3. 📄 src/features/appointments/viewmodels/useAppointmentScheduling.ts
+   Líneas modificadas: ~180
+   Cambios principales:
+   - 3 nuevos estados (isNewClient, newClientData, isNewClientFormValid)
+   - 4 nuevos métodos:
+     * handleNewClientClick()
+     * handleBackToClientNumber()
+     * handleNewClientDataChange()
+     * handleContinueAsNewClient()
+   - scheduleAppointment() completamente refactorizado con lógica dual:
+     * Flujo para cliente nuevo (endpoint /schedule-simple-appointment)
+     * Flujo para cliente existente (endpoint /schedule-appointment)
+   - resetFlow() actualizado para limpiar estados de cliente nuevo
+   - Return del hook actualizado con 11 nuevas propiedades
+
+4. 📄 src/features/appointments/repositories/appointment.repository.ts
+   Líneas añadidas: ~50
+   Cambios:
+   - Nuevo método scheduleAppointmentForNewUser()
+   - Endpoint: POST /api/v1/public/schedule-simple-appointment
+   - Transformación de datos a formato PascalCase para backend
+   - Tipo de retorno: SimpleAppointmentResponse
+
+5. 📄 src/app/globals.css
+   Líneas añadidas: ~20
+   Cambios:
+   - Añadida animación @keyframes fadeIn
+   - Clase .animate-fadeIn
+   - Efecto: opacity + translateY
+
+6. 📄 src/app/gestion-citas/page.tsx
+   Líneas modificadas: ~5
+   Cambios:
+   - Corrección en llamada a completeAppointment()
+   - Reducido de 3 parámetros a 2 (id, notes)
+   - Combinación de técnico + observaciones en un solo campo
+
+7. 📄 next.config.ts
+   Líneas añadidas: ~10
+   Cambios:
+   - Configuración de ESLint (ignoreDuringBuilds: false)
+   - Configuración de TypeScript (ignoreBuildErrors: false)
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 ESTADÍSTICAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Archivos creados:        1
+Archivos modificados:    7
+Total archivos afectados: 8
+
+Líneas de código añadidas:   ~650
+Líneas de código modificadas: ~350
+Total líneas afectadas:       ~1000
+
+Componentes nuevos:      1 (NewClientForm)
+Métodos nuevos:          5
+Estados nuevos:          3
+Props nuevas:            11
+
+═══════════════════════════════════════════════════════════════════════════════
+🔧 TECNOLOGÍAS UTILIZADAS
+═══════════════════════════════════════════════════════════════════════════════
+
+- React 19 (hooks: useState, useEffect, useCallback)
+- TypeScript (types, interfaces, validaciones de tipos)
+- Next.js 15 (app directory, server/client components)
+- Tailwind CSS (estilos utility-first)
+- React Icons (FiUser, FiMail, FiPhone, etc.)
+- CSS Animations (keyframes, transitions)
+
+═══════════════════════════════════════════════════════════════════════════════
+📋 TIPOS/INTERFACES NUEVOS
+═══════════════════════════════════════════════════════════════════════════════
+
+interface NewClientData {
+  documentType: string;
+  documentNumber: string;
+  fullName: string;
+  phone: string;
+  mobile: string;
+  email: string;
+  address: string;
+}
+
+interface NewClientFormProps {
+  onDataChange: (data: NewClientData, isValid: boolean) => void;
+  initialData?: Partial<NewClientData>;
+}
+
+interface ClientValidationStepProps {
+  // ... props existentes +
+  isNewClient: boolean;
+  onNewClientClick: () => void;
+  onBackToClientNumber: () => void;
+  onNewClientDataChange: (data: NewClientData, isValid: boolean) => void;
+  onContinueAsNewClient: () => void;
+  isNewClientFormValid: boolean;
+}
+
+═══════════════════════════════════════════════════════════════════════════════
+🎨 COMPONENTES UI MODIFICADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+ANTES:
+┌─────────────────────────────────────┐
+│  Ingrese número de cliente          │
+│  [___________________]  [Buscar]    │
+│                                     │
+│  ❌ Cliente no encontrado           │
+└─────────────────────────────────────┘
+
+DESPUÉS:
+┌─────────────────────────────────────┐
+│  Ingrese número de cliente          │
+│  [___________________]  [Buscar]    │
+│                                     │
+│  ⚠️ No se encontró número cliente   │
+│  🔗 ¿No tienes número de cliente?   │
+│     Regístrate aquí →               │
+└─────────────────────────────────────┘
+                ↓ (click)
+┌─────────────────────────────────────┐
+│  📝 Datos del Solicitante           │
+│  ┌───────────────────────────────┐  │
+│  │ Tipo documento [CC ▼]        │  │
+│  │ Número documento [_________] │  │
+│  │ Nombre completo  [_________] │  │
+│  │ Email           [_________]  │  │
+│  │ Celular         [_________]  │  │
+│  │ Teléfono fijo   [_________]  │  │
+│  │ Dirección       [_________]  │  │
+│  └───────────────────────────────┘  │
+│                                     │
+│  [Continuar con agendamiento] ✓     │
+│  ← Volver a ingresar número         │
+└─────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+🔄 FLUJO DE DATOS
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────┐
+│  ClientValidation   │
+│       Step          │
+└──────────┬──────────┘
+           │
+           │ onNewClientDataChange(data, isValid)
+           ↓
+┌─────────────────────┐
+│  Appointment        │
+│  SchedulingView     │
+└──────────┬──────────┘
+           │
+           │ handleNewClientDataChange(data, isValid)
+           ↓
+┌─────────────────────┐
+│  useAppointment     │
+│  Scheduling         │
+└──────────┬──────────┘
+           │
+           │ setNewClientData(data)
+           │ setIsNewClientFormValid(isValid)
+           ↓
+┌─────────────────────┐
+│  Estado del         │
+│  ViewModel          │
+└─────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+FIN DEL LISTADO
+═══════════════════════════════════════════════════════════════════════════════

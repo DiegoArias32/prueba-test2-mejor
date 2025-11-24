@@ -1,0 +1,2158 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\contexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\contexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\setupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\setupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\publiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\publiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\permissionmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\permissionmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\newaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\newaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\availabletimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\availabletimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\appointmenttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\appointmenttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\implement\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\implement\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\itipocitacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\itipocitacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\iusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\iusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\irolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\irolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\ipermissionmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\ipermissionmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\inewaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\inewaccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\iclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\iclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\ibranchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\ibranchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\ibasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\ibasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\iavailabletimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\iavailabletimecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\iauthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\iauthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\web\\controllers\\interfaces\\iappointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433A7202-B77B-41E6-B9F1-154203AD368B}|Web\\Web.csproj|solutionrelative:web\\controllers\\interfaces\\iappointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\userbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\userbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\rolbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\rolbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\permissionmanagementbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\permissionmanagementbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\newaccountbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\newaccountbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\clientbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\clientbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\branchbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\branchbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\basebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\basebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\availabletimebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\availabletimebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\authbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\authbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\appointmenttypebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\appointmenttypebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\implement\\appointmentbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\implement\\appointmentbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iuserbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iuserbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\irolbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\irolbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\ipermissionmanagementbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\ipermissionmanagementbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\inewaccountbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\inewaccountbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iclientbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iclientbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\ibranchbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\ibranchbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\ibasebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\ibasebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iavailabletimebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iavailabletimebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iauthbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iauthbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iappointmenttypebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iappointmenttypebusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\business\\interfaces\\iappointmentbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0439EAE-CA63-4771-A409-B1A72CC7983A}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iappointmentbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\branchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\branchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iuserdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iuserdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iroldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iroldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\ipermissionmanagementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\ipermissionmanagementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\ipermissiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\ipermissiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\inewaccountdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\inewaccountdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iclientdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iclientdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\ibranchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\ibranchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\ibasedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\ibasedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iavailabletimedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iavailabletimedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iappointmenttypedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iappointmenttypedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\interfaces\\iappointmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iappointmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\roldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\roldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\permissionmanagementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\permissionmanagementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\permissiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\permissiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\newaccountdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\newaccountdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\clientdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\clientdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\basedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\basedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\availabletimedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\availabletimedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\appointmenttypedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\appointmenttypedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\data\\implement\\appointmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD55A27E-2700-488F-8C17-74B30E032358}|Data\\Data.csproj|solutionrelative:data\\implement\\appointmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\base\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\base\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\userdto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\userdto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\userdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\userdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\userdto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\userdto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\rolformpermidto\\rolformpermidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\rolformpermidto\\rolformpermidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\roldto\\roldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\roldto\\roldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\permissiondto\\updateusertabsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\permissiondto\\updateusertabsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\permissiondto\\rolpermissionsummarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\permissiondto\\rolpermissionsummarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\permissiondto\\rolpermissionassignmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\permissiondto\\rolpermissionassignmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\permissiondto\\permissionviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\permissiondto\\permissionviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\permissiondto\\permissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\permissiondto\\permissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\newaccountdto\\updatenewaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\newaccountdto\\updatenewaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\newaccountdto\\newaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\newaccountdto\\newaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\newaccountdto\\deletelogicalnewaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\newaccountdto\\deletelogicalnewaccountdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\moduledto\\moduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\moduledto\\moduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\formmoduledto\\formmoduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\formmoduledto\\formmoduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\formdto\\formdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\formdto\\formdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\clientdto\\updateclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\clientdto\\updateclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\clientdto\\deletelogicalclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\clientdto\\deletelogicalclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\clientdto\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\clientdto\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\branchdto\\updatebranchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\branchdto\\updatebranchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\branchdto\\deletelogicalbranchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\branchdto\\deletelogicalbranchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\branchdto\\branchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\branchdto\\branchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\base\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\base\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\availabletimedto\\updateavailabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\availabletimedto\\updateavailabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\availabletimedto\\deletelogicalavailabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\availabletimedto\\deletelogicalavailabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\availabletimedto\\availabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\availabletimedto\\availabletimedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\authdto\\userpermissionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\authdto\\userpermissionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\authdto\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\authdto\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\authdto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\authdto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmenttypedto\\updateappointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmenttypedto\\updateappointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmenttypedto\\deletelogicalappointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmenttypedto\\deletelogicalappointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmenttypedto\\appointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmenttypedto\\appointmenttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmendto\\updateappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmendto\\updateappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmendto\\deletelogicalappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmendto\\deletelogicalappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmendto\\createappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmendto\\createappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\dtos\\appointmendto\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\dtos\\appointmendto\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\roluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\roluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\rolformpermi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\rolformpermi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\newaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\newaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\module.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\module.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\formmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\formmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\availabletime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\availabletime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\appointmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\appointmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|c:\\users\\usuario\\desktop\\adso\\pqr\\pqr_agendamientodecitas\\backend\\entity\\model\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F621F11B-9F7F-4025-AAF0-E46B0849DBF3}|Entity\\Entity.csproj|solutionrelative:entity\\model\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 318,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Contexts\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Entity\\Contexts\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Contexts\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Entity\\Contexts\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:23:51.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\UserController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\UserController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\UserController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:22:47.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SetupController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\SetupController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\SetupController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\SetupController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\SetupController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:21:26.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RolController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\RolController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\RolController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\RolController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\RolController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:21:01.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PublicController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\PublicController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\PublicController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\PublicController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\PublicController.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:18:58.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PermissionManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\PermissionManagementController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\PermissionManagementController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\PermissionManagementController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\PermissionManagementController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAwwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:17:16.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewAccountController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\NewAccountController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\NewAccountController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\NewAccountController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\NewAccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:14:14.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClientController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\ClientController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\ClientController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\ClientController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\ClientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:12:51.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BranchController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\BranchController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\BranchController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\BranchController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\BranchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:12:17.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\BaseController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\BaseController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\BaseController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\BaseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:11:27.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AvailableTimeController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AvailableTimeController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\AvailableTimeController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AvailableTimeController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\AvailableTimeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:10:53.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AuthController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\AuthController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AuthController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:10:08.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppointmentTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AppointmentTypeController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\AppointmentTypeController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AppointmentTypeController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\AppointmentTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:09:46.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Implement\\AppointmentController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Implement\\AppointmentController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Implement\\AppointmentController.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAkwAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:08:10.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Web\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAwwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:07:03.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ITipoCitaController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\ITipoCitaController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\ITipoCitaController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\ITipoCitaController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\ITipoCitaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:06:45.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IUserController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IUserController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IUserController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IUserController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IUserController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowCgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:06:29.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IRolController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IRolController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IRolController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IRolController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IRolController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:06:07.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IPermissionManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IPermissionManagementController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IPermissionManagementController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IPermissionManagementController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IPermissionManagementController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowDIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:05:51.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "INewAccountController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\INewAccountController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\INewAccountController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\INewAccountController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\INewAccountController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:05:34.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IClientController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IClientController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IClientController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IClientController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IClientController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:05:19.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IBranchController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IBranchController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IBranchController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IBranchController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IBranchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:05:05.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IBaseController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IBaseController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IBaseController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IBaseController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IBaseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:04:50.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IAvailableTimeController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAvailableTimeController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IAvailableTimeController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAvailableTimeController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IAvailableTimeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:04:34.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IAuthController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAuthController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IAuthController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAuthController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IAuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:04:19.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IAppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAppointmentController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\Interfaces\\IAppointmentController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Web\\Controllers\\Interfaces\\IAppointmentController.cs",
+              "RelativeToolTip": "Web\\Controllers\\Interfaces\\IAppointmentController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:03:52.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UserBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\UserBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\UserBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\UserBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\UserBusiness.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:02:32.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RolBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\RolBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\RolBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\RolBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\RolBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:02:02.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "PermissionManagementBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\PermissionManagementBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\PermissionManagementBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\PermissionManagementBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\PermissionManagementBusiness.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T06:00:33.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "NewAccountBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\NewAccountBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\NewAccountBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\NewAccountBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\NewAccountBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:59:47.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ClientBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\ClientBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\ClientBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\ClientBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\ClientBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:59:02.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "BranchBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\BranchBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\BranchBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\BranchBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\BranchBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:58:43.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "BaseBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\BaseBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\BaseBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\BaseBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\BaseBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:58:08.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "AvailableTimeBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AvailableTimeBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\AvailableTimeBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AvailableTimeBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\AvailableTimeBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:57:10.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "AuthBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AuthBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\AuthBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AuthBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\AuthBusiness.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:56:23.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AppointmentTypeBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AppointmentTypeBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\AppointmentTypeBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AppointmentTypeBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\AppointmentTypeBusiness.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAuwBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:56:01.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "AppointmentBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AppointmentBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Implement\\AppointmentBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Implement\\AppointmentBusiness.cs",
+              "RelativeToolTip": "Business\\Implement\\AppointmentBusiness.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:54:59.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "IUserBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IUserBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IUserBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IUserBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IUserBusiness.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:54:38.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IRolBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IRolBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IRolBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IRolBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IRolBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:54:25.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "IPermissionManagementBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IPermissionManagementBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IPermissionManagementBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IPermissionManagementBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IPermissionManagementBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:54:12.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "INewAccountBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\INewAccountBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\INewAccountBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\INewAccountBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\INewAccountBusiness.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:53:55.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "IClientBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IClientBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IClientBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IClientBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IClientBusiness.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:53:42.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "IBranchBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IBranchBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IBranchBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IBranchBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IBranchBusiness.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowCkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:53:29.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "IBaseBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IBaseBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IBaseBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IBaseBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IBaseBusiness.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowC4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:53:18.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "IAvailableTimeBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAvailableTimeBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IAvailableTimeBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAvailableTimeBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IAvailableTimeBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:53:04.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "IAuthBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAuthBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IAuthBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAuthBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IAuthBusiness.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:52:52.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "IAppointmentTypeBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAppointmentTypeBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IAppointmentTypeBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAppointmentTypeBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IAppointmentTypeBusiness.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:51:12.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "IAppointmentBusiness.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAppointmentBusiness.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IAppointmentBusiness.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Business\\Interfaces\\IAppointmentBusiness.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IAppointmentBusiness.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:50:41.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Mappings\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Data\\Mappings\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Mappings\\MappingProfile.cs",
+              "RelativeToolTip": "Data\\Mappings\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:48:33.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "IUserData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IUserData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IUserData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IUserData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IUserData.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:47:37.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "IRolData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IRolData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IRolData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IRolData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IRolData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:47:24.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "BranchData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\BranchData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\BranchData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\BranchData.cs",
+              "RelativeToolTip": "Data\\Implement\\BranchData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:40:43.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "IPermissionManagementData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IPermissionManagementData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IPermissionManagementData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IPermissionManagementData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IPermissionManagementData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:47:01.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "IPermissionData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IPermissionData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IPermissionData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IPermissionData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IPermissionData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:46:47.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "INewAccountData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\INewAccountData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\INewAccountData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\INewAccountData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\INewAccountData.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:46:31.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "IClientData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IClientData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IClientData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IClientData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IClientData.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:46:09.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "IBranchData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IBranchData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IBranchData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IBranchData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IBranchData.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:45:55.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "IBaseData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IBaseData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IBaseData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IBaseData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IBaseData.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:45:37.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "IAvailableTimeData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAvailableTimeData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IAvailableTimeData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAvailableTimeData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IAvailableTimeData.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:45:23.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "IAppointmentTypeData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAppointmentTypeData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IAppointmentTypeData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAppointmentTypeData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IAppointmentTypeData.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:45:04.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "IAppointmentData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAppointmentData.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IAppointmentData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Interfaces\\IAppointmentData.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IAppointmentData.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:44:29.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "UserData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\UserData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\UserData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\UserData.cs",
+              "RelativeToolTip": "Data\\Implement\\UserData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:43:47.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "RolData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\RolData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\RolData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\RolData.cs",
+              "RelativeToolTip": "Data\\Implement\\RolData.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAYwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:43:26.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "PermissionManagementData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\PermissionManagementData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\PermissionManagementData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\PermissionManagementData.cs",
+              "RelativeToolTip": "Data\\Implement\\PermissionManagementData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:42:32.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "PermissionData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\PermissionData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\PermissionData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\PermissionData.cs",
+              "RelativeToolTip": "Data\\Implement\\PermissionData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:42:04.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "NewAccountData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\NewAccountData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\NewAccountData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\NewAccountData.cs",
+              "RelativeToolTip": "Data\\Implement\\NewAccountData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:41:26.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "ClientData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\ClientData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\ClientData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\ClientData.cs",
+              "RelativeToolTip": "Data\\Implement\\ClientData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:41:05.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "BaseData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\BaseData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\BaseData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\BaseData.cs",
+              "RelativeToolTip": "Data\\Implement\\BaseData.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswCsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:39:58.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "AvailableTimeData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AvailableTimeData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\AvailableTimeData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AvailableTimeData.cs",
+              "RelativeToolTip": "Data\\Implement\\AvailableTimeData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:39:32.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "AppointmentTypeData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AppointmentTypeData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\AppointmentTypeData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AppointmentTypeData.cs",
+              "RelativeToolTip": "Data\\Implement\\AppointmentTypeData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:38:04.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "AppointmentData.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AppointmentData.cs",
+              "RelativeDocumentMoniker": "Data\\Implement\\AppointmentData.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Data\\Implement\\AppointmentData.cs",
+              "RelativeToolTip": "Data\\Implement\\AppointmentData.cs",
+              "ViewState": "AgIAABgBAAAAAAAAAAAQwA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:37:28.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Base\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "Entity\\Base\\BaseEntity.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Base\\BaseEntity.cs",
+              "RelativeToolTip": "Entity\\Base\\BaseEntity.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:37:04.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\UserDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\UserDto\\UserDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\UserDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\UserDto\\UserDto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:36:34.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "UpdateUserDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\UpdateUserDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\UserDto\\UpdateUserDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\UpdateUserDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\UserDto\\UpdateUserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:36:20.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "CreateUserDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\CreateUserDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\UserDto\\CreateUserDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\UserDto\\CreateUserDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\UserDto\\CreateUserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:36:01.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "RolFormPermiDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\RolFormPermiDto\\RolFormPermiDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\RolFormPermiDto\\RolFormPermiDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\RolFormPermiDto\\RolFormPermiDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\RolFormPermiDto\\RolFormPermiDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowCgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:35:41.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "RolDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\RolDto\\RolDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\RolDto\\RolDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\RolDto\\RolDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\RolDto\\RolDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:35:20.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "UpdateUserTabsDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\UpdateUserTabsDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\PermissionDto\\UpdateUserTabsDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\UpdateUserTabsDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\PermissionDto\\UpdateUserTabsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:35:03.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "RolPermissionSummaryDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\RolPermissionSummaryDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\PermissionDto\\RolPermissionSummaryDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\RolPermissionSummaryDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\PermissionDto\\RolPermissionSummaryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:34:47.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "RolPermissionAssignmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\RolPermissionAssignmentDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\PermissionDto\\RolPermissionAssignmentDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\RolPermissionAssignmentDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\PermissionDto\\RolPermissionAssignmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:34:24.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "PermissionViewDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\PermissionViewDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\PermissionDto\\PermissionViewDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\PermissionViewDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\PermissionDto\\PermissionViewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:34:07.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "PermissionDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\PermissionDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\PermissionDto\\PermissionDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\PermissionDto\\PermissionDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\PermissionDto\\PermissionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:33:37.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "UpdateNewAccountDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\UpdateNewAccountDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\NewAccountDto\\UpdateNewAccountDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\UpdateNewAccountDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\NewAccountDto\\UpdateNewAccountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:33:16.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "NewAccountDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\NewAccountDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\NewAccountDto\\NewAccountDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\NewAccountDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\NewAccountDto\\NewAccountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:32:40.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "DeleteLogicalNewAccountDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\DeleteLogicalNewAccountDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\NewAccountDto\\DeleteLogicalNewAccountDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\NewAccountDto\\DeleteLogicalNewAccountDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\NewAccountDto\\DeleteLogicalNewAccountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:32:15.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "ModuleDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ModuleDto\\ModuleDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\ModuleDto\\ModuleDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ModuleDto\\ModuleDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\ModuleDto\\ModuleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:32:00.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "FormModuleDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\FormModuleDto\\FormModuleDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\FormModuleDto\\FormModuleDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\FormModuleDto\\FormModuleDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\FormModuleDto\\FormModuleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:31:38.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "FormDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\FormDto\\FormDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\FormDto\\FormDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\FormDto\\FormDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\FormDto\\FormDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:31:19.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "UpdateClientDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\UpdateClientDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\ClientDto\\UpdateClientDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\UpdateClientDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\ClientDto\\UpdateClientDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:30:59.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "DeleteLogicalClientDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\DeleteLogicalClientDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\ClientDto\\DeleteLogicalClientDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\DeleteLogicalClientDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\ClientDto\\DeleteLogicalClientDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:30:45.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "ClientDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\ClientDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\ClientDto\\ClientDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\ClientDto\\ClientDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\ClientDto\\ClientDto.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAowCMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:30:22.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "UpdateBranchDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\UpdateBranchDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\BranchDto\\UpdateBranchDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\UpdateBranchDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\BranchDto\\UpdateBranchDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:29:32.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "DeleteLogicalBranchDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\DeleteLogicalBranchDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\BranchDto\\DeleteLogicalBranchDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\DeleteLogicalBranchDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\BranchDto\\DeleteLogicalBranchDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:29:17.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "BranchDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\BranchDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\BranchDto\\BranchDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\BranchDto\\BranchDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\BranchDto\\BranchDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:29:01.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "BaseDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\Base\\BaseDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\Base\\BaseDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\Base\\BaseDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\Base\\BaseDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:28:42.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "UpdateAvailableTimeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\UpdateAvailableTimeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AvailableTimeDto\\UpdateAvailableTimeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\UpdateAvailableTimeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AvailableTimeDto\\UpdateAvailableTimeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:28:21.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "DeleteLogicalAvailableTimeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\DeleteLogicalAvailableTimeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AvailableTimeDto\\DeleteLogicalAvailableTimeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\DeleteLogicalAvailableTimeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AvailableTimeDto\\DeleteLogicalAvailableTimeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:28:03.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "AvailableTimeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\AvailableTimeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AvailableTimeDto\\AvailableTimeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AvailableTimeDto\\AvailableTimeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AvailableTimeDto\\AvailableTimeDto.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:27:49.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "UserPermissionsDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\UserPermissionsDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AuthDto\\UserPermissionsDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\UserPermissionsDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AuthDto\\UserPermissionsDto.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:27:29.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "LoginResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\LoginResponseDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AuthDto\\LoginResponseDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\LoginResponseDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AuthDto\\LoginResponseDto.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowC0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:27:08.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\LoginDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AuthDto\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AuthDto\\LoginDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AuthDto\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:26:46.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "UpdateAppointmentTypeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\UpdateAppointmentTypeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmentTypeDto\\UpdateAppointmentTypeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\UpdateAppointmentTypeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmentTypeDto\\UpdateAppointmentTypeDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowCcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:26:30.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "DeleteLogicalAppointmentTypeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\DeleteLogicalAppointmentTypeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmentTypeDto\\DeleteLogicalAppointmentTypeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\DeleteLogicalAppointmentTypeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmentTypeDto\\DeleteLogicalAppointmentTypeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:26:17.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "AppointmentTypeDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\AppointmentTypeDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmentTypeDto\\AppointmentTypeDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmentTypeDto\\AppointmentTypeDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmentTypeDto\\AppointmentTypeDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:26:03.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "UpdateAppointmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\UpdateAppointmentDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmenDto\\UpdateAppointmentDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\UpdateAppointmentDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmenDto\\UpdateAppointmentDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:25:42.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "DeleteLogicalAppointmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\DeleteLogicalAppointmentDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmenDto\\DeleteLogicalAppointmentDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\DeleteLogicalAppointmentDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmenDto\\DeleteLogicalAppointmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:25:23.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "CreateAppointmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\CreateAppointmentDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmenDto\\CreateAppointmentDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\CreateAppointmentDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmenDto\\CreateAppointmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:25:02.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "AppointmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\AppointmentDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTOs\\AppointmenDto\\AppointmentDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\DTOs\\AppointmenDto\\AppointmentDto.cs",
+              "RelativeToolTip": "Entity\\DTOs\\AppointmenDto\\AppointmentDto.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAmwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:24:38.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\User.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\User.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\User.cs",
+              "RelativeToolTip": "Entity\\Model\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:24:15.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "RolUser.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\RolUser.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\RolUser.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\RolUser.cs",
+              "RelativeToolTip": "Entity\\Model\\RolUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:23:59.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "RolFormPermi.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\RolFormPermi.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\RolFormPermi.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\RolFormPermi.cs",
+              "RelativeToolTip": "Entity\\Model\\RolFormPermi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowCoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:23:44.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "Rol.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Rol.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Rol.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Rol.cs",
+              "RelativeToolTip": "Entity\\Model\\Rol.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:23:27.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "Permission.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Permission.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Permission.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Permission.cs",
+              "RelativeToolTip": "Entity\\Model\\Permission.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAkwCIAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:23:11.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "NewAccount.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\NewAccount.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\NewAccount.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\NewAccount.cs",
+              "RelativeToolTip": "Entity\\Model\\NewAccount.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:22:50.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "Module.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Module.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Module.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Module.cs",
+              "RelativeToolTip": "Entity\\Model\\Module.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:22:35.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 115,
+              "Title": "FormModule.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\FormModule.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\FormModule.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\FormModule.cs",
+              "RelativeToolTip": "Entity\\Model\\FormModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:22:21.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 116,
+              "Title": "Form.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Form.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Form.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Form.cs",
+              "RelativeToolTip": "Entity\\Model\\Form.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:22:01.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 117,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Client.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Client.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Client.cs",
+              "RelativeToolTip": "Entity\\Model\\Client.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:21:44.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 118,
+              "Title": "Branch.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Branch.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Branch.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Branch.cs",
+              "RelativeToolTip": "Entity\\Model\\Branch.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAUwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:21:03.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 119,
+              "Title": "AvailableTime.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\AvailableTime.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\AvailableTime.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\AvailableTime.cs",
+              "RelativeToolTip": "Entity\\Model\\AvailableTime.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:20:30.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 120,
+              "Title": "AppointmentType.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\AppointmentType.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\AppointmentType.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\AppointmentType.cs",
+              "RelativeToolTip": "Entity\\Model\\AppointmentType.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:19:40.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 121,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Appointment.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Appointment.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\ADSO\\PQR\\PQR_AgendamientoDeCitas\\backend\\Entity\\Model\\Appointment.cs",
+              "RelativeToolTip": "Entity\\Model\\Appointment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T05:18:33.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a34b1c5d-6d37-4a0c-a8b0-99f8e8158b48}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 46,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 110,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

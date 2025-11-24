@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/User/Desktop/Electrohuila/pqr-scheduling-appointments-api/**)",
+      "mcp__ide__getDiagnostics",
+      "Bash(awk:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  pqr-frontend-qa:
+    build:
+      context: ../../
+      dockerfile: devops/qa/dockerfile
+    container_name: pqr-frontend-qa
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://qa-api.electrohuila.local:8080}
+      - NEXT_PUBLIC_ENV=qa
+    env_file:
+      - ./properties/.env.qa
+    networks:
+      - pqr-network-qa
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  pqr-network-qa:
+    driver: bridge

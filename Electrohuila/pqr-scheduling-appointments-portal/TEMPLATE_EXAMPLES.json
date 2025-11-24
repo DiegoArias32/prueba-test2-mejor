@@ -1,0 +1,100 @@
+{
+  "templates": [
+    {
+      "templateCode": "APPT_CONFIRMATION",
+      "templateName": "Confirmación de Cita",
+      "templateType": "Email",
+      "subject": "✅ Confirmación de tu cita - {{APPOINTMENT_DATE}}",
+      "bodyTemplate": "Estimado/a {{CLIENT_NAME}},\n\nTu cita ha sido confirmada exitosamente.\n\n📋 DETALLES DE LA CITA:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• Tipo de cita: {{APPOINTMENT_TYPE}}\n• Fecha: {{APPOINTMENT_DATE}}\n• Hora: {{APPOINTMENT_TIME}}\n• Número de confirmación: {{APPOINTMENT_NUMBER}}\n\n📍 UBICACIÓN:\n{{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n📞 Teléfono: {{BRANCH_PHONE}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n⚠️ IMPORTANTE:\n• Por favor llega 10 minutos antes de tu cita\n• Si necesitas cancelar o reagendar, contáctanos con al menos 24 horas de anticipación\n• Trae tu documento de identidad\n\n¡Te esperamos!\n\nSaludos cordiales,\nEl equipo de atención",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_REMINDER",
+      "templateName": "Recordatorio de Cita (24h)",
+      "templateType": "Email",
+      "subject": "🔔 Recordatorio: Tu cita es mañana - {{APPOINTMENT_DATE}}",
+      "bodyTemplate": "Hola {{CLIENT_NAME}},\n\nEste es un recordatorio amistoso de tu próxima cita:\n\n📅 DETALLES:\n• {{APPOINTMENT_TYPE}}\n• Mañana {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}}\n• Número de cita: {{APPOINTMENT_NUMBER}}\n\n📍 UBICACIÓN:\n{{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n📞 {{BRANCH_PHONE}}\n\n💡 RECOMENDACIONES:\n• Llega 10 minutos antes\n• Trae tu documento de identidad\n• Si tienes alguna pregunta, llámanos\n\n¿Necesitas cancelar o reagendar? Contáctanos lo antes posible.\n\n¡Nos vemos mañana!\n\nSaludos,\nEquipo de {{BRANCH_NAME}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_REMINDER_SMS",
+      "templateName": "Recordatorio SMS",
+      "templateType": "SMS",
+      "subject": "",
+      "bodyTemplate": "🔔 Recordatorio: Tienes cita mañana {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}} en {{BRANCH_NAME}}. Cita #{{APPOINTMENT_NUMBER}}. Llega 10 min antes.",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_CANCELLATION",
+      "templateName": "Cancelación de Cita",
+      "templateType": "Email",
+      "subject": "❌ Cita Cancelada - {{APPOINTMENT_NUMBER}}",
+      "bodyTemplate": "Estimado/a {{CLIENT_NAME}},\n\nTe informamos que tu cita ha sido cancelada.\n\n📋 DETALLES DE LA CITA CANCELADA:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• Tipo: {{APPOINTMENT_TYPE}}\n• Fecha: {{APPOINTMENT_DATE}}\n• Hora: {{APPOINTMENT_TIME}}\n• Número: {{APPOINTMENT_NUMBER}}\n• Motivo: {{CANCELLATION_REASON}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💬 ¿Deseas reagendar?\nPuedes agendar una nueva cita contactándonos:\n\n📞 {{BRANCH_PHONE}}\n📍 {{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n\nLamentamos cualquier inconveniente.\n\nSaludos,\nEl equipo de atención",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_RESCHEDULED",
+      "templateName": "Cita Reagendada",
+      "templateType": "Email",
+      "subject": "📅 Tu cita ha sido reagendada - Nueva fecha: {{APPOINTMENT_DATE}}",
+      "bodyTemplate": "Hola {{CLIENT_NAME}},\n\nTu cita ha sido reagendada exitosamente.\n\n🔄 NUEVA INFORMACIÓN:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• Tipo de cita: {{APPOINTMENT_TYPE}}\n• Nueva fecha: {{APPOINTMENT_DATE}}\n• Nueva hora: {{APPOINTMENT_TIME}}\n• Número de confirmación: {{APPOINTMENT_NUMBER}}\n\n📍 Misma ubicación:\n{{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n📞 {{BRANCH_PHONE}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n✅ Tu nueva cita está confirmada.\n\n¿Necesitas hacer algún cambio adicional?\nContáctanos y con gusto te ayudaremos.\n\n¡Te esperamos!\n\nSaludos,\nEquipo de {{BRANCH_NAME}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_COMPLETED",
+      "templateName": "Cita Completada",
+      "templateType": "Email",
+      "subject": "✅ Gracias por tu visita - Cita completada",
+      "bodyTemplate": "Hola {{CLIENT_NAME}},\n\n¡Gracias por confiar en nosotros!\n\nTu cita del {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}} ha sido completada exitosamente.\n\n📋 RESUMEN:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• Tipo de cita: {{APPOINTMENT_TYPE}}\n• Fecha: {{APPOINTMENT_DATE}}\n• Hora: {{APPOINTMENT_TIME}}\n• Número: {{APPOINTMENT_NUMBER}}\n• Atendido en: {{BRANCH_NAME}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💬 ¿CÓMO FUE TU EXPERIENCIA?\nNos encantaría conocer tu opinión para seguir mejorando nuestro servicio.\n\n¿Necesitas agendar una nueva cita?\nEstamos a tu disposición:\n📞 {{BRANCH_PHONE}}\n📍 {{BRANCH_ADDRESS}}\n\n¡Esperamos verte pronto!\n\nSaludos cordiales,\nEl equipo de {{BRANCH_NAME}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_NO_SHOW",
+      "templateName": "Inasistencia a Cita",
+      "templateType": "Email",
+      "subject": "Te extrañamos en tu cita - {{APPOINTMENT_NUMBER}}",
+      "bodyTemplate": "Hola {{CLIENT_NAME}},\n\nNotamos que no pudiste asistir a tu cita programada.\n\n📋 DETALLES DE LA CITA:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• Tipo: {{APPOINTMENT_TYPE}}\n• Fecha: {{APPOINTMENT_DATE}}\n• Hora: {{APPOINTMENT_TIME}}\n• Número: {{APPOINTMENT_NUMBER}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 ¿TUVISTE ALGÚN INCONVENIENTE?\nEntendemos que a veces surgen imprevistos.\n\n📅 ¿Quieres reagendar?\nCon gusto te ayudamos a programar una nueva cita:\n📞 {{BRANCH_PHONE}}\n📍 {{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n\n⚠️ IMPORTANTE:\nSi no puedes asistir a una cita, te pedimos cancelarla con anticipación para que otros puedan aprovechar ese espacio.\n\nEstamos aquí para ayudarte.\n\nSaludos,\nEquipo de {{BRANCH_NAME}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_REMINDER_PUSH",
+      "templateName": "Recordatorio Push Notification",
+      "templateType": "Push",
+      "subject": "🔔 Recordatorio de Cita",
+      "bodyTemplate": "Tu cita de {{APPOINTMENT_TYPE}} es mañana {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}} en {{BRANCH_NAME}}. ¡No olvides asistir!",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_CONFIRMATION_SMS",
+      "templateName": "Confirmación SMS",
+      "templateType": "SMS",
+      "subject": "",
+      "bodyTemplate": "✅ Cita confirmada! {{APPOINTMENT_TYPE}} el {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}} en {{BRANCH_NAME}}. Cita #{{APPOINTMENT_NUMBER}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_CANCELLATION_SMS",
+      "templateName": "Cancelación SMS",
+      "templateType": "SMS",
+      "subject": "",
+      "bodyTemplate": "❌ Tu cita #{{APPOINTMENT_NUMBER}} del {{APPOINTMENT_DATE}} ha sido cancelada. Motivo: {{CANCELLATION_REASON}}. Para reagendar llama al {{BRANCH_PHONE}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_TODAY_REMINDER",
+      "templateName": "Recordatorio Cita Hoy",
+      "templateType": "SMS",
+      "subject": "",
+      "bodyTemplate": "⏰ Recordatorio: Tu cita de {{APPOINTMENT_TYPE}} es HOY a las {{APPOINTMENT_TIME}} en {{BRANCH_NAME}}. Te esperamos! #{{APPOINTMENT_NUMBER}}",
+      "isActive": true
+    },
+    {
+      "templateCode": "APPT_WELCOME",
+      "templateName": "Bienvenida Nueva Cita",
+      "templateType": "Email",
+      "subject": "👋 ¡Bienvenido! Tu cita ha sido agendada",
+      "bodyTemplate": "¡Hola {{CLIENT_NAME}}!\n\nNos alegra que hayas elegido nuestros servicios.\n\n✨ TU PRIMERA CITA:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n• {{APPOINTMENT_TYPE}}\n• {{APPOINTMENT_DATE}} a las {{APPOINTMENT_TIME}}\n• Número de cita: {{APPOINTMENT_NUMBER}}\n\n📍 NOS ENCONTRARÁS EN:\n{{BRANCH_NAME}}\n{{BRANCH_ADDRESS}}\n📞 {{BRANCH_PHONE}}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n💡 ANTES DE TU CITA:\n• Llega 10 minutos antes\n• Trae tu documento de identidad\n• Si tienes dudas, llámanos\n\nRecibirás un recordatorio 24 horas antes de tu cita.\n\n¡Esperamos conocerte pronto!\n\nSaludos,\nEl equipo de {{BRANCH_NAME}}",
+      "isActive": true
+    }
+  ]
+}
