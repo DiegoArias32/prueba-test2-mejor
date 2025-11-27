@@ -18,6 +18,7 @@ export const AppointmentSchedulingView: React.FC = () => {
     isLoading,
     loadingHours,
     error,
+    parsedError,
     clientNumber,
     setClientNumber,
     clientData,
@@ -118,6 +119,7 @@ export const AppointmentSchedulingView: React.FC = () => {
               loadingHours={loadingHours}
               isLoading={isLoading}
               error={error}
+              parsedError={parsedError}
               validationErrors={validationErrors}
               onFormChange={handleFormChange}
               onSubmit={handleFormSubmit}

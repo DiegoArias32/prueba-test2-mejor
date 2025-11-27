@@ -42,10 +42,10 @@ export const useBranches = (repository: AdminRepository): UseBranchesReturn => {
     setLoading(true);
     setError(null);
     try {
-      const data = activeOnly
-        ? await repository.getBranches()
-        : await repository.getAllBranchesIncludingInactive();
-      setBranches(activeOnly ? data.filter(b => b.isActive) : data.filter(b => !b.isActive));
+      // Always fetch all branches (including inactive) to have complete data
+      const data = await repository.getAllBranchesIncludingInactive();
+      // Store all branches - BranchesView will filter them based on currentView
+      setBranches(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading branches');
     } finally {
@@ -102,10 +102,15 @@ export const useBranches = (repository: AdminRepository): UseBranchesReturn => {
     try {
       if (logical) {
         await repository.deleteLogicalBranch(id);
+        // Update local state to mark as inactive instead of removing
+        setBranches(prev => prev.map(b =>
+          b.id === id ? { ...b, isActive: false } : b
+        ));
       } else {
         await repository.deleteBranch(id);
+        // Physical delete - remove from list
+        setBranches(prev => prev.filter(b => b.id !== id));
       }
-      setBranches(prev => prev.filter(b => b.id !== id));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error deleting branch');
       throw err;
@@ -119,7 +124,10 @@ export const useBranches = (repository: AdminRepository): UseBranchesReturn => {
     setError(null);
     try {
       await repository.activateBranch(id);
-      setBranches(prev => prev.filter(b => b.id !== id));
+      // Update local state to mark as active instead of removing
+      setBranches(prev => prev.map(b =>
+        b.id === id ? { ...b, isActive: true } : b
+      ));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error activating branch');
       throw err;

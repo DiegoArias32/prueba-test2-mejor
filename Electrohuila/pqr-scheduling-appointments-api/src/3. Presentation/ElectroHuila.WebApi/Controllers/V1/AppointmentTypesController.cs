@@ -3,11 +3,13 @@ using ElectroHuila.Application.Features.AppointmentTypes.Commands.CreateAppointm
 using ElectroHuila.Application.Features.AppointmentTypes.Commands.UpdateAppointmentType;
 using ElectroHuila.Application.Features.AppointmentTypes.Commands.DeleteAppointmentType;
 using ElectroHuila.Application.Features.AppointmentTypes.Commands.DeleteLogicalAppointmentType;
+using ElectroHuila.Application.Features.AppointmentTypes.Commands.ActivateAppointmentType;
 using ElectroHuila.Application.Features.AppointmentTypes.Queries.GetAllAppointmentTypes;
 using ElectroHuila.Application.Features.AppointmentTypes.Queries.GetActiveAppointmentTypes;
 using ElectroHuila.Application.Features.AppointmentTypes.Queries.GetAppointmentTypeById;
 using ElectroHuila.Application.Features.AppointmentTypes.Queries.GetAppointmentTypeByName;
 using ElectroHuila.Application.Features.AppointmentTypes.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class AppointmentTypesController : ApiController
 {
+    private readonly IAppointmentTypeRepository _appointmentTypeRepository;
+
+    public AppointmentTypesController(IAppointmentTypeRepository appointmentTypeRepository)
+    {
+        _appointmentTypeRepository = appointmentTypeRepository;
+    }
 
     /// <summary>
     /// Obtiene todos los tipos de citas registrados en el sistema.
@@ -147,5 +155,45 @@ public class AppointmentTypesController : ApiController
         var command = new DeleteLogicalAppointmentTypeCommand(id);
         var result = await Mediator.Send(command);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un tipo de cita que fue previamente desactivado.
+    /// Marca el tipo de cita como activo nuevamente.
+    /// </summary>
+    /// <param name="id">ID del tipo de cita a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var appointmentType = await _appointmentTypeRepository.GetByIdAsync(id);
+        if (appointmentType == null)
+            return NotFound(new { message = $"AppointmentType with ID {id} not found" });
+
+        appointmentType.IsActive = true;
+        appointmentType.UpdatedAt = DateTime.UtcNow;
+        await _appointmentTypeRepository.UpdateAsync(appointmentType);
+
+        return Ok(new { success = true, message = "AppointmentType activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un tipo de cita del sistema.
+    /// Marca el tipo de cita como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del tipo de cita a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var appointmentType = await _appointmentTypeRepository.GetByIdAsync(id);
+        if (appointmentType == null)
+            return NotFound(new { message = $"AppointmentType with ID {id} not found" });
+
+        appointmentType.IsActive = false;
+        appointmentType.UpdatedAt = DateTime.UtcNow;
+        await _appointmentTypeRepository.UpdateAsync(appointmentType);
+
+        return Ok(new { success = true, message = "AppointmentType deactivated successfully" });
     }
 }

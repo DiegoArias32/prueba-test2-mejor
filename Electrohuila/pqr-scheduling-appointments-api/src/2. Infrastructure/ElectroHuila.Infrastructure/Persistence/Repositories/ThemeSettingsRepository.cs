@@ -40,6 +40,7 @@ public class ThemeSettingsRepository : BaseRepository<ThemeSettings>, IThemeSett
     /// </summary>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(t => t.Name == name);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(t => t.Name == name) > 0;
     }
 }

@@ -46,6 +46,12 @@ public class UpdateBranchCommandHandler : IRequestHandler<UpdateBranchCommand, R
             existingBranch.IsMain = request.BranchDto.IsMain;
             existingBranch.UpdatedAt = DateTime.UtcNow;
 
+            // Update IsActive if provided
+            if (request.BranchDto.IsActive.HasValue)
+            {
+                existingBranch.IsActive = request.BranchDto.IsActive.Value;
+            }
+
             await _branchRepository.UpdateAsync(existingBranch);
             var branchDto = _mapper.Map<BranchDto>(existingBranch);
 

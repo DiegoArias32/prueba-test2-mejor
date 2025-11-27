@@ -63,7 +63,6 @@ export const useUserPermissions = (repository: AdminRepository): UseUserPermissi
       'horas-disponibles',
       'permisos',
       'festivos',
-      'plantillas',
       'settings'
     ];
 

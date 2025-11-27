@@ -84,6 +84,35 @@ Disculpa las molestias ocasionadas.
 
 Si tienes alguna duda, estamos a tu disposición. 📞`;
         }
+    },
+
+    cita_completada: {
+        requiredFields: ['nombreCliente', 'fecha', 'hora', 'ubicacion'],
+        generate: (data) => {
+            return `✅ *CITA COMPLETADA - ELECTROHUILA*
+
+Hola *${data.nombreCliente}*,
+
+¡Gracias por asistir a tu cita! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 *DETALLES DEL SERVICIO*
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎫 *Número de Cita:* ${data.numeroCita || 'N/A'}
+📅 *Fecha:* ${data.fecha}
+🕐 *Hora:* ${data.hora}
+📍 *Sede:* ${data.ubicacion}
+${data.tipoCita ? `📝 *Servicio:* ${data.tipoCita}\n` : ''}${data.observaciones ? `📝 *Observaciones:* ${data.observaciones}\n` : ''}
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Tu servicio ha sido completado exitosamente.
+
+Si tienes alguna consulta sobre el servicio realizado o necesitas asistencia adicional, no dudes en contactarnos. 📞
+
+¡Gracias por confiar en ElectroHuila! 👷‍♂️⚡
+
+_ElectroHuila - Energía para tu hogar_`;
+        }
     }
 };
 

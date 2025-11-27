@@ -37,6 +37,12 @@ public class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, R
             client.Address = request.ClientDto.Address;
             client.UpdatedAt = DateTime.UtcNow;
 
+            // Update IsActive if provided
+            if (request.ClientDto.IsActive.HasValue)
+            {
+                client.IsActive = request.ClientDto.IsActive.Value;
+            }
+
             await _clientRepository.UpdateAsync(client);
             var dto = _mapper.Map<ClientDto>(client);
 

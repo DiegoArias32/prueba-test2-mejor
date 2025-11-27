@@ -205,11 +205,12 @@ public class RolRepository : BaseRepository<Rol>, IRolRepository
     /// sin cargar datos innecesarios.
     /// 
     /// Para verificar solo roles activos, combinar con:
-    /// await _dbSet.AnyAsync(r => r.Code == code && r.IsActive)
+    /// await _dbSet.CountAsync(r => r.Code == code && r.IsActive) > 0
     /// </remarks>
     public async Task<bool> ExistsByCodeAsync(string code)
     {
-        return await _dbSet.AnyAsync(r => r.Code == code);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(r => r.Code == code) > 0;
     }
 
     /// <summary>
@@ -235,7 +236,8 @@ public class RolRepository : BaseRepository<Rol>, IRolRepository
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(r => r.Name == name);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(r => r.Name == name) > 0;
     }
 
     /// <summary>

@@ -47,6 +47,19 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     }
 
     /// <summary>
+    /// Obtiene todos los usuarios incluyendo los inactivos con sus roles.
+    /// </summary>
+    /// <returns>Lista de todos los usuarios (activos e inactivos) con sus roles.</returns>
+    public async Task<IEnumerable<User>> GetAllIncludingInactiveAsync()
+    {
+        return await _dbSet
+            .Include(u => u.RolUsers)
+                .ThenInclude(ru => ru.Rol)
+            .OrderBy(u => u.Username)
+            .ToListAsync();
+    }
+
+    /// <summary>
     /// Obtiene un usuario por su email, incluyendo sus roles.
     /// </summary>
     /// <param name="email">Email del usuario.</param>
@@ -120,17 +133,20 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<bool> ExistsByEmailAsync(string email)
     {
-        return await _dbSet.AnyAsync(u => u.Email == email);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(u => u.Email == email) > 0;
     }
 
     public async Task<bool> ExistsByUsernameAsync(string username)
     {
-        return await _dbSet.AnyAsync(u => u.Username == username);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(u => u.Username == username) > 0;
     }
 
     public async Task<bool> ExistsByDocumentNumberAsync(string documentNumber)
     {
-        return await _dbSet.AnyAsync(u => u.Username == documentNumber);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(u => u.Username == documentNumber) > 0;
     }
 
     public async Task DeleteAsync(int id)

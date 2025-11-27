@@ -102,7 +102,7 @@ export function useNotifications(): NotificationHookReturn {
   /**
    * Add a notification to the local state (for WebSocket updates)
    */
-  const addNotification = useCallback((notification: Partial<NotificationDto> & { title: string; message: string }) => {
+  const addNotification = useCallback((notification: Partial<NotificationDto> & { title: string; message: string; timestamp?: string }) => {
     const newNotification: NotificationDto = {
       id: notification.id || Date.now(),
       type: notification.type || 'system_notification',

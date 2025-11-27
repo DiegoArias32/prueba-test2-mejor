@@ -1,4 +1,5 @@
 using ElectroHuila.Domain.Exceptions;
+using FluentValidation;
 using System.Net;
 using System.Text.Json;
 
@@ -50,11 +51,32 @@ public class ExceptionHandlingMiddleware
     {
         context.Response.ContentType = "application/json";
 
-        var response = new
+        object response;
+
+        // Handle FluentValidation ValidationException specially to return validation errors
+        if (exception is ValidationException validationException)
         {
-            error = GetErrorMessage(exception),
-            details = exception.Message
-        };
+            var errors = validationException.Errors
+                .GroupBy(e => e.PropertyName)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(e => e.ErrorMessage).ToArray()
+                );
+
+            response = new
+            {
+                error = "Validation failed",
+                errors = errors
+            };
+        }
+        else
+        {
+            response = new
+            {
+                error = GetErrorMessage(exception),
+                details = exception.Message
+            };
+        }
 
         context.Response.StatusCode = GetStatusCode(exception);
 
@@ -75,6 +97,7 @@ public class ExceptionHandlingMiddleware
     {
         return exception switch
         {
+            ValidationException => (int)HttpStatusCode.BadRequest,
             DomainException => (int)HttpStatusCode.BadRequest,
             UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
             ArgumentException => (int)HttpStatusCode.BadRequest,
@@ -92,11 +115,23 @@ public class ExceptionHandlingMiddleware
     {
         return exception switch
         {
+            ValidationException => "Validation failed",
             DomainException => "A business rule violation occurred",
             UnauthorizedAccessException => "Access denied",
             ArgumentException => "Invalid input provided",
             KeyNotFoundException => "Resource not found",
             _ => "An internal server error occurred"
         };
+    }
+}
+
+/// <summary>
+/// Extension method to register the ExceptionHandlingMiddleware
+/// </summary>
+public static class ExceptionHandlingMiddlewareExtensions
+{
+    public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware<ExceptionHandlingMiddleware>();
     }
 }

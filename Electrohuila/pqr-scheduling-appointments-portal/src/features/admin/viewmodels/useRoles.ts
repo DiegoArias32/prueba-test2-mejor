@@ -45,8 +45,10 @@ export const useRoles = (repository: AdminRepository): UseRolesReturn => {
     setLoading(true);
     setError(null);
     try {
+      // Always fetch all roles (including inactive) to have complete data
       const data = await repository.getRoles();
-      setRoles(activeOnly ? data.filter(r => r.isActive) : data.filter(r => !r.isActive));
+      // Store all roles - RolesView will filter them based on currentView
+      setRoles(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading roles');
     } finally {
@@ -96,10 +98,15 @@ export const useRoles = (repository: AdminRepository): UseRolesReturn => {
     try {
       if (logical) {
         await repository.deleteLogicalRol(id);
+        // Update local state to mark as inactive instead of removing
+        setRoles(prev => prev.map(r =>
+          r.id === id ? { ...r, isActive: false } : r
+        ));
       } else {
         await repository.deleteRol(id);
+        // Physical delete - remove from list
+        setRoles(prev => prev.filter(r => r.id !== id));
       }
-      setRoles(prev => prev.filter(r => r.id !== id));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error deleting role');
       throw err;
@@ -113,7 +120,10 @@ export const useRoles = (repository: AdminRepository): UseRolesReturn => {
     setError(null);
     try {
       await repository.activateRol(id);
-      setRoles(prev => prev.filter(r => r.id !== id));
+      // Update local state to mark as active instead of removing
+      setRoles(prev => prev.map(r =>
+        r.id === id ? { ...r, isActive: true } : r
+      ));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error activating role');
       throw err;

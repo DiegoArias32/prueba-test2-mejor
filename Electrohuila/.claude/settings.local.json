@@ -37,7 +37,9 @@
       "Bash(findstr:*)",
       "Bash(dir:*)",
       "Bash(find . -type d ( -name \"bin\" -o -name \"obj\" ) -exec rm -rf {} +)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(dotnet add package:*)",
+      "Bash(dotnet add:*)"
     ],
     "deny": [
       "Read(./.env*)",

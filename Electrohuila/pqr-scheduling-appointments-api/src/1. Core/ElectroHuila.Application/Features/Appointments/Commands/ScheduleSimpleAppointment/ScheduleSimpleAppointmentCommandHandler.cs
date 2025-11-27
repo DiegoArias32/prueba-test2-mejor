@@ -20,6 +20,8 @@ public class ScheduleSimpleAppointmentCommandHandler
     private readonly IClientRepository _clientRepository;
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IBranchRepository _branchRepository;
+    private readonly IHolidayRepository _holidayRepository;
+    private readonly IUserAssignmentRepository _userAssignmentRepository;
     private readonly IAppointmentNumberGenerator _numberGenerator;
     private readonly ISignalRNotificationService _signalRService;
     private readonly INotificationService _notificationService;
@@ -28,6 +30,8 @@ public class ScheduleSimpleAppointmentCommandHandler
         IClientRepository clientRepository,
         IAppointmentRepository appointmentRepository,
         IBranchRepository branchRepository,
+        IHolidayRepository holidayRepository,
+        IUserAssignmentRepository userAssignmentRepository,
         IAppointmentNumberGenerator numberGenerator,
         ISignalRNotificationService signalRService,
         INotificationService notificationService)
@@ -35,6 +39,8 @@ public class ScheduleSimpleAppointmentCommandHandler
         _clientRepository = clientRepository;
         _appointmentRepository = appointmentRepository;
         _branchRepository = branchRepository;
+        _holidayRepository = holidayRepository;
+        _userAssignmentRepository = userAssignmentRepository;
         _numberGenerator = numberGenerator;
         _signalRService = signalRService;
         _notificationService = notificationService;
@@ -101,6 +107,36 @@ public class ScheduleSimpleAppointmentCommandHandler
                 return Result.Failure<ScheduleSimpleAppointmentResponse>("La fecha de la cita no es válida");
             }
 
+            // VALIDACIÓN CRÍTICA: Verificar fecha y hora de la cita
+            // Verificar si es domingo
+            if (appointmentDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return Result.Failure<ScheduleSimpleAppointmentResponse>("No se pueden agendar citas los domingos");
+            }
+
+            // Verificar si es festivo
+            var isHoliday = await _holidayRepository.IsHolidayAsync(
+                appointmentDate,
+                request.BranchId,
+                cancellationToken);
+
+            if (isHoliday)
+            {
+                var holiday = await _holidayRepository.GetByDateAsync(
+                    appointmentDate,
+                    request.BranchId,
+                    cancellationToken);
+
+                return Result.Failure<ScheduleSimpleAppointmentResponse>(
+                    $"No se pueden agendar citas en días festivos. {holiday?.HolidayName ?? "Día festivo"}");
+            }
+
+            // Verificar que la fecha no esté en el pasado
+            if (appointmentDate.Date < DateTime.UtcNow.Date)
+            {
+                return Result.Failure<ScheduleSimpleAppointmentResponse>("No se pueden agendar citas en fechas pasadas");
+            }
+
             // ========== PASO 4: CREAR LA CITA ==========
             var appointment = new Appointment
             {
@@ -123,8 +159,9 @@ public class ScheduleSimpleAppointmentCommandHandler
             // Agregar cita usando el repositorio (que maneja SaveChanges internamente)
             appointment = await _appointmentRepository.AddAsync(appointment);
 
-            // Send real-time notification to admin panel via SignalR
-            await _signalRService.BroadcastNotificationAsync(new
+            // Send real-time notification ONLY to users assigned to this appointment type via SignalR
+            var assignedUsers = await _userAssignmentRepository.GetByAppointmentTypeIdAsync(appointment.AppointmentTypeId);
+            var notificationData = new
             {
                 type = "appointment_created",
                 data = new
@@ -133,9 +170,18 @@ public class ScheduleSimpleAppointmentCommandHandler
                     appointmentNumber = appointment.AppointmentNumber,
                     clientId = appointment.ClientId,
                     appointmentDate = appointment.AppointmentDate,
+                    appointmentTypeId = appointment.AppointmentTypeId,
                     timestamp = DateTime.UtcNow
                 }
-            }, cancellationToken);
+            };
+
+            foreach (var assignment in assignedUsers.Where(a => a.IsActive))
+            {
+                await _signalRService.SendNotificationToUserAsync(
+                    assignment.UserId.ToString(),
+                    notificationData,
+                    cancellationToken);
+            }
 
             // Send appointment confirmation notifications (Email, WhatsApp, IN_APP)
             _ = Task.Run(async () =>

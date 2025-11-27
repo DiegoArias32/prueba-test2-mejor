@@ -72,33 +72,36 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     }
 
     /// <summary>
-    /// Agrega una nueva entidad al repositorio.
+    /// Agrega una nueva entidad al repositorio y persiste los cambios en la base de datos.
     /// </summary>
     /// <param name="entity">Entidad a agregar.</param>
-    /// <returns>Entidad agregada.</returns>
+    /// <returns>Entidad agregada con su ID asignado por la base de datos.</returns>
     public async Task<T> AddAsync(T entity)
     {
         await _dbSet.AddAsync(entity);
+        await _context.SaveChangesAsync();
         return entity;
     }
 
     /// <summary>
-    /// Agrega múltiples entidades al repositorio.
+    /// Agrega múltiples entidades al repositorio y persiste los cambios en la base de datos.
     /// </summary>
     /// <param name="entities">Colección de entidades a agregar.</param>
     public async Task AddRangeAsync(IEnumerable<T> entities)
     {
         await _dbSet.AddRangeAsync(entities);
+        await _context.SaveChangesAsync();
     }
 
     /// <summary>
     /// Actualiza una entidad existente (versión asíncrona).
+    /// FIXED: Added SaveChangesAsync to persist changes to database
     /// </summary>
     /// <param name="entity">Entidad a actualizar.</param>
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
         _dbSet.Update(entity);
-        return Task.CompletedTask;
+        await _context.SaveChangesAsync();
     }
 
     /// <summary>
@@ -139,22 +142,24 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     /// <summary>
     /// Verifica si existe una entidad con el ID especificado.
+    /// Oracle EF Core Bug: Usar CountAsync > 0 en lugar de AnyAsync para evitar "ORA-00904: FALSE: invalid identifier"
     /// </summary>
     /// <param name="id">ID de la entidad a verificar.</param>
     /// <returns>True si existe, False si no existe.</returns>
     public async Task<bool> ExistsAsync(int id)
     {
-        return await _dbSet.AnyAsync(x => x.Id == id);
+        return await _dbSet.CountAsync(x => x.Id == id) > 0;
     }
 
     /// <summary>
     /// Verifica si existe alguna entidad que cumpla con el predicado.
+    /// Oracle EF Core Bug: Usar CountAsync > 0 en lugar de AnyAsync para evitar "ORA-00904: FALSE: invalid identifier"
     /// </summary>
     /// <param name="predicate">Expresión lambda para filtrar entidades.</param>
     /// <returns>True si existe al menos una entidad, False si no existe ninguna.</returns>
     public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
     {
-        return await _dbSet.AnyAsync(predicate);
+        return await _dbSet.CountAsync(predicate) > 0;
     }
 
     /// <summary>

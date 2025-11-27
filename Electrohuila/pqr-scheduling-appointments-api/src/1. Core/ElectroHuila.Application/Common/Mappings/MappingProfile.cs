@@ -69,7 +69,15 @@ public class MappingProfile : Profile
 
         // Mapeos de Tipos de Cita (AppointmentTypes)
         CreateMap<AppointmentType, AppointmentTypeDto>().ReverseMap();
-        CreateMap<AppointmentType, CreateAppointmentTypeDto>().ReverseMap();
+        CreateMap<CreateAppointmentTypeDto, AppointmentType>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<UpdateAppointmentTypeDto, AppointmentType>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
         // Mapeos de Clientes (Clients)
         CreateMap<Client, ClientDto>()
@@ -93,9 +101,23 @@ public class MappingProfile : Profile
         CreateMap<Branch, UpdateBranchDto>().ReverseMap();
 
         // Mapeos de Usuarios (Users)
-        CreateMap<User, UserDto>().ReverseMap();
-        CreateMap<User, CreateUserDto>().ReverseMap();
-        CreateMap<User, UpdateUserDto>().ReverseMap();
+        CreateMap<User, UserDto>()
+            .ForMember(dest => dest.Roles, opt => opt.MapFrom(src =>
+                src.RolUsers.Select(ru => ru.Rol.Name)))
+            .ReverseMap()
+            .ForMember(dest => dest.RolUsers, opt => opt.Ignore());
+        CreateMap<CreateUserDto, User>()
+            .ForMember(dest => dest.RolUsers, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<UpdateUserDto, User>()
+            .ForMember(dest => dest.RolUsers, opt => opt.Ignore())
+            .ForMember(dest => dest.Password, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
         // Mapeo de User a UserDetailsDto con roles
         CreateMap<User, ElectroHuila.Application.DTOs.Users.UserDetailsDto>()
@@ -112,6 +134,8 @@ public class MappingProfile : Profile
 
         // Mapeos de Roles (Roles)
         CreateMap<Rol, ElectroHuila.Application.DTOs.Roles.RolDto>().ReverseMap();
+        CreateMap<ElectroHuila.Application.DTOs.Roles.CreateRolDto, Rol>();
+        CreateMap<ElectroHuila.Application.DTOs.Roles.UpdateRolDto, Rol>();
 
         // Mapeos de Catálogos
         CreateMap<AppointmentStatus, AppointmentStatusDto>().ReverseMap();
@@ -127,16 +151,24 @@ public class MappingProfile : Profile
         CreateMap<AvailableTime, ElectroHuila.Application.DTOs.AvailableTimes.AvailableTimeDto>()
             .ForMember(dest => dest.BranchName, opt => opt.MapFrom(src => src.Branch != null ? src.Branch.Name : null))
             .ForMember(dest => dest.AppointmentTypeName, opt => opt.MapFrom(src => src.AppointmentType != null ? src.AppointmentType.Name : null));
+        CreateMap<ElectroHuila.Application.DTOs.AvailableTimes.CreateAvailableTimeDto, AvailableTime>()
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.AppointmentType, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<ElectroHuila.Application.DTOs.AvailableTimes.UpdateAvailableTimeDto, AvailableTime>()
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.AppointmentType, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
         // Mapeos de Configuración del Sistema (SystemSettings)
         CreateMap<SystemSetting, SystemSettingDto>().ReverseMap();
         CreateMap<SystemSetting, CreateSystemSettingDto>().ReverseMap();
         CreateMap<SystemSetting, UpdateSystemSettingDto>().ReverseMap();
-
-        // Mapeos de Plantillas de Notificación (NotificationTemplates)
-        CreateMap<NotificationTemplate, NotificationTemplateDto>().ReverseMap();
-        CreateMap<NotificationTemplate, CreateNotificationTemplateDto>().ReverseMap();
-        CreateMap<NotificationTemplate, UpdateNotificationTemplateDto>().ReverseMap();
 
         // Mapeos de Notificaciones (Notifications)
         CreateMap<Notification, NotificationDto>()
@@ -156,6 +188,35 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.BranchName, opt => opt.MapFrom(src => src.Branch != null ? src.Branch.Name : null));
         CreateMap<HolidayDto, Holiday>()
             .ForMember(dest => dest.Branch, opt => opt.Ignore());
+        CreateMap<CreateNationalHolidayDto, Holiday>()
+            .ForMember(dest => dest.HolidayType, opt => opt.MapFrom(src => "NATIONAL"))
+            .ForMember(dest => dest.BranchId, opt => opt.MapFrom(src => (int?)null))
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<CreateLocalHolidayDto, Holiday>()
+            .ForMember(dest => dest.HolidayType, opt => opt.MapFrom(src => "LOCAL"))
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<CreateCompanyHolidayDto, Holiday>()
+            .ForMember(dest => dest.HolidayType, opt => opt.MapFrom(src => "COMPANY"))
+            .ForMember(dest => dest.BranchId, opt => opt.MapFrom(src => (int?)null))
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.IsActive, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+        CreateMap<UpdateHolidayDto, Holiday>()
+            .ForMember(dest => dest.Branch, opt => opt.Ignore())
+            .ForMember(dest => dest.HolidayType, opt => opt.Ignore())
+            .ForMember(dest => dest.BranchId, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
         // Mapeos de Documentos de Citas (AppointmentDocuments)
         CreateMap<AppointmentDocument, AppointmentDocumentDto>()

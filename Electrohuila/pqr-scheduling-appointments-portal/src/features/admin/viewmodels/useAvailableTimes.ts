@@ -42,10 +42,10 @@ export const useAvailableTimes = (repository: AdminRepository): UseAvailableTime
     setLoading(true);
     setError(null);
     try {
-      const data = activeOnly
-        ? await repository.getAllAvailableTimes()
-        : await repository.getAllAvailableTimesIncludingInactive();
-      setAvailableTimes(activeOnly ? data.filter(t => t.isActive) : data.filter(t => !t.isActive));
+      // Always fetch all available times (including inactive) to have complete data
+      const data = await repository.getAllAvailableTimesIncludingInactive();
+      // Store all times - TimesView will filter them based on currentView
+      setAvailableTimes(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading available times');
       setAvailableTimes([]);
@@ -121,10 +121,15 @@ export const useAvailableTimes = (repository: AdminRepository): UseAvailableTime
     try {
       if (logical) {
         await repository.deleteLogicalAvailableTime(id);
+        // Update local state to mark as inactive instead of removing
+        setAvailableTimes(prev => prev.map(t =>
+          t.id === id ? { ...t, isActive: false } : t
+        ));
       } else {
         await repository.deleteAvailableTime(id);
+        // Physical delete - remove from list
+        setAvailableTimes(prev => prev.filter(t => t.id !== id));
       }
-      setAvailableTimes(prev => prev.filter(t => t.id !== id));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error deleting available time');
       throw err;
@@ -138,7 +143,10 @@ export const useAvailableTimes = (repository: AdminRepository): UseAvailableTime
     setError(null);
     try {
       await repository.activateAvailableTime(id);
-      setAvailableTimes(prev => prev.filter(t => t.id !== id));
+      // Update local state to mark as active instead of removing
+      setAvailableTimes(prev => prev.map(t =>
+        t.id === id ? { ...t, isActive: true } : t
+      ));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error activating available time');
       throw err;

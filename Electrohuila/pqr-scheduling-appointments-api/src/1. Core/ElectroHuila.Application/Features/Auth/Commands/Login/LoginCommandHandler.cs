@@ -61,10 +61,10 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginRes
                 .Select(rfp => new
                 {
                     FormCode = rfp.Form.Code,
-                    CanRead = rfp.Permission.CanRead,
-                    CanCreate = rfp.Permission.CanCreate,
-                    CanUpdate = rfp.Permission.CanUpdate,
-                    CanDelete = rfp.Permission.CanDelete
+                    CanRead = rfp.Permission.CanRead == true,
+                    CanCreate = rfp.Permission.CanCreate == true,
+                    CanUpdate = rfp.Permission.CanUpdate == true,
+                    CanDelete = rfp.Permission.CanDelete == true
                 })
                 .SelectMany(p => new[]
                 {
@@ -75,6 +75,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginRes
                 })
                 .Where(p => p != null)
                 .Distinct()
+                .Cast<string>()
                 .ToList();
 
             var accessToken = _jwtTokenGenerator.GenerateToken(user, roles, permissions);

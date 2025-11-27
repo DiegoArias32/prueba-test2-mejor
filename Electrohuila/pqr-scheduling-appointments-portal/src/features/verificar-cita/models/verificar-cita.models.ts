@@ -25,9 +25,9 @@ export interface VerificacionCita {
   appointmentTime: string;
   status: string;
   statusDescription: string;
-  client: VerificacionCliente;
-  branch: VerificacionSede;
-  appointmentType: VerificacionTipoCita;
+  client?: VerificacionCliente;
+  branch?: VerificacionSede;
+  appointmentType?: VerificacionTipoCita;
   createdAt: string;
   observations?: string;
   message: string;

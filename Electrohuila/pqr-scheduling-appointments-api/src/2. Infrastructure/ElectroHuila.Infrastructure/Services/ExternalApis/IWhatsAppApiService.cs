@@ -45,6 +45,18 @@ public interface IWhatsAppApiService
         CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Envía una notificación de cita completada por WhatsApp.
+    /// </summary>
+    /// <param name="phoneNumber">Número de teléfono del destinatario (formato internacional: +57XXXXXXXXXX)</param>
+    /// <param name="data">Datos de la cita completada</param>
+    /// <param name="cancellationToken">Token de cancelación para operaciones asíncronas</param>
+    /// <returns>True si el envío fue exitoso, False en caso contrario</returns>
+    Task<bool> SendAppointmentCompletedAsync(
+        string phoneNumber,
+        AppointmentCompletedData data,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Verifica el estado de conectividad con la API de WhatsApp.
     /// </summary>
     /// <param name="cancellationToken">Token de cancelación para operaciones asíncronas</param>

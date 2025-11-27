@@ -40,4 +40,10 @@ public class UpdateClientDto
     /// The updated physical address.
     /// </summary>
     public string Address { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Indicates whether the client is active.
+    /// If null, the current value will be preserved.
+    /// </summary>
+    public bool? IsActive { get; set; }
 }

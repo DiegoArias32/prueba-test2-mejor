@@ -51,7 +51,7 @@ export const RolesView: React.FC<RolesViewProps> = ({
   let processedData = filterData(
     filteredByStatus,
     searchTerm,
-    ['code', 'name', 'description']
+    ['code', 'name']
   );
   processedData = sortData(processedData, sortColumn, sortDirection);
 
@@ -84,7 +84,6 @@ export const RolesView: React.FC<RolesViewProps> = ({
       {
         code: 'Código',
         name: 'Nombre',
-        description: 'Descripción',
         createdAt: 'Fecha de Creación',
         isActive: 'Activo'
       },

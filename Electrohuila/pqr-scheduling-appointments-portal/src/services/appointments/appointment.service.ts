@@ -48,8 +48,8 @@ export class AppointmentService extends BaseHttpService {
   /**
    * Update appointment
    */
-  async updateAppointment(appointment: UpdateAppointmentDto): Promise<{ success: boolean; message: string }> {
-    return this.patch<{ success: boolean; message: string }>(`/appointments/${appointment.id}`, appointment);
+  async updateAppointment(id: number, appointment: UpdateAppointmentDto): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/appointments/${id}`, appointment);
   }
 
   /**
@@ -112,7 +112,7 @@ export class AppointmentService extends BaseHttpService {
    * Get all appointments including inactive
    */
   async getAllAppointmentsIncludingInactive(): Promise<AppointmentDto[]> {
-    return this.get<AppointmentDto[]>('/appointments/pending');
+    return this.get<AppointmentDto[]>('/appointments/all-including-inactive');
   }
 
   // ===== AVAILABLE TIMES =====
@@ -121,7 +121,7 @@ export class AppointmentService extends BaseHttpService {
    * Get all available times
    */
   async getAllAvailableTimes(): Promise<AvailableTimeDto[]> {
-    return this.get<AvailableTimeDto[]>('/availabletimes/branch/-1');
+    return this.get<AvailableTimeDto[]>('/availabletimes/all-including-inactive');
   }
 
   /**
@@ -159,12 +159,19 @@ export class AppointmentService extends BaseHttpService {
   }
 
   /**
-   * Delete available time (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete available time (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalAvailableTime(id: number): Promise<{ success: boolean; message: string }> {
-    throw new Error('⚠️ Endpoint /availabletimes/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<{ success: boolean; message: string }>(`/availabletimes/delete-logical/${id}`);
+    return this.patch<{ success: boolean; message: string }>(`/availabletimes/${id}/deactivate`, {});
+  }
+
+  /**
+   * Activate available time (reactivate a deactivated time slot)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateAvailableTime(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/availabletimes/${id}/activate`, {});
   }
 
   /**
@@ -185,12 +192,9 @@ export class AppointmentService extends BaseHttpService {
 
   /**
    * Get all available times including inactive
-   * TODO: Este endpoint no existe en la API backend - usar /availabletimes/branch/-1 como alternativa
    */
   async getAllAvailableTimesIncludingInactive(): Promise<AvailableTimeDto[]> {
-    // return this.get<AvailableTimeDto[]>('/availabletimes/all-including-inactive');
-    console.warn('⚠️ Endpoint /availabletimes/all-including-inactive no existe. Usando /availabletimes/branch/-1 como fallback');
-    return this.get<AvailableTimeDto[]>('/availabletimes/branch/-1');
+    return this.get<AvailableTimeDto[]>('/availabletimes/all-including-inactive');
   }
 
   /**
@@ -373,6 +377,7 @@ export class AppointmentService extends BaseHttpService {
   /**
    * Cancel public appointment
    * FIXED: Cambiado de /clients/{number} a /client/{number} (singular)
+   * FIXED: Cambiado campo 'cancellationReason' por 'Reason' (PascalCase) según CancelAppointmentDto del backend
    */
   async cancelPublicAppointment(
     clientNumber: string,
@@ -381,7 +386,7 @@ export class AppointmentService extends BaseHttpService {
   ): Promise<{ message: string }> {
     return this.publicPatch<{ message: string }>(
       `/public/client/${clientNumber}/appointment/${appointmentId}/cancel`,
-      { cancellationReason }
+      { Reason: cancellationReason }
     );
   }
 

@@ -8,6 +8,7 @@ using ElectroHuila.Application.Features.AvailableTimes.Queries.GetAvailableTimes
 using ElectroHuila.Application.Features.AvailableTimes.Queries.GetAvailableTimesByAppointmentType;
 using ElectroHuila.Application.Features.AvailableTimes.Queries.GetConfiguredTimes;
 using ElectroHuila.Application.Features.AvailableTimes.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class AvailableTimesController : ApiController
 {
+    private readonly IAvailableTimeRepository _availableTimeRepository;
+
+    public AvailableTimesController(IAvailableTimeRepository availableTimeRepository)
+    {
+        _availableTimeRepository = availableTimeRepository;
+    }
 
     /// <summary>
     /// Obtiene todos los horarios disponibles incluyendo los inactivos.
@@ -150,5 +157,45 @@ public class AvailableTimesController : ApiController
         var command = new DeleteLogicalAvailableTimeCommand(id);
         var result = await Mediator.Send(command);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un horario disponible previamente desactivado.
+    /// Marca el horario como activo en el sistema.
+    /// </summary>
+    /// <param name="id">ID del horario disponible a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var availableTime = await _availableTimeRepository.GetByIdAsync(id);
+        if (availableTime == null)
+            return NotFound(new { message = $"AvailableTime with ID {id} not found" });
+
+        availableTime.IsActive = true;
+        availableTime.UpdatedAt = DateTime.UtcNow;
+        await _availableTimeRepository.UpdateAsync(availableTime);
+
+        return Ok(new { success = true, message = "AvailableTime activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un horario disponible del sistema.
+    /// Marca el horario como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del horario disponible a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var availableTime = await _availableTimeRepository.GetByIdAsync(id);
+        if (availableTime == null)
+            return NotFound(new { message = $"AvailableTime with ID {id} not found" });
+
+        availableTime.IsActive = false;
+        availableTime.UpdatedAt = DateTime.UtcNow;
+        await _availableTimeRepository.UpdateAsync(availableTime);
+
+        return Ok(new { success = true, message = "AvailableTime deactivated successfully" });
     }
 }

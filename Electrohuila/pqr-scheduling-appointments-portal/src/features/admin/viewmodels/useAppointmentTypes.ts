@@ -42,10 +42,10 @@ export const useAppointmentTypes = (repository: AdminRepository): UseAppointment
     setLoading(true);
     setError(null);
     try {
-      const data = activeOnly
-        ? await repository.getAppointmentTypes()
-        : await repository.getAllAppointmentTypesIncludingInactive();
-      setAppointmentTypes(activeOnly ? data.filter(t => t.isActive) : data.filter(t => !t.isActive));
+      // Always fetch all appointment types (including inactive) so we can display both tabs
+      const data = await repository.getAllAppointmentTypesIncludingInactive();
+      // Store all types - TypesView will filter them based on currentView
+      setAppointmentTypes(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading appointment types');
     } finally {
@@ -101,10 +101,15 @@ export const useAppointmentTypes = (repository: AdminRepository): UseAppointment
     try {
       if (logical) {
         await repository.deleteLogicalAppointmentType(id);
+        // Update local state to mark as inactive instead of removing
+        setAppointmentTypes(prev => prev.map(t =>
+          t.id === id ? { ...t, isActive: false } : t
+        ));
       } else {
         await repository.deleteAppointmentType(id);
+        // Physical delete - remove from list
+        setAppointmentTypes(prev => prev.filter(t => t.id !== id));
       }
-      setAppointmentTypes(prev => prev.filter(t => t.id !== id));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error deleting appointment type');
       throw err;
@@ -118,7 +123,10 @@ export const useAppointmentTypes = (repository: AdminRepository): UseAppointment
     setError(null);
     try {
       await repository.activateAppointmentType(id);
-      setAppointmentTypes(prev => prev.filter(t => t.id !== id));
+      // Update local state to mark as active instead of removing
+      setAppointmentTypes(prev => prev.map(t =>
+        t.id === id ? { ...t, isActive: true } : t
+      ));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error activating appointment type');
       throw err;

@@ -23,6 +23,31 @@ public class User : BaseEntity
     public string Password { get; set; } = string.Empty;
 
     /// <summary>
+    /// Nombre completo del usuario
+    /// </summary>
+    public string? FullName { get; set; }
+
+    /// <summary>
+    /// Tipo de identificación (CC, TI, CE, PP, NIT)
+    /// </summary>
+    public string? IdentificationType { get; set; }
+
+    /// <summary>
+    /// Número de identificación
+    /// </summary>
+    public string? IdentificationNumber { get; set; }
+
+    /// <summary>
+    /// Número de teléfono de contacto
+    /// </summary>
+    public string? Phone { get; set; }
+
+    /// <summary>
+    /// Dirección física
+    /// </summary>
+    public string? Address { get; set; }
+
+    /// <summary>
     /// Pestañas permitidas para el usuario en formato JSON o cadena delimitada
     /// </summary>
     public string? AllowedTabs { get; set; }

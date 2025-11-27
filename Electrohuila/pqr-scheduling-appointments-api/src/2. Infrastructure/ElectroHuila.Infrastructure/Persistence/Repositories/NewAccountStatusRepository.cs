@@ -31,7 +31,8 @@ public class NewAccountStatusRepository : BaseRepository<NewAccountStatus>, INew
 
     public async Task<bool> ExistsByCodeAsync(string code)
     {
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _context.Set<NewAccountStatus>()
-            .AnyAsync(nas => nas.Code == code.ToUpper());
+            .CountAsync(nas => nas.Code == code.ToUpper()) > 0;
     }
 }

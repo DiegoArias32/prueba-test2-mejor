@@ -32,37 +32,20 @@ public class GetMyAssignedAppointmentsQueryHandler : IRequestHandler<GetMyAssign
 
     public async Task<Result<List<AppointmentDetailDto>>> Handle(GetMyAssignedAppointmentsQuery request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("=== DEBUG: GetMyAssignedAppointments - UserId: {UserId} ===", request.UserId);
-
         // Obtener los tipos de cita asignados al usuario
         var assignedAppointmentTypeIds = await _assignmentRepository.GetAssignedAppointmentTypeIdsAsync(request.UserId);
-
-        _logger.LogInformation("DEBUG: Assigned AppointmentType IDs: [{TypeIds}] - Count: {Count}",
-            string.Join(", ", assignedAppointmentTypeIds),
-            assignedAppointmentTypeIds.Count);
 
         // Si no tiene asignaciones, retornar lista vacía
         if (!assignedAppointmentTypeIds.Any())
         {
-            _logger.LogWarning("DEBUG: Usuario {UserId} no tiene tipos de cita asignados", request.UserId);
             return Result.Success(new List<AppointmentDetailDto>());
         }
 
         // Obtener todas las citas con los datos relacionados
         var appointments = await _appointmentRepository.GetAppointmentsWithDetailsAsync(assignedAppointmentTypeIds);
 
-        _logger.LogInformation("DEBUG: Appointments returned from repository: {Count}", appointments.Count());
-
-        foreach (var apt in appointments.Take(5))
-        {
-            _logger.LogInformation("DEBUG: Appointment - Id: {Id}, TypeId: {TypeId}, Date: {Date}",
-                apt.Id, apt.AppointmentTypeId, apt.AppointmentDate);
-        }
-
         // Mapear a DTOs - el repositorio ya trae los datos completos
         var appointmentDtos = _mapper.Map<List<AppointmentDetailDto>>(appointments);
-
-        _logger.LogInformation("DEBUG: Final DTOs count: {Count}", appointmentDtos.Count);
 
         return Result.Success(appointmentDtos);
     }

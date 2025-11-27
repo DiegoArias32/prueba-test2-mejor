@@ -162,7 +162,10 @@ export interface RemovePermissionFromRolDto {
 export interface UpdateRolFormPermissionDto {
   RolId: number;
   FormId: number;
-  PermissionId?: number;
+  CanInsert: boolean;
+  CanUpdate: boolean;
+  CanDelete: boolean;
+  CanView: boolean;
 }
 
 export interface ModuleDto {
@@ -352,7 +355,7 @@ export interface UpdateAvailableTimeDto {
 // DOMAIN ENTITIES (from AdminTypes.ts)
 // ============================================
 
-export type TabType = 'citas' | 'empleados' | 'roles' | 'sedes' | 'tipos-cita' | 'horas-disponibles' | 'permisos' | 'festivos' | 'plantillas' | 'settings';
+export type TabType = 'citas' | 'empleados' | 'roles' | 'sedes' | 'tipos-cita' | 'horas-disponibles' | 'permisos' | 'festivos' | 'settings';
 
 export type ModalType = 'create' | 'edit' | 'delete' | 'activate' | null;
 
@@ -487,7 +490,6 @@ export const TAB_FORM_CODE_MAP: { [key: string]: string } = {
   'horas-disponibles': 'AVAILABLE_TIMES',
   'permisos': 'PERMISSIONS',
   'festivos': 'HOLIDAYS',
-  'plantillas': 'NOTIFICATIONS',
   'settings': 'SETTINGS'
 };
 
@@ -500,6 +502,5 @@ export const TAB_DISPLAY_NAMES: { [key: string]: string } = {
   'horas-disponibles': 'Horas Disponibles',
   'permisos': 'Permisos',
   'festivos': 'Festivos',
-  'plantillas': 'Plantillas',
   'settings': 'Configuración'
 };

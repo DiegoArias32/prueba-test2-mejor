@@ -10,34 +10,22 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ========== DIAGNÓSTICO DE CONFIGURACIÓN ==========
-// Mostrar información de configuración en consola para debugging
-Console.WriteLine($"=== CONFIGURATION DEBUG ===");
-Console.WriteLine($"Environment: {builder.Environment.EnvironmentName}");
-Console.WriteLine($"ContentRootPath: {builder.Environment.ContentRootPath}");
-Console.WriteLine($"WebRootPath: {builder.Environment.WebRootPath}");
-
-// Verificar cadena de conexión
-var connString = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine($"ConnectionString from Configuration: {(string.IsNullOrEmpty(connString) ? "EMPTY/NULL" : "EXISTS")}");
-if (!string.IsNullOrEmpty(connString))
-{
-    Console.WriteLine($"ConnectionString value: {connString}");
-}
-
-// Listar todos los proveedores de configuración cargados
-Console.WriteLine("Configuration providers:");
-foreach (var provider in ((IConfigurationRoot)builder.Configuration).Providers)
-{
-    Console.WriteLine($"  - {provider.GetType().Name}");
-}
-Console.WriteLine($"=== END CONFIGURATION DEBUG ===\n");
 
 // ========== REGISTRO DE SERVICIOS BASE ==========
 // Servicios esenciales de ASP.NET Core
 builder.Services.AddControllers(); // Habilita soporte para controladores MVC
 builder.Services.AddEndpointsApiExplorer(); // Habilita exploración de endpoints para Swagger
 builder.Services.AddHttpContextAccessor(); // Permite inyectar IHttpContextAccessor para acceder al contexto HTTP
+
+// ========== CONFIGURACIÓN DE COMPORTAMIENTO DE API ==========
+// Deshabilitar transformación automática de ProblemDetails
+// Permite que los controladores retornen formatos de error personalizados sin wrapping automático
+builder.Services.Configure<Microsoft.AspNetCore.Mvc.ApiBehaviorOptions>(options =>
+{
+    // Deshabilitar mapeo automático de errores de cliente a ProblemDetails
+    // Esto preserva los formatos de error personalizados como BadRequest(new { error = "..." })
+    options.SuppressMapClientErrors = true;
+});
 
 // ========== CONFIGURACIÓN DE SIGNALR ==========
 // SignalR para notificaciones en tiempo real con autenticación JWT
@@ -204,6 +192,7 @@ builder.Services.AddCors(options =>
               )
               .AllowAnyMethod()
               .AllowAnyHeader()
+              .WithExposedHeaders("*") // Permitir todos los headers de respuesta (requerido para WebSocket)
               .AllowCredentials(); // Requerido para SignalR
     });
 });
@@ -221,11 +210,36 @@ app.UseSwaggerUI(options =>
 });
 
 // ========== CONFIGURACIÓN DEL PIPELINE DE MIDDLEWARE ==========
+// Middleware para manejo global de excepciones (debe estar primero para capturar todas las excepciones)
+app.UseExceptionHandling();
+
 // Middleware para capturar y cambiar dinámicamente el proveedor de base de datos
 app.UseDatabaseProviderSelector();
 
-app.UseHttpsRedirection(); // Redirigir HTTP a HTTPS
+// ========== CONFIGURACIÓN DE WEBSOCKETS ==========
+// Habilitar WebSockets ANTES de CORS y Routing para soporte de SignalR
+app.UseWebSockets(new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2),
+    AllowedOrigins = {
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:4200",
+        "https://localhost:3000",
+        "https://localhost:3001",
+        "https://localhost:4200"
+    }
+});
+
+// IMPORTANT: CORS must come BEFORE HttpsRedirection to handle preflight requests
 app.UseCors(); // Habilitar CORS
+
+// Only redirect to HTTPS in production
+// In development, we use HTTP to avoid certificate issues
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection(); // Redirigir HTTP a HTTPS solo en producción
+}
 
 // IMPORTANTE: El orden de Authentication y Authorization es crítico
 app.UseAuthentication(); // Autenticación: Identifica al usuario mediante JWT

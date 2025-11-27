@@ -89,7 +89,6 @@ public class DatabaseProviderService : IDatabaseProviderService
                     var parsed = ParseProvider(providerString);
                     if (parsed.HasValue)
                     {
-                        Console.WriteLine($"[DatabaseProviderService] Using provider from HttpContext: {parsed.Value}");
                         return parsed.Value;
                     }
                 }
@@ -126,15 +125,13 @@ public class DatabaseProviderService : IDatabaseProviderService
     public void SetProvider(DatabaseProvider provider)
     {
         _overrideProvider = provider;
-        
+
         // También almacenar en HttpContext.Items si está disponible
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext != null)
         {
             httpContext.Items["DatabaseProvider"] = provider.ToString();
         }
-        
-        Console.WriteLine($"[DatabaseProviderService] Provider changed to: {provider}");
     }
 
     private static DatabaseProvider? ParseProvider(string providerString)

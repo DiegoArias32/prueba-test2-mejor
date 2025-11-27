@@ -24,6 +24,7 @@ import { AnimatedButton } from '@/shared/components/ui/AnimatedButton';
 import { AnimatedAlert } from '@/shared/components/ui/AnimatedAlert';
 import { LoadingSpinner } from '@/shared/components/ui/LoadingSpinner';
 import { BranchDto, AppointmentTypeDto } from '@/core/types/appointment.types';
+import { getErrorHint, getErrorIcon, getErrorColorClass, getErrorBgClass, getErrorBorderClass, type ParsedError } from '../../utils/errorParser';
 
 interface ClientData {
   fullName: string;
@@ -48,6 +49,7 @@ interface AppointmentFormStepProps {
   loadingHours: boolean;
   isLoading: boolean;
   error: string | null;
+  parsedError: ParsedError | null;
   validationErrors: Record<string, string>;
   onFormChange: (field: string, value: string) => void;
   onSubmit: (e: React.FormEvent) => Promise<void>;
@@ -63,6 +65,7 @@ export const AppointmentFormStep: FC<AppointmentFormStepProps> = ({
   loadingHours,
   isLoading,
   error,
+  parsedError,
   validationErrors,
   onFormChange,
   onSubmit,
@@ -267,32 +270,11 @@ export const AppointmentFormStep: FC<AppointmentFormStepProps> = ({
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                      {/* Document Type */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        <label className="block text-gray-700 font-semibold mb-2">
-                          Tipo de Documento
-                        </label>
-                        <select
-                          value={formData.documentType}
-                          onChange={(e) => onFormChange('documentType', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1797D5] focus:outline-none transition-all"
-                        >
-                          <option>Cédula de Ciudadanía</option>
-                          <option>Cédula de Extranjería</option>
-                          <option>Pasaporte</option>
-                          <option>NIT</option>
-                        </select>
-                      </motion.div>
-
                       {/* Appointment Type */}
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.1 }}
                       >
                         <label className="block text-gray-700 font-semibold mb-2">
                           Motivo de la Cita
@@ -332,7 +314,7 @@ export const AppointmentFormStep: FC<AppointmentFormStepProps> = ({
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ delay: 0.2 }}
                       >
                         <label className="block text-gray-700 font-semibold mb-2">
                           Sede
@@ -372,7 +354,7 @@ export const AppointmentFormStep: FC<AppointmentFormStepProps> = ({
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
+                        transition={{ delay: 0.3 }}
                       >
                         <label className="block text-gray-700 font-semibold mb-2">
                           Fecha de Cita
@@ -464,15 +446,37 @@ export const AppointmentFormStep: FC<AppointmentFormStepProps> = ({
                         <motion.div
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          className="text-center py-8 bg-gray-50 rounded-lg border-2 border-gray-200"
+                          className={`text-center py-8 rounded-lg border-2 ${
+                            parsedError
+                              ? `${getErrorBgClass(parsedError.code)} ${getErrorBorderClass(parsedError.code)}`
+                              : 'bg-gray-50 border-gray-200'
+                          }`}
                         >
-                          <div className="w-16 h-16 mx-auto bg-gray-100 rounded-2xl flex items-center justify-center mb-4">
-                            <FiClock className="w-8 h-8 text-gray-400" />
+                          <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 text-2xl ${
+                            parsedError ? 'bg-white' : 'bg-gray-100'
+                          }`}>
+                            {parsedError ? getErrorIcon(parsedError.code) : <FiClock className="w-8 h-8 text-gray-400" />}
                           </div>
-                          <p className="text-gray-600 font-medium">No hay horarios disponibles</p>
-                          <p className="text-gray-500 text-sm mt-2">
-                            Para la fecha y sede seleccionadas
+                          <p className={`font-medium ${
+                            parsedError
+                              ? getErrorColorClass(parsedError.code)
+                              : 'text-gray-600'
+                          }`}>
+                            {parsedError?.message || 'No hay horarios disponibles'}
                           </p>
+                          {parsedError ? (
+                            <motion.p
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className={`text-sm mt-3 ${getErrorColorClass(parsedError.code)} opacity-75`}
+                            >
+                              {getErrorHint(parsedError.code)}
+                            </motion.p>
+                          ) : (
+                            <p className="text-gray-500 text-sm mt-2">
+                              Para la fecha y sede seleccionadas
+                            </p>
+                          )}
                         </motion.div>
                       ) : (
                         <motion.div

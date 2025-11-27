@@ -51,7 +51,8 @@ public class SystemSettingRepository : BaseRepository<SystemSetting>, ISystemSet
     /// </summary>
     public async Task<bool> ExistsByKeyAsync(string settingKey, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.AnyAsync(s => s.SettingKey == settingKey, cancellationToken);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(s => s.SettingKey == settingKey, cancellationToken) > 0;
     }
 
     /// <summary>

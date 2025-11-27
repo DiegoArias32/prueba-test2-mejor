@@ -14,6 +14,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IHolidayRepository _holidayRepository;
     private readonly IBranchRepository _branchRepository;
+    private readonly IUserAssignmentRepository _userAssignmentRepository;
     private readonly IMapper _mapper;
     private readonly ISignalRNotificationService _signalRService;
     private readonly INotificationService _notificationService;
@@ -22,6 +23,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
         IAppointmentRepository appointmentRepository,
         IHolidayRepository holidayRepository,
         IBranchRepository branchRepository,
+        IUserAssignmentRepository userAssignmentRepository,
         IMapper mapper,
         ISignalRNotificationService signalRService,
         INotificationService notificationService)
@@ -29,6 +31,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
         _appointmentRepository = appointmentRepository;
         _holidayRepository = holidayRepository;
         _branchRepository = branchRepository;
+        _userAssignmentRepository = userAssignmentRepository;
         _mapper = mapper;
         _signalRService = signalRService;
         _notificationService = notificationService;
@@ -77,8 +80,9 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
             var createdAppointment = await _appointmentRepository.AddAsync(appointment);
             var appointmentDto = _mapper.Map<AppointmentDto>(createdAppointment);
 
-            // Send real-time notification to admin panel via SignalR
-            await _signalRService.BroadcastNotificationAsync(new
+            // Send real-time notification ONLY to users assigned to this appointment type via SignalR
+            var assignedUsers = await _userAssignmentRepository.GetByAppointmentTypeIdAsync(createdAppointment.AppointmentTypeId);
+            var notificationData = new
             {
                 type = "appointment_created",
                 data = new
@@ -87,9 +91,18 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
                     appointmentNumber = createdAppointment.AppointmentNumber,
                     clientId = createdAppointment.ClientId,
                     appointmentDate = createdAppointment.AppointmentDate,
+                    appointmentTypeId = createdAppointment.AppointmentTypeId,
                     timestamp = DateTime.UtcNow
                 }
-            }, cancellationToken);
+            };
+
+            foreach (var assignment in assignedUsers.Where(a => a.IsActive))
+            {
+                await _signalRService.SendNotificationToUserAsync(
+                    assignment.UserId.ToString(),
+                    notificationData,
+                    cancellationToken);
+            }
 
             // Send appointment confirmation notifications (Email, WhatsApp, IN_APP)
             // This runs in background - don't await to avoid blocking the response

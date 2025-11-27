@@ -61,7 +61,7 @@ public class VerifyAppointmentByQRQueryHandler : IRequestHandler<VerifyAppointme
 
             var verification = new
             {
-                valid = isValid,
+                isValid = isValid,
                 appointmentNumber = appointment.AppointmentNumber,
                 appointmentDate = appointment.AppointmentDate.ToString("yyyy-MM-dd"),
                 appointmentTime = appointment.AppointmentTime,
@@ -72,6 +72,21 @@ public class VerifyAppointmentByQRQueryHandler : IRequestHandler<VerifyAppointme
                     clientNumber = clientEntity.ClientNumber,
                     fullName = clientEntity.FullName
                 },
+                branch = appointment.Branch != null ? new
+                {
+                    id = appointment.Branch.Id,
+                    name = appointment.Branch.Name,
+                    address = appointment.Branch.Address,
+                    phone = appointment.Branch.Phone,
+                    city = appointment.Branch.City
+                } : null,
+                appointmentType = appointment.AppointmentType != null ? new
+                {
+                    id = appointment.AppointmentType.Id,
+                    name = appointment.AppointmentType.Name,
+                    description = appointment.AppointmentType.Description,
+                    code = appointment.AppointmentType.Code
+                } : null,
                 creationDate = appointment.CreatedAt.ToString(),
                 observations = appointment.Notes,
                 message = isValid ? "Cita verificada correctamente" : "Cita encontrada pero no está activa"

@@ -10,11 +10,13 @@ namespace ElectroHuila.Application.Features.Users.Commands.CreateUser;
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<UserDto>>
 {
     private readonly IUserRepository _userRepository;
+    private readonly IRolRepository _rolRepository;
     private readonly IMapper _mapper;
 
-    public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+    public CreateUserCommandHandler(IUserRepository userRepository, IRolRepository rolRepository, IMapper mapper)
     {
         _userRepository = userRepository;
+        _rolRepository = rolRepository;
         _mapper = mapper;
     }
 
@@ -39,6 +41,28 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
             // user.Password = _passwordHasher.HashPassword(request.UserDto.Password);
 
             var createdUser = await _userRepository.AddAsync(user);
+
+            // Assign roles if provided
+            if (request.UserDto.RoleIds != null && request.UserDto.RoleIds.Any())
+            {
+                foreach (var roleId in request.UserDto.RoleIds)
+                {
+                    var role = await _rolRepository.GetByIdAsync(roleId);
+                    if (role != null)
+                    {
+                        var rolUser = new RolUser
+                        {
+                            UserId = createdUser.Id,
+                            RolId = roleId,
+                            IsActive = true,
+                            CreatedAt = DateTime.UtcNow
+                        };
+                        createdUser.RolUsers.Add(rolUser);
+                    }
+                }
+                await _userRepository.UpdateAsync(createdUser);
+            }
+
             var userDto = _mapper.Map<UserDto>(createdUser);
 
             return Result.Success(userDto);

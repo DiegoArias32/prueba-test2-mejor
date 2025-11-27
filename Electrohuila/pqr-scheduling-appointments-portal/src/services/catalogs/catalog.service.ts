@@ -67,12 +67,19 @@ export class CatalogService extends BaseHttpService {
   }
 
   /**
-   * Delete branch (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete branch (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalBranch(id: number): Promise<{ success: boolean; message: string }> {
-    throw new Error('⚠️ Endpoint /branches/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<{ success: boolean; message: string }>(`/branches/delete-logical/${id}`);
+    return this.patch<{ success: boolean; message: string }>(`/branches/${id}/deactivate`, {});
+  }
+
+  /**
+   * Activate branch (reactivate a deactivated branch)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateBranch(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/branches/${id}/activate`, {});
   }
 
   /**
@@ -84,12 +91,9 @@ export class CatalogService extends BaseHttpService {
 
   /**
    * Get all branches including inactive
-   * TODO: Este endpoint no existe en la API backend - usar /branches/active como alternativa
    */
   async getAllBranchesIncludingInactive(): Promise<BranchDto[]> {
-    // return this.get<BranchDto[]>('/branches/all-including-inactive');
-    console.warn('⚠️ Endpoint /branches/all-including-inactive no existe. Usando /branches/active como fallback');
-    return this.get<BranchDto[]>('/branches/active');
+    return this.get<BranchDto[]>('/branches/all-including-inactive');
   }
 
   /**
@@ -152,12 +156,19 @@ export class CatalogService extends BaseHttpService {
   }
 
   /**
-   * Delete appointment type (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete appointment type (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalAppointmentType(id: number): Promise<{ success: boolean; message: string }> {
-    throw new Error('⚠️ Endpoint /appointmenttypes/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<{ success: boolean; message: string }>(`/appointmenttypes/delete-logical/${id}`);
+    return this.patch<{ success: boolean; message: string }>(`/appointmenttypes/${id}/deactivate`, {});
+  }
+
+  /**
+   * Activate appointment type (reactivate a deactivated appointment type)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateAppointmentType(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/appointmenttypes/${id}/activate`, {});
   }
 
   /**
@@ -169,12 +180,10 @@ export class CatalogService extends BaseHttpService {
 
   /**
    * Get all appointment types including inactive
-   * TODO: Este endpoint no existe en la API backend - usar /appointmenttypes/active como alternativa
+   * FIXED: Endpoint exists in backend at GET /appointmenttypes/all-including-inactive
    */
   async getAllAppointmentTypesIncludingInactive(): Promise<AppointmentTypeDto[]> {
-    // return this.get<AppointmentTypeDto[]>('/appointmenttypes/all-including-inactive');
-    console.warn('⚠️ Endpoint /appointmenttypes/all-including-inactive no existe. Usando /appointmenttypes/active como fallback');
-    return this.get<AppointmentTypeDto[]>('/appointmenttypes/active');
+    return this.get<AppointmentTypeDto[]>('/appointmenttypes/all-including-inactive');
   }
 
   /**
@@ -233,12 +242,19 @@ export class CatalogService extends BaseHttpService {
   }
 
   /**
-   * Delete client (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete client (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalClient(id: number): Promise<{ success: boolean; message: string }> {
-    throw new Error('⚠️ Endpoint /clients/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<{ success: boolean; message: string }>(`/clients/delete-logical/${id}`);
+    return this.patch<{ success: boolean; message: string }>(`/clients/${id}/deactivate`, {});
+  }
+
+  /**
+   * Activate client (reactivate a deactivated client)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateClient(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/clients/${id}/activate`, {});
   }
 
   /**

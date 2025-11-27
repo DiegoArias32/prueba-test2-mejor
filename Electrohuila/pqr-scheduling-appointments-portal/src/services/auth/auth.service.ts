@@ -18,7 +18,7 @@ export class AuthService extends BaseHttpService {
    */
   async login(loginData: LoginDto): Promise<LoginResponseDto> {
     const payload = {
-      LoginDto: loginData,
+      loginDto: loginData,
     };
     return this.post<LoginResponseDto>('/auth/login', payload);
   }
@@ -37,7 +37,7 @@ export class AuthService extends BaseHttpService {
     const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refreshToken') : null;
     try {
       if (refreshToken) {
-        await this.post<void>('/auth/logout', { refreshToken });
+        await this.post<void>('/auth/logout', { token: refreshToken });
       }
     } catch {
       // Error during logout

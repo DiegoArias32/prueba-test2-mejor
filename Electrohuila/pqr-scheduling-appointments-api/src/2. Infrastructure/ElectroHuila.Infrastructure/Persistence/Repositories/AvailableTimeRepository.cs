@@ -108,9 +108,10 @@ public class AvailableTimeRepository : BaseRepository<AvailableTime>, IAvailable
     {
         // Note: AvailableTime only has Time (string) property
         // Simplified to check if any time slots exist for the branch
-        return await _dbSet.AnyAsync(at =>
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(at =>
             at.BranchId == branchId &&
-            at.IsActive);
+            at.IsActive) > 0;
     }
 
     /// <summary>
@@ -220,7 +221,8 @@ public class AvailableTimeRepository : BaseRepository<AvailableTime>, IAvailable
         }
 
         // Check if the time exists in the available times
-        return await query.AnyAsync(at => at.Time == time);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await query.CountAsync(at => at.Time == time) > 0;
     }
 
     /// <summary>

@@ -20,10 +20,11 @@ public class HolidayRepository : BaseRepository<Holiday>, IHolidayRepository
     {
         var dateOnly = date.Date;
 
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _dbSet
             .Where(h => h.HolidayDate.Date == dateOnly && h.IsActive)
             .Where(h => h.BranchId == null || h.BranchId == branchId)
-            .AnyAsync(cancellationToken);
+            .CountAsync(cancellationToken) > 0;
     }
 
     /// <summary>

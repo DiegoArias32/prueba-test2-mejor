@@ -8,6 +8,7 @@ using ElectroHuila.Application.Features.Roles.Queries.GetRolById;
 using ElectroHuila.Application.Features.Roles.Queries.GetRolByCode;
 using ElectroHuila.Application.Features.Roles.Queries.GetRolesByUser;
 using ElectroHuila.Application.Features.Roles.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class RolesController : ApiController
 {
+    private readonly IRolRepository _rolRepository;
+
+    public RolesController(IRolRepository rolRepository)
+    {
+        _rolRepository = rolRepository;
+    }
 
     /// <summary>
     /// Obtiene todos los roles registrados en el sistema.
@@ -135,5 +142,45 @@ public class RolesController : ApiController
     {
         var result = await Mediator.Send(new DeleteLogicalRolCommand(id));
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un rol previamente desactivado.
+    /// Marca el rol como activo en el sistema.
+    /// </summary>
+    /// <param name="id">ID del rol a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var rol = await _rolRepository.GetByIdAsync(id);
+        if (rol == null)
+            return NotFound(new { message = $"Rol with ID {id} not found" });
+
+        rol.IsActive = true;
+        rol.UpdatedAt = DateTime.UtcNow;
+        await _rolRepository.UpdateAsync(rol);
+
+        return Ok(new { success = true, message = "Rol activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un rol del sistema.
+    /// Marca el rol como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del rol a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var rol = await _rolRepository.GetByIdAsync(id);
+        if (rol == null)
+            return NotFound(new { message = $"Rol with ID {id} not found" });
+
+        rol.IsActive = false;
+        rol.UpdatedAt = DateTime.UtcNow;
+        await _rolRepository.UpdateAsync(rol);
+
+        return Ok(new { success = true, message = "Rol deactivated successfully" });
     }
 }

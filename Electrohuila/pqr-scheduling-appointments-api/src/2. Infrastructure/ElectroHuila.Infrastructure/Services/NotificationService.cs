@@ -15,10 +15,10 @@ namespace ElectroHuila.Infrastructure.Services;
 /// </summary>
 public class NotificationService : INotificationService
 {
-    private readonly INotificationTemplateRepository _templateRepository;
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IClientRepository _clientRepository;
     private readonly IBranchRepository _branchRepository;
+    private readonly IAppointmentTypeRepository _appointmentTypeRepository;
     private readonly ISignalRNotificationService _signalRService;
     private readonly IWhatsAppApiService _whatsAppService;
     private readonly IGmailApiService _gmailService;
@@ -28,10 +28,10 @@ public class NotificationService : INotificationService
     private readonly IServiceProvider _serviceProvider;
 
     public NotificationService(
-        INotificationTemplateRepository templateRepository,
         IAppointmentRepository appointmentRepository,
         IClientRepository clientRepository,
         IBranchRepository branchRepository,
+        IAppointmentTypeRepository appointmentTypeRepository,
         ISignalRNotificationService signalRService,
         IWhatsAppApiService whatsAppService,
         IGmailApiService gmailService,
@@ -40,10 +40,10 @@ public class NotificationService : INotificationService
         ILogger<NotificationService> logger,
         IServiceProvider serviceProvider)
     {
-        _templateRepository = templateRepository;
         _appointmentRepository = appointmentRepository;
         _clientRepository = clientRepository;
         _branchRepository = branchRepository;
+        _appointmentTypeRepository = appointmentTypeRepository;
         _signalRService = signalRService;
         _whatsAppService = whatsAppService;
         _gmailService = gmailService;
@@ -588,119 +588,116 @@ public class NotificationService : INotificationService
         }
     }
 
-    public async Task<bool> SendEmailAsync(string to, string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default)
+    public async Task SendAppointmentCompletedAsync(int appointmentId, CancellationToken cancellationToken = default)
     {
+        // IMPORTANTE: Usar un nuevo scope de DbContext para evitar conflictos
+        using var scope = _serviceProvider.CreateScope();
+        var notificationRepo = scope.ServiceProvider.GetRequiredService<INotificationRepository>();
+
         try
         {
-            var template = await _templateRepository.GetByCodeAsync(templateCode, cancellationToken);
-            if (template == null)
+            _logger.LogInformation("Processing completed notifications for appointment {AppointmentId}", appointmentId);
+
+            // 1. Obtener información de la cita
+            var appointment = await _appointmentRepository.GetByIdAsync(appointmentId);
+            if (appointment == null)
             {
-                _logger.LogWarning("Email template {TemplateCode} not found", templateCode);
-                return false;
+                _logger.LogWarning("Appointment {AppointmentId} not found for completed notification", appointmentId);
+                return;
             }
 
-            if (template.TemplateType != "EMAIL")
+            // 2. Obtener información del cliente
+            var client = await _clientRepository.GetByIdAsync(appointment.ClientId);
+            if (client == null)
             {
-                _logger.LogWarning("Template {TemplateCode} is not an EMAIL template", templateCode);
-                return false;
+                _logger.LogWarning("Client {ClientId} not found for appointment {AppointmentId}", appointment.ClientId, appointmentId);
+                return;
             }
 
-            var subject = ReplacePlaceholders(template.Subject ?? string.Empty, data);
-            var body = ReplacePlaceholders(template.BodyTemplate, data);
+            // 3. Obtener información de la sucursal
+            var branch = await _branchRepository.GetByIdAsync(appointment.BranchId);
 
-            // TODO: Implementar integración con servicio de email (SendGrid, AWS SES, etc.)
-            _logger.LogInformation("Email would be sent to {To} with subject: {Subject}", to, subject);
-            _logger.LogDebug("Email body: {Body}", body);
+            // 4. Obtener información del tipo de cita
+            var appointmentType = await _appointmentTypeRepository.GetByIdAsync(appointment.AppointmentTypeId);
 
-            // Por ahora solo logeamos, pero aquí iría la integración real
-            // await _emailService.SendAsync(to, subject, body);
+            // 5. Preparar datos para notificación
+            var completedData = new AppointmentCompletedData
+            {
+                NombreCliente = client.FullName,
+                Fecha = appointment.AppointmentDate.ToString("yyyy-MM-dd"),
+                Hora = appointment.AppointmentTime,
+                Ubicacion = branch?.Name ?? "Sede no especificada",
+                NumeroCita = appointment.AppointmentNumber,
+                TipoCita = appointmentType?.Name,
+                Observaciones = appointment.Notes
+            };
 
-            return true;
+            // 6. Enviar notificación por WhatsApp (si está habilitado y el cliente tiene teléfono)
+            if (_configuration.GetValue<bool>("ExternalApis:WhatsApp:Enabled", false))
+            {
+                var phoneNumber = GetFormattedPhoneNumber(client);
+                if (!string.IsNullOrEmpty(phoneNumber))
+                {
+                    var whatsappNotification = Notification.Create(
+                        type: "WHATSAPP",
+                        title: "Cita Completada",
+                        message: $"Gracias por asistir a tu cita del {appointment.AppointmentDate:dd/MM/yyyy} a las {appointment.AppointmentTime}",
+                        clientId: client.Id,
+                        appointmentId: appointmentId
+                    );
+
+                    await notificationRepo.CreateAsync(whatsappNotification, cancellationToken);
+                    _logger.LogInformation("WHATSAPP completed notification record created with ID {NotificationId} for client {ClientId}",
+                        whatsappNotification.Id, client.Id);
+
+                    try
+                    {
+                        var whatsappSent = await _whatsAppService.SendAppointmentCompletedAsync(
+                            phoneNumber,
+                            completedData,
+                            cancellationToken);
+
+                        if (whatsappSent)
+                        {
+                            whatsappNotification.MarkAsSent();
+                            _logger.LogInformation("WhatsApp completed notification sent successfully to {Phone} for appointment {AppointmentId}",
+                                phoneNumber, appointmentId);
+                        }
+                        else
+                        {
+                            whatsappNotification.MarkAsFailed("No se pudo enviar el mensaje de WhatsApp");
+                            _logger.LogWarning("Failed to send WhatsApp completed notification to {Phone} for appointment {AppointmentId}",
+                                phoneNumber, appointmentId);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        whatsappNotification.MarkAsFailed(ex.Message);
+                        _logger.LogError(ex, "Error sending WhatsApp completed notification to {Phone} for appointment {AppointmentId}",
+                            phoneNumber, appointmentId);
+                    }
+                    finally
+                    {
+                        await notificationRepo.UpdateAsync(whatsappNotification, cancellationToken);
+                        _logger.LogDebug("WHATSAPP completed notification {NotificationId} updated with status {Status}",
+                            whatsappNotification.Id, whatsappNotification.Status);
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("No valid phone number found for client {ClientId}, skipping WhatsApp completed notification", client.Id);
+                }
+            }
+
+            // NOTA: No enviamos Email para citas completadas, solo WhatsApp
+            // El cliente ya fue atendido y no necesita un email adicional
+
+            _logger.LogInformation("All completed notifications processed for appointment {AppointmentId}", appointmentId);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error sending email to {To} with template {TemplateCode}", to, templateCode);
-            return false;
+            _logger.LogError(ex, "Error processing completed notifications for appointment {AppointmentId}", appointmentId);
         }
-    }
-
-    public async Task<bool> SendSmsAsync(string phone, string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            var template = await _templateRepository.GetByCodeAsync(templateCode, cancellationToken);
-            if (template == null)
-            {
-                _logger.LogWarning("SMS template {TemplateCode} not found", templateCode);
-                return false;
-            }
-
-            if (template.TemplateType != "SMS")
-            {
-                _logger.LogWarning("Template {TemplateCode} is not an SMS template", templateCode);
-                return false;
-            }
-
-            var message = ReplacePlaceholders(template.BodyTemplate, data);
-
-            // TODO: Implementar integración con servicio de SMS (Twilio, AWS SNS, etc.)
-            _logger.LogInformation("SMS would be sent to {Phone}: {Message}", phone, message);
-
-            // Por ahora solo logeamos, pero aquí iría la integración real
-            // await _smsService.SendAsync(phone, message);
-
-            return true;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error sending SMS to {Phone} with template {TemplateCode}", phone, templateCode);
-            return false;
-        }
-    }
-
-    public async Task<(string subject, string body)> RenderTemplateAsync(string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default)
-    {
-        var template = await _templateRepository.GetByCodeAsync(templateCode, cancellationToken);
-        if (template == null)
-        {
-            throw new InvalidOperationException($"Template {templateCode} not found");
-        }
-
-        var subject = ReplacePlaceholders(template.Subject ?? string.Empty, data);
-        var body = ReplacePlaceholders(template.BodyTemplate, data);
-
-        return (subject, body);
-    }
-
-    private static Dictionary<string, string> BuildAppointmentData(
-        Domain.Entities.Appointments.Appointment appointment,
-        Domain.Entities.Clients.Client client,
-        Domain.Entities.Locations.Branch? branch)
-    {
-        return new Dictionary<string, string>
-        {
-            ["CLIENT_NAME"] = client.FullName ?? string.Empty,
-            ["CLIENT_EMAIL"] = client.Email ?? string.Empty,
-            ["CLIENT_PHONE"] = client.Phone ?? client.Mobile ?? string.Empty,
-            ["APPOINTMENT_NUMBER"] = appointment.AppointmentNumber ?? string.Empty,
-            ["APPOINTMENT_DATE"] = appointment.AppointmentDate.ToString("dd/MM/yyyy"),
-            ["APPOINTMENT_TIME"] = appointment.AppointmentDate.ToString("HH:mm"),
-            ["APPOINTMENT_TYPE"] = appointment.AppointmentTypeId.ToString(),
-            ["BRANCH_NAME"] = branch?.Name ?? "No especificada",
-            ["BRANCH_ADDRESS"] = branch?.Address ?? string.Empty,
-            ["BRANCH_PHONE"] = branch?.Phone ?? string.Empty
-        };
-    }
-
-    private static string ReplacePlaceholders(string template, Dictionary<string, string> data)
-    {
-        var result = template;
-        foreach (var kvp in data)
-        {
-            var placeholder = $"{{{{{kvp.Key}}}}}"; // {{KEY}}
-            result = result.Replace(placeholder, kvp.Value);
-        }
-        return result;
     }
 
     /// <summary>

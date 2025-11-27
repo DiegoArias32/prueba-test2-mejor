@@ -138,7 +138,8 @@ public class BranchRepository : BaseRepository<Branch>, IBranchRepository
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(b => b.Name == name && b.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(b => b.Name == name && b.IsActive) > 0;
     }
 
     /// <summary>
@@ -154,7 +155,8 @@ public class BranchRepository : BaseRepository<Branch>, IBranchRepository
     /// </remarks>
     public async Task<bool> ExistsByCodeAsync(string code)
     {
-        return await _dbSet.AnyAsync(b => b.Code == code && b.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(b => b.Code == code && b.IsActive) > 0;
     }
 
     /// <summary>

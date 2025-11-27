@@ -8,6 +8,7 @@ using ElectroHuila.Application.Features.Clients.Queries.GetClientByNumber;
 using ElectroHuila.Application.Features.Clients.Queries.GetClientByDocument;
 using ElectroHuila.Application.Features.Clients.Queries.ValidateClient;
 using ElectroHuila.Application.Features.Clients.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class ClientsController : ApiController
 {
+    private readonly IClientRepository _clientRepository;
+
+    public ClientsController(IClientRepository clientRepository)
+    {
+        _clientRepository = clientRepository;
+    }
     /// <summary>
     /// Obtiene todos los clientes registrados en el sistema.
     /// </summary>
@@ -198,5 +205,45 @@ public class ClientsController : ApiController
         var command = new DeleteLogicalClientCommand(id);
         var result = await Mediator.Send(command);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un cliente previamente desactivado.
+    /// Marca el cliente como activo en el sistema.
+    /// </summary>
+    /// <param name="id">ID del cliente a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var client = await _clientRepository.GetByIdAsync(id);
+        if (client == null)
+            return NotFound(new { message = $"Client with ID {id} not found" });
+
+        client.IsActive = true;
+        client.UpdatedAt = DateTime.UtcNow;
+        await _clientRepository.UpdateAsync(client);
+
+        return Ok(new { success = true, message = "Client activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un cliente del sistema.
+    /// Marca el cliente como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del cliente a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var client = await _clientRepository.GetByIdAsync(id);
+        if (client == null)
+            return NotFound(new { message = $"Client with ID {id} not found" });
+
+        client.IsActive = false;
+        client.UpdatedAt = DateTime.UtcNow;
+        await _clientRepository.UpdateAsync(client);
+
+        return Ok(new { success = true, message = "Client deactivated successfully" });
     }
 }

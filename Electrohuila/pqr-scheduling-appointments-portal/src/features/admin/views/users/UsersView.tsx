@@ -53,7 +53,7 @@ export const UsersView: React.FC<UsersViewProps> = ({
   let processedData = filterData(
     filteredByStatus,
     searchTerm,
-    ['username', 'email', 'fullName', 'identificationNumber']
+    ['username', 'email']
   );
   processedData = sortData(processedData, sortColumn, sortDirection);
 
@@ -86,10 +86,6 @@ export const UsersView: React.FC<UsersViewProps> = ({
       {
         username: 'Usuario',
         email: 'Correo',
-        fullName: 'Nombre Completo',
-        identificationType: 'Tipo ID',
-        identificationNumber: 'Número ID',
-        phone: 'Teléfono',
         isActive: 'Activo'
       },
       onExportSuccess,
@@ -124,7 +120,7 @@ export const UsersView: React.FC<UsersViewProps> = ({
           <SearchBar
             value={searchTerm}
             onChange={handleSearch}
-            placeholder="Buscar por usuario, correo, nombre o identificación..."
+            placeholder="Buscar por usuario o correo..."
           />
           <button
             onClick={handleExport}

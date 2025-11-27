@@ -7,7 +7,7 @@
 /**
  * Tipo de tab del panel administrativo
  */
-export type TabType = 'citas' | 'empleados' | 'roles' | 'sedes' | 'tipos-cita' | 'horas-disponibles' | 'permisos' | 'festivos' | 'plantillas';
+export type TabType = 'citas' | 'empleados' | 'roles' | 'sedes' | 'tipos-cita' | 'horas-disponibles' | 'permisos' | 'festivos';
 
 /**
  * Tipo de modal

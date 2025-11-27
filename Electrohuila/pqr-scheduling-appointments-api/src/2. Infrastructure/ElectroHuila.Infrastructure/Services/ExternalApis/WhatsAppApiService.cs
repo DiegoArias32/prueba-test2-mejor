@@ -199,6 +199,65 @@ public class WhatsAppApiService : IWhatsAppApiService
         }
     }
 
+    /// <summary>
+    /// Sends appointment completed notification via WhatsApp
+    /// </summary>
+    public async Task<bool> SendAppointmentCompletedAsync(
+        string phoneNumber,
+        AppointmentCompletedData data,
+        CancellationToken cancellationToken = default)
+    {
+        if (!_isEnabled)
+        {
+            _logger.LogWarning("WhatsApp API is disabled. Skipping appointment completed notification to {PhoneNumber}", phoneNumber);
+            return false;
+        }
+
+        try
+        {
+            _logger.LogInformation("Sending appointment completed notification via WhatsApp to {PhoneNumber} for {Date} at {Time}",
+                phoneNumber, data.Fecha, data.Hora);
+
+            var payload = new
+            {
+                phoneNumber,
+                data
+            };
+
+            var response = await _httpClient.PostAsJsonAsync(
+                "/whatsapp/appointment-completed",
+                payload,
+                cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogInformation("Successfully sent appointment completed notification to {PhoneNumber}", phoneNumber);
+                return true;
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            _logger.LogWarning("Failed to send appointment completed notification to {PhoneNumber}. Status: {StatusCode}, Response: {Response}",
+                phoneNumber, response.StatusCode, errorContent);
+
+            return false;
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "HTTP error sending appointment completed notification via WhatsApp to {PhoneNumber}", phoneNumber);
+            return false;
+        }
+        catch (TaskCanceledException ex)
+        {
+            _logger.LogError(ex, "Timeout sending appointment completed notification via WhatsApp to {PhoneNumber}", phoneNumber);
+            return false;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error sending appointment completed notification via WhatsApp to {PhoneNumber}", phoneNumber);
+            return false;
+        }
+    }
+
     /// <inheritdoc />
     public async Task<bool> CheckStatusAsync(CancellationToken cancellationToken = default)
     {

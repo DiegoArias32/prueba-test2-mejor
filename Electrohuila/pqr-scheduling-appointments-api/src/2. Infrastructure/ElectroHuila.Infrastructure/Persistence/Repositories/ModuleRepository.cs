@@ -99,7 +99,8 @@ public class ModuleRepository : BaseRepository<Module>, IModuleRepository
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(m => m.Name == name);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(m => m.Name == name) > 0;
     }
 
     /// <summary>
@@ -116,7 +117,8 @@ public class ModuleRepository : BaseRepository<Module>, IModuleRepository
     /// </remarks>
     public async Task<bool> ExistsByCodeAsync(string code)
     {
-        return await _dbSet.AnyAsync(m => m.Code == code);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(m => m.Code == code) > 0;
     }
 
     /// <summary>

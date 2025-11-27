@@ -52,9 +52,6 @@ export const VerificacionDetalle: React.FC<VerificacionDetalleProps> = ({ verifi
                 </p>
               </div>
             </div>
-            {verificacion.isValid && (
-              <StatusBadge statusCode={verificacion.status} showIcon={true} />
-            )}
             {!verificacion.isValid && (
               <span className="px-4 py-2 rounded-full text-sm font-medium bg-red-500 text-white">
                 No Válida
@@ -88,7 +85,7 @@ export const VerificacionDetalle: React.FC<VerificacionDetalleProps> = ({ verifi
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tipo de Servicio:</span>
                     <span className="font-medium">
-                      {verificacion.appointmentType.icon} {verificacion.appointmentType.name}
+                      {verificacion.appointmentType?.name || 'N/A'}
                     </span>
                   </div>
                 </div>
@@ -115,11 +112,11 @@ export const VerificacionDetalle: React.FC<VerificacionDetalleProps> = ({ verifi
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Número:</span>
-                    <span className="font-medium">{verificacion.client.clientNumber}</span>
+                    <span className="font-medium">{verificacion.client?.clientNumber || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Nombre:</span>
-                    <span className="font-medium">{verificacion.client.fullName}</span>
+                    <span className="font-medium">{verificacion.client?.fullName || 'N/A'}</span>
                   </div>
                 </div>
               </div>
@@ -131,21 +128,15 @@ export const VerificacionDetalle: React.FC<VerificacionDetalleProps> = ({ verifi
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Nombre:</span>
-                    <span className="font-medium">{verificacion.branch.name}</span>
+                    <span className="font-medium">{verificacion.branch?.name || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Dirección:</span>
-                    <span className="font-medium text-sm">{verificacion.branch.address}</span>
+                    <span className="font-medium text-sm">{verificacion.branch?.address || 'N/A'}</span>
                   </div>
                 </div>
               </div>
 
-              <div>
-                <h4 className="text-lg font-semibold text-[#203461] mb-2">
-                  📅 Fecha de Creación
-                </h4>
-                <p className="text-gray-600 text-sm">{verificacion.createdAt}</p>
-              </div>
             </div>
           </div>
 

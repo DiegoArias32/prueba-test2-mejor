@@ -116,7 +116,8 @@ public class FormRepository : BaseRepository<Form>, IFormRepository
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(f => f.Name == name);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(f => f.Name == name) > 0;
     }
 
     /// <summary>
@@ -156,7 +157,8 @@ public class FormRepository : BaseRepository<Form>, IFormRepository
     /// </remarks>
     public async Task<bool> ExistsByCodeAsync(string code)
     {
-        return await _dbSet.AnyAsync(f => f.Code == code);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(f => f.Code == code) > 0;
     }
 
     /// <summary>

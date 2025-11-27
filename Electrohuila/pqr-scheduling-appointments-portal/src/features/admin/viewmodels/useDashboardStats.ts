@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { AdminRepository } from '../repositories/admin.repository';
 import { DashboardStatsDto } from '../models/admin.models';
 
@@ -47,6 +47,11 @@ export const useDashboardStats = (repository: AdminRepository, userId?: number):
       setLoading(false);
     }
   }, [repository, userId]);
+
+  // Auto-fetch on mount
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   return {
     stats,

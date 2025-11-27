@@ -62,11 +62,11 @@ public class ThemeSettingsConfiguration : IEntityTypeConfiguration<ThemeSettings
             .HasMaxLength(50);
 
         // Colores de fondo y texto
-        builder.Property(ts => ts.BackgroundPrimary).HasColumnName("BACKGROUND_PRIMARY")
+        builder.Property(ts => ts.BackgroundPrimary).HasColumnName("BG_PRIMARY")
             .IsRequired()
             .HasMaxLength(50);
 
-        builder.Property(ts => ts.BackgroundSecondary).HasColumnName("BACKGROUND_SECONDARY")
+        builder.Property(ts => ts.BackgroundSecondary).HasColumnName("BG_SECONDARY")
             .IsRequired()
             .HasMaxLength(50);
 

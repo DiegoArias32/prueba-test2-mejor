@@ -20,4 +20,10 @@ public class UpdateAvailableTimeDto
     /// The optional updated appointment type ID this time slot is designated for.
     /// </summary>
     public int? AppointmentTypeId { get; set; }
+
+    /// <summary>
+    /// Indicates whether the available time is active.
+    /// If null, the current value will be preserved.
+    /// </summary>
+    public bool? IsActive { get; set; }
 }

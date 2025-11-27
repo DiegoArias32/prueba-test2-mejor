@@ -49,6 +49,12 @@ public class UpdateRolCommandHandler : IRequestHandler<UpdateRolCommand, Result<
             existingRole.Code = request.RolDto.Code;
             existingRole.UpdatedAt = DateTime.UtcNow;
 
+            // Update IsActive if provided
+            if (request.RolDto.IsActive.HasValue)
+            {
+                existingRole.IsActive = request.RolDto.IsActive.Value;
+            }
+
             await _rolRepository.UpdateAsync(existingRole);
             var rolDto = _mapper.Map<RolDto>(existingRole);
 

@@ -201,16 +201,56 @@ public class RolFormPermissionRepository : IRolFormPermissionRepository
     /// </remarks>
     public async Task UpdateRolFormPermissionAsync(int rolId, int formId, bool canInsert, bool canUpdate, bool canDelete, bool canView)
     {
-        // This implementation might need adjustment based on your actual permission model
-        // For now, this is a placeholder that doesn't cause compilation errors
-        var permission = await _context.RolFormPermis
-            .FirstOrDefaultAsync(rfp => rfp.RolId == rolId && rfp.FormId == formId);
+        // 1. Buscar o crear el Permission con los flags especificados
+        var permission = await _context.Permissions
+            .FirstOrDefaultAsync(p => 
+                p.CanRead == canView && 
+                p.CanCreate == canInsert && 
+                p.CanUpdate == canUpdate && 
+                p.CanDelete == canDelete &&
+                p.IsActive);
 
-        if (permission != null)
+        if (permission == null)
         {
-            // The RolFormPermi entity doesn't have individual permission flags
-            // You might need to adjust this logic based on your actual requirements
+            // Si no existe una combinación exacta de permisos, crear una nueva
+            permission = new Domain.Entities.Security.Permission
+            {
+                CanRead = canView,
+                CanCreate = canInsert,
+                CanUpdate = canUpdate,
+                CanDelete = canDelete,
+                IsActive = true,
+                CreatedAt = DateTime.Now
+            };
+            _context.Permissions.Add(permission);
             await _context.SaveChangesAsync();
         }
+
+        // 2. Buscar o crear la relación RolFormPermi
+        var rolFormPermi = await _context.RolFormPermis
+            .FirstOrDefaultAsync(rfp => rfp.RolId == rolId && rfp.FormId == formId);
+
+        if (rolFormPermi != null)
+        {
+            // Si existe, actualizar el PermissionId
+            rolFormPermi.PermissionId = permission.Id;
+            rolFormPermi.UpdatedAt = DateTime.Now;
+            _context.RolFormPermis.Update(rolFormPermi);
+        }
+        else
+        {
+            // Si no existe, crear una nueva relación
+            rolFormPermi = new Domain.Entities.Security.RolFormPermi
+            {
+                RolId = rolId,
+                FormId = formId,
+                PermissionId = permission.Id,
+                IsActive = true,
+                CreatedAt = DateTime.Now
+            };
+            _context.RolFormPermis.Add(rolFormPermi);
+        }
+
+        await _context.SaveChangesAsync();
     }
 }

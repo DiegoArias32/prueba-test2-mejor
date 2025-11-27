@@ -30,18 +30,12 @@ export interface AppointmentDto {
 }
 
 export interface UpdateAppointmentDto {
-  id: number;
-  appointmentNumber?: string;
-  appointmentDate?: string;
-  appointmentTime?: string;
-  status?: string;
-  observations?: string;
-  completedDate?: string;
-  assignedTechnician?: string;
-  technicianObservations?: string;
-  clientId?: number;
-  branchId?: number;
-  appointmentTypeId?: number;
+  appointmentDate: string;
+  appointmentTime: string;
+  statusId: number;
+  notes?: string;
+  branchId: number;
+  appointmentTypeId: number;
 }
 
 export interface AvailableTimeDto {

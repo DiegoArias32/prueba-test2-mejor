@@ -27,6 +27,7 @@ public class UpdateAppointmentTypeCommandHandler : IRequestHandler<UpdateAppoint
                 return Result.Failure<AppointmentTypeDto>($"Appointment type with ID {request.Id} not found");
             }
 
+            // Check if name is being changed and validate uniqueness
             if (!string.IsNullOrEmpty(request.AppointmentTypeDto.Name) && request.AppointmentTypeDto.Name != existingAppointmentType.Name)
             {
                 var nameExists = await _appointmentTypeRepository.ExistsByNameAsync(request.AppointmentTypeDto.Name);
@@ -36,9 +37,35 @@ public class UpdateAppointmentTypeCommandHandler : IRequestHandler<UpdateAppoint
                 }
             }
 
-            existingAppointmentType.UpdateDetails(request.AppointmentTypeDto.Name, request.AppointmentTypeDto.Description);
-            existingAppointmentType.UpdateDesign(request.AppointmentTypeDto.Icon, null, null);
-            existingAppointmentType.UpdateConfiguration(request.AppointmentTypeDto.EstimatedTimeMinutes, request.AppointmentTypeDto.RequiresDocumentation);
+            // Only update fields that are provided (not null)
+            if (!string.IsNullOrEmpty(request.AppointmentTypeDto.Name) || !string.IsNullOrEmpty(request.AppointmentTypeDto.Description))
+            {
+                var name = !string.IsNullOrEmpty(request.AppointmentTypeDto.Name)
+                    ? request.AppointmentTypeDto.Name
+                    : existingAppointmentType.Name;
+                var description = request.AppointmentTypeDto.Description ?? existingAppointmentType.Description;
+                existingAppointmentType.UpdateDetails(name, description);
+            }
+
+            if (!string.IsNullOrEmpty(request.AppointmentTypeDto.Icon))
+            {
+                existingAppointmentType.UpdateDesign(request.AppointmentTypeDto.Icon, null, null);
+            }
+
+            if (request.AppointmentTypeDto.EstimatedTimeMinutes.HasValue && request.AppointmentTypeDto.EstimatedTimeMinutes.Value > 0)
+            {
+                var requiresDoc = request.AppointmentTypeDto.RequiresDocumentation ?? existingAppointmentType.RequiresDocumentation;
+                existingAppointmentType.UpdateConfiguration(
+                    request.AppointmentTypeDto.EstimatedTimeMinutes.Value,
+                    requiresDoc);
+            }
+
+            // Update IsActive if provided
+            if (request.AppointmentTypeDto.IsActive.HasValue)
+            {
+                existingAppointmentType.IsActive = request.AppointmentTypeDto.IsActive.Value;
+                existingAppointmentType.UpdatedAt = DateTime.UtcNow;
+            }
 
             await _appointmentTypeRepository.UpdateAsync(existingAppointmentType);
             var appointmentTypeDto = _mapper.Map<AppointmentTypeDto>(existingAppointmentType);

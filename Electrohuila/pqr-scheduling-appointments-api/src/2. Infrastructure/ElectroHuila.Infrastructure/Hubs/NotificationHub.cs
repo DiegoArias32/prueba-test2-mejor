@@ -8,8 +8,8 @@ namespace ElectroHuila.Infrastructure.Hubs;
 /// <summary>
 /// Hub de SignalR para notificaciones en tiempo real.
 /// Permite enviar notificaciones a usuarios específicos, grupos y broadcast.
+/// Los métodos críticos están protegidos con [Authorize] individualmente.
 /// </summary>
-[Authorize]
 public class NotificationHub : Hub
 {
     private readonly ILogger<NotificationHub> _logger;
@@ -28,6 +28,7 @@ public class NotificationHub : Hub
     /// </summary>
     /// <param name="userId">ID del usuario destinatario</param>
     /// <param name="notification">Objeto de notificación a enviar</param>
+    [Authorize]
     public async Task SendNotificationToUser(string userId, object notification)
     {
         try
@@ -47,6 +48,7 @@ public class NotificationHub : Hub
     /// </summary>
     /// <param name="groupName">Nombre del grupo destinatario</param>
     /// <param name="notification">Objeto de notificación a enviar</param>
+    [Authorize]
     public async Task SendNotificationToGroup(string groupName, object notification)
     {
         try
@@ -65,6 +67,7 @@ public class NotificationHub : Hub
     /// Une al usuario actual a su grupo personal basado en su ID
     /// </summary>
     /// <param name="userId">ID del usuario</param>
+    [Authorize]
     public async Task JoinUserGroup(string userId)
     {
         try
@@ -85,6 +88,7 @@ public class NotificationHub : Hub
     /// Remueve al usuario actual de su grupo personal
     /// </summary>
     /// <param name="userId">ID del usuario</param>
+    [Authorize]
     public async Task LeaveUserGroup(string userId)
     {
         try
@@ -105,6 +109,7 @@ public class NotificationHub : Hub
     /// Une al usuario actual a un grupo basado en su rol
     /// </summary>
     /// <param name="roleName">Nombre del rol</param>
+    [Authorize]
     public async Task JoinRoleGroup(string roleName)
     {
         try
@@ -125,6 +130,7 @@ public class NotificationHub : Hub
     /// Remueve al usuario actual de un grupo de rol
     /// </summary>
     /// <param name="roleName">Nombre del rol</param>
+    [Authorize]
     public async Task LeaveRoleGroup(string roleName)
     {
         try

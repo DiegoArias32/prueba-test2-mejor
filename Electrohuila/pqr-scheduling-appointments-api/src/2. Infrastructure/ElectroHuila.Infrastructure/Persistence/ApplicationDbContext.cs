@@ -38,11 +38,8 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         base.ConfigureConventions(configurationBuilder);
 
-        // Convertir todos los bool a NUMBER(1) para Oracle (0=false, 1=true)
-        // Esto se aplica ANTES de que se construya el modelo, asegurando que funcione en todas las queries
-        configurationBuilder
-            .Properties<bool>()
-            .HaveConversion<Microsoft.EntityFrameworkCore.Storage.ValueConversion.BoolToZeroOneConverter<int>>();
+        // NOTA: Configuración movida a OnModelCreating debido a un bug en Oracle.EntityFrameworkCore 9.23.60
+        // que ignora la conversión global en ConfigureConventions para ciertos escenarios de INSERT
     }
 
     // ========== DBSETS DE AGENDAMIENTO ==========
@@ -148,11 +145,6 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     public DbSet<SystemSetting> SystemSettings { get; set; }
 
     /// <summary>
-    /// Tabla de plantillas de notificación (Email, SMS, Push).
-    /// </summary>
-    public DbSet<NotificationTemplate> NotificationTemplates { get; set; }
-
-    /// <summary>
     /// Tabla de notificaciones enviadas a usuarios del sistema.
     /// </summary>
     public DbSet<Notification> Notifications { get; set; }
@@ -196,9 +188,33 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
         // Aplicar configuraciones específicas de entidades desde IEntityTypeConfiguration<T>
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        // CRÍTICO: Configuración global para Oracle DESPUÉS de aplicar configuraciones individuales
-        // Oracle no soporta el tipo BOOLEAN nativo hasta Oracle 23c
-        // Por lo tanto, mapeamos bool (C#) a NUMBER(1) (Oracle) donde 0=false, 1=true
+        // ==================== CONFIGURACIÓN CRÍTICA PARA ORACLE Y BOOLEANOS ====================
+        //
+        // PROBLEMA: Oracle no soporta el tipo BOOLEAN nativo hasta Oracle 23c.
+        //           Mapeamos bool (C#) a NUMBER(1) (Oracle) donde 0=false, 1=true.
+        //
+        // SOLUCIÓN COMPLETA EN 3 CAPAS:
+        //
+        // 1. VALUE CONVERTER (Este código): Convierte metadata de propiedades bool → int
+        //    - Define cómo EF Core debe tratar las propiedades booleanas
+        //    - Se aplica a nivel de modelo/metadata
+        //
+        // 2. COLUMN CONFIGURATION: HasColumnType("NUMBER(1)") y HasDefaultValue(1)
+        //    - Define el tipo de columna en la base de datos
+        //    - Se aplica en las configuraciones individuales de entidades
+        //
+        // 3. COMMAND INTERCEPTOR: OracleBooleanConversionInterceptor (EN FACTORY)
+        //    - Convierte parámetros booleanos a enteros ANTES de ejecutar SQL
+        //    - Registrado en ApplicationDbContextFactory.cs
+        //    - ESTA ES LA PIEZA CRÍTICA que faltaba
+        //    - Resuelve el problema de inicializadores de objeto (IsActive = true)
+        //
+        // ¿POR QUÉ SE NECESITAN LAS 3 CAPAS?
+        // - Sin Capa 1: EF Core no sabe cómo mapear bool → NUMBER(1)
+        // - Sin Capa 2: La columna se crea como BOOLEAN (error en Oracle < 23c)
+        // - Sin Capa 3: Los valores literales true/false generan SQL con TRUE/FALSE → ORA-00904
+        //
+        // =====================================================================================
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             // Configurar las propiedades de BaseEntity con nombres de columna en mayúsculas para Oracle
@@ -211,6 +227,10 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
                     isActiveProperty.SetColumnName("IS_ACTIVE");
                     isActiveProperty.SetColumnType("NUMBER(1)");
                     isActiveProperty.SetDefaultValue(1);
+
+                    // Usar ValueConverter con tipo providerClrType correcto para lectura/escritura
+                    var converter = new Microsoft.EntityFrameworkCore.Storage.ValueConversion.BoolToZeroOneConverter<int>();
+                    isActiveProperty.SetValueConverter(converter);
                 }
 
                 var createdAtProperty = entityType.FindProperty(nameof(BaseEntity.CreatedAt));
@@ -226,12 +246,18 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
                 }
             }
 
-            // Establecer tipo de columna para booleanos (el converter ya se aplicó en ConfigureConventions)
+            // Aplicar conversión a TODAS las propiedades booleanas para Oracle
             foreach (var property in entityType.GetProperties())
             {
                 if (property.ClrType == typeof(bool))
                 {
                     property.SetColumnType("NUMBER(1)");
+
+                    if (property.GetValueConverter() == null)
+                    {
+                        var converter = new Microsoft.EntityFrameworkCore.Storage.ValueConversion.BoolToZeroOneConverter<int>();
+                        property.SetValueConverter(converter);
+                    }
                 }
             }
         }

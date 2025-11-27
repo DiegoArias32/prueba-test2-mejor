@@ -6,6 +6,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { appointmentRepository } from '../repositories/appointment.repository';
+import { parseErrorMessage, isExpectedValidationError, type ParsedError } from '../utils/errorParser';
 import type { ClientDto, BranchDto, AppointmentTypeDto, LoadingState } from '@/core/types';
 import type {
   AppointmentFormData,
@@ -20,6 +21,7 @@ export const useAppointmentScheduling = () => {
   const [loadingState, setLoadingState] = useState<LoadingState>('idle');
   const [loadingHours, setLoadingHours] = useState(false);
   const [error, setError] = useState('');
+  const [parsedError, setParsedError] = useState<ParsedError | null>(null);
   const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
 
   // Datos del cliente
@@ -42,7 +44,7 @@ export const useAppointmentScheduling = () => {
   // Datos de confirmación
   const [appointmentConfirmation, setAppointmentConfirmation] =
     useState<AppointmentConfirmation | null>(null);
-  const [qrCodeDataURL, setQrCodeDataURL] = useState<string>('');
+  const [qrCodeDataURL, setQrCodeDataURL] = useState<string | null>(null);
 
   // Datos de catálogos
   const [branches, setBranches] = useState<BranchDto[]>([]);
@@ -162,10 +164,12 @@ export const useAppointmentScheduling = () => {
     if (!formData.appointmentDate || !formData.branch) return;
 
     setLoadingHours(true);
+    setParsedError(null);
     try {
       const selectedBranch = branches.find((s) => s.name === formData.branch);
       if (!selectedBranch) {
         setAvailableHours([]);
+        setParsedError(null);
         return;
       }
 
@@ -175,6 +179,7 @@ export const useAppointmentScheduling = () => {
       );
 
       setAvailableHours(horas || []);
+      setParsedError(null);
 
       // Limpiar hora seleccionada si ya no está disponible
       if (formData.appointmentTime && !horas.includes(formData.appointmentTime)) {
@@ -183,8 +188,22 @@ export const useAppointmentScheduling = () => {
           appointmentTime: '',
         }));
       }
-    } catch (err) {
-      console.error('Error al cargar horas:', err);
+    } catch (err: any) {
+      // Intentar parsear el mensaje de error
+      const errorMsg = err.response?.data?.error || err.message || 'Error al cargar horarios disponibles';
+      const parsed = parseErrorMessage(errorMsg);
+
+      // Solo loguear en desarrollo si no es un error de validación esperado
+      // Los errores de validación (holidays, domingos, fechas pasadas) son parte de la lógica de negocio
+      if (process.env.NODE_ENV === 'development' && !parsed.isExpectedValidation) {
+        console.warn('[AvailableTimes] Error inesperado:', {
+          code: parsed.code,
+          message: parsed.message,
+          details: err.response?.data || err.message
+        });
+      }
+
+      setParsedError(parsed);
       setAvailableHours([]);
     } finally {
       setLoadingHours(false);
@@ -197,6 +216,7 @@ export const useAppointmentScheduling = () => {
   const scheduleAppointment = useCallback(async () => {
     setLoadingState('loading');
     setError('');
+    setParsedError(null);
 
     try {
       const selectedBranch = branches.find((s) => s.name === formData.branch);
@@ -253,10 +273,17 @@ export const useAppointmentScheduling = () => {
           isEnabled: true,
         };
 
-        // Generar QR Code
-        const qrData = `CITA:${response.appointmentNumber}|CLIENTE:${clientNumberForQR}`;
-        const QRCode = (await import('qrcode')).default;
-        const qrUrl = await QRCode.toDataURL(qrData, { width: 300 });
+        // Generar QR Code con URL completa para verificación
+        try {
+          const baseUrl = window.location.origin;
+          const qrData = `${baseUrl}/verificar-cita?numero=${encodeURIComponent(response.appointmentNumber)}&cliente=${encodeURIComponent(clientNumberForQR)}`;
+          const QRCode = (await import('qrcode')).default;
+          const qrUrl = await QRCode.toDataURL(qrData, { width: 300 });
+          setQrCodeDataURL(qrUrl);
+        } catch (qrError) {
+          console.error('Error al generar QR code:', qrError);
+          setQrCodeDataURL(null);
+        }
 
         setAppointmentConfirmation({
           ticketNumber: response.appointmentNumber,
@@ -264,8 +291,6 @@ export const useAppointmentScheduling = () => {
           clientData: tempClientData,
           formData,
         });
-
-        setQrCodeDataURL(qrUrl);
       } else if (clientData) {
         // Flujo para cliente existente
         response = await appointmentRepository.schedulePublicAppointment({
@@ -279,10 +304,17 @@ export const useAppointmentScheduling = () => {
 
         clientNumberForQR = clientData.clientNumber;
 
-        // Generar QR Code
-        const qrData = `CITA:${response.appointmentNumber}|CLIENTE:${clientNumberForQR}`;
-        const QRCode = (await import('qrcode')).default;
-        const qrUrl = await QRCode.toDataURL(qrData, { width: 300 });
+        // Generar QR Code con URL completa para verificación
+        try {
+          const baseUrl = window.location.origin;
+          const qrData = `${baseUrl}/verificar-cita?numero=${encodeURIComponent(response.appointmentNumber)}&cliente=${encodeURIComponent(clientNumberForQR)}`;
+          const QRCode = (await import('qrcode')).default;
+          const qrUrl = await QRCode.toDataURL(qrData, { width: 300 });
+          setQrCodeDataURL(qrUrl);
+        } catch (qrError) {
+          console.error('Error al generar QR code:', qrError);
+          setQrCodeDataURL(null);
+        }
 
         setAppointmentConfirmation({
           ticketNumber: response.appointmentNumber,
@@ -290,16 +322,28 @@ export const useAppointmentScheduling = () => {
           clientData,
           formData,
         });
-
-        setQrCodeDataURL(qrUrl);
       } else {
         throw new Error('No hay datos de cliente disponibles');
       }
 
       setStep('confirmation');
       setLoadingState('success');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al agendar cita');
+    } catch (err: any) {
+      // Intentar parsear el mensaje de error del backend
+      const errorMsg = err.response?.data?.error || (err instanceof Error ? err.message : 'Error al agendar cita');
+      const parsed = parseErrorMessage(errorMsg);
+
+      // Solo loguear en desarrollo si no es un error de validación esperado
+      if (process.env.NODE_ENV === 'development' && !parsed.isExpectedValidation) {
+        console.error('[ScheduleAppointment] Error inesperado:', {
+          code: parsed.code,
+          message: parsed.message,
+          details: err.response?.data || err.message
+        });
+      }
+
+      setError(parsed.message);
+      setParsedError(parsed);
       setLoadingState('error');
     }
   }, [clientData, isNewClient, newClientData, isNewClientFormValid, branches, appointmentTypes, formData]);
@@ -315,8 +359,9 @@ export const useAppointmentScheduling = () => {
     setNewClientData(null);
     setIsNewClientFormValid(false);
     setAppointmentConfirmation(null);
-    setQrCodeDataURL('');
+    setQrCodeDataURL(null);
     setError('');
+    setParsedError(null);
     setValidationErrors({});
     setFormData({
       documentType: 'Cédula de Ciudadanía',
@@ -357,6 +402,7 @@ export const useAppointmentScheduling = () => {
     isLoading: loadingState === 'loading',
     loadingHours,
     error,
+    parsedError,
     validationErrors,
 
     // Datos

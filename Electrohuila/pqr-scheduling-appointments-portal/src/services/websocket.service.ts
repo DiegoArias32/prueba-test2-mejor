@@ -313,17 +313,25 @@ export const useWebSocket = (onMessage?: WebSocketListener) => {
       }
     });
 
-    // Check connection status periodically
-    const statusInterval = setInterval(() => {
-      if (mounted) {
-        setIsConnected(websocketService.isConnected());
-      }
-    }, 2000); // Check every 2 seconds
+    // Track connection state changes via SignalR events
+    // Set initial state
+    if (mounted) {
+      setIsConnected(websocketService.isConnected());
+    }
+
+    // Handle reconnection events by updating the connection state
+    const originalOnReconnected = websocketService['connection']?.onreconnected;
+    if (websocketService['connection']) {
+      websocketService['connection'].onreconnected(() => {
+        if (mounted) {
+          setIsConnected(true);
+        }
+      });
+    }
 
     return () => {
       mounted = false;
       unsubscribe();
-      clearInterval(statusInterval);
       // Don't disconnect on cleanup - keep connection alive for other components
       // Only the main app should disconnect (e.g., on logout)
     };

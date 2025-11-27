@@ -153,27 +153,15 @@ public class AppointmentsController : ApiController
     [HttpGet("my-assigned")]
     public async Task<IActionResult> GetMyAssignedAppointments()
     {
-        _logger.LogInformation("DEBUG CONTROLLER: GetMyAssignedAppointments endpoint called");
-
         // Obtener el ID del usuario del token JWT
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        _logger.LogInformation("DEBUG CONTROLLER: UserIdClaim from JWT: {Claim}", userIdClaim ?? "NULL");
-
         if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
         {
-            _logger.LogWarning("DEBUG CONTROLLER: Invalid or missing userId in JWT token");
             return Unauthorized(new { message = "Usuario no autenticado o ID inválido" });
         }
 
-        _logger.LogInformation("DEBUG CONTROLLER: Parsed userId: {UserId}", userId);
-
         var result = await Mediator.Send(new GetMyAssignedAppointmentsQuery(userId));
-
-        _logger.LogInformation("DEBUG CONTROLLER: Result - Success: {Success}, Data count: {Count}",
-            result.IsSuccess,
-            result.Data?.Count ?? 0);
-
         return HandleResult(result);
     }
 

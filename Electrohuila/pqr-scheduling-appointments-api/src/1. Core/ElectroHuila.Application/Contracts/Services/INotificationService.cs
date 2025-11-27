@@ -1,7 +1,9 @@
 namespace ElectroHuila.Application.Contracts.Services;
 
 /// <summary>
-/// Servicio para envío de notificaciones (Email, SMS, Push)
+/// Servicio para envío de notificaciones de citas
+/// Utiliza APIs externas para Email (Gmail API) y WhatsApp (WhatsApp API)
+/// Las plantillas están hardcoded en los servicios externos
 /// </summary>
 public interface INotificationService
 {
@@ -21,17 +23,7 @@ public interface INotificationService
     Task SendAppointmentCancellationAsync(int appointmentId, string reason, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Envía un email usando una plantilla
+    /// Envía una notificación de cita completada
     /// </summary>
-    Task<bool> SendEmailAsync(string to, string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Envía un SMS usando una plantilla
-    /// </summary>
-    Task<bool> SendSmsAsync(string phone, string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Renderiza una plantilla con datos
-    /// </summary>
-    Task<(string subject, string body)> RenderTemplateAsync(string templateCode, Dictionary<string, string> data, CancellationToken cancellationToken = default);
+    Task SendAppointmentCompletedAsync(int appointmentId, CancellationToken cancellationToken = default);
 }

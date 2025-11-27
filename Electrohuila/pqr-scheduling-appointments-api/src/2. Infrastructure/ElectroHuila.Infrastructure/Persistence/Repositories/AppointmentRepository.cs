@@ -32,8 +32,6 @@ public class AppointmentRepository : IAppointmentRepository
             _logger.LogError("Database connection is not configured properly in AppointmentRepository");
             throw new InvalidOperationException("Database connection is not configured properly");
         }
-
-        _logger.LogDebug("AppointmentRepository initialized successfully with database connection");
     }
 
     /// <summary>
@@ -45,8 +43,6 @@ public class AppointmentRepository : IAppointmentRepository
     {
         try
         {
-            _logger.LogDebug("Getting appointment with ID {AppointmentId}", id);
-
             if (_context == null)
             {
                 _logger.LogError("DbContext is null in GetByIdAsync");
@@ -73,15 +69,6 @@ public class AppointmentRepository : IAppointmentRepository
             appointment.AppointmentType = await _context.AppointmentTypes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(at => at.Id == appointment.AppointmentTypeId);
-
-            if (appointment == null)
-            {
-                _logger.LogWarning("Appointment with ID {AppointmentId} not found or is inactive", id);
-            }
-            else
-            {
-                _logger.LogDebug("Successfully retrieved appointment {AppointmentId}", id);
-            }
 
             return appointment;
         }
@@ -119,6 +106,7 @@ public class AppointmentRepository : IAppointmentRepository
             .Include(a => a.Client)
             .Include(a => a.Branch)
             .Include(a => a.AppointmentType)
+            .Include(a => a.Status)
             .ToListAsync();
     }
 
@@ -173,6 +161,15 @@ public class AppointmentRepository : IAppointmentRepository
     /// <param name="appointment">Cita con los datos actualizados.</param>
     public async Task UpdateAsync(Appointment appointment)
     {
+        // Detach any existing tracked entity with the same ID to avoid conflicts
+        var trackedEntity = _context.ChangeTracker.Entries<Appointment>()
+            .FirstOrDefault(e => e.Entity.Id == appointment.Id);
+
+        if (trackedEntity != null)
+        {
+            trackedEntity.State = EntityState.Detached;
+        }
+
         _context.Appointments.Update(appointment);
         await _context.SaveChangesAsync();
     }
@@ -198,7 +195,8 @@ public class AppointmentRepository : IAppointmentRepository
     /// <returns>True si existe y está activa, False si no existe o está inactiva.</returns>
     public async Task<bool> ExistsAsync(int id)
     {
-        return await _context.Appointments.AnyAsync(a => a.Id == id && a.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _context.Appointments.CountAsync(a => a.Id == id && a.IsActive) > 0;
     }
 
     /// <summary>
@@ -234,11 +232,12 @@ public class AppointmentRepository : IAppointmentRepository
         // StatusIds: 1=PENDING, 2=CONFIRMED, 3=NO_SHOW, 4=COMPLETED, 5=CANCELLED
         var pendingStatuses = new[] { 1, 2, 3 };
 
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _context.Appointments
             .Include(a => a.Client)
-            .AnyAsync(a => a.Client.DocumentNumber == documentNumber
+            .CountAsync(a => a.Client.DocumentNumber == documentNumber
                         && a.IsActive
-                        && pendingStatuses.Contains(a.StatusId));
+                        && pendingStatuses.Contains(a.StatusId)) > 0;
     }
 
     /// <summary>
@@ -248,9 +247,6 @@ public class AppointmentRepository : IAppointmentRepository
     /// <returns>Lista de citas con datos relacionados cargados</returns>
     public async Task<IEnumerable<Appointment>> GetAppointmentsWithDetailsAsync(IEnumerable<int> appointmentTypeIds)
     {
-        _logger.LogInformation("DEBUG REPO: GetAppointmentsWithDetailsAsync - Filter IDs: [{Ids}]",
-            string.Join(", ", appointmentTypeIds));
-
         var query = _context.Appointments
             .AsNoTracking()
             .Include(a => a.Client)
@@ -261,19 +257,6 @@ public class AppointmentRepository : IAppointmentRepository
             .OrderByDescending(a => a.AppointmentDate)
             .ThenByDescending(a => a.CreatedAt);
 
-        var sql = query.ToQueryString();
-        _logger.LogInformation("DEBUG REPO: Generated SQL: {SQL}", sql);
-
-        var result = await query.ToListAsync();
-
-        _logger.LogInformation("DEBUG REPO: Query returned {Count} appointments", result.Count);
-
-        foreach (var apt in result.Take(5))
-        {
-            _logger.LogInformation("DEBUG REPO: Apt - Id: {Id}, TypeId: {TypeId}, IsActive: {IsActive}",
-                apt.Id, apt.AppointmentTypeId, apt.IsActive);
-        }
-
-        return result;
+        return await query.ToListAsync();
     }
 }

@@ -55,6 +55,12 @@ public class UpdateAvailableTimeCommandHandler : IRequestHandler<UpdateAvailable
             existingAvailableTime.AppointmentTypeId = request.AvailableTimeDto.AppointmentTypeId;
             existingAvailableTime.UpdatedAt = DateTime.UtcNow;
 
+            // Update IsActive if provided
+            if (request.AvailableTimeDto.IsActive.HasValue)
+            {
+                existingAvailableTime.IsActive = request.AvailableTimeDto.IsActive.Value;
+            }
+
             await _availableTimeRepository.UpdateAsync(existingAvailableTime);
             var availableTimeDto = _mapper.Map<AvailableTimeDto>(existingAvailableTime);
 

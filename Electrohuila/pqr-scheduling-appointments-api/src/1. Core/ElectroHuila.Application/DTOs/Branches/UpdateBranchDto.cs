@@ -40,4 +40,10 @@ public class UpdateBranchDto
     /// Indicates whether this should be designated as the main or headquarters branch.
     /// </summary>
     public bool IsMain { get; set; }
+
+    /// <summary>
+    /// Indicates whether the branch is active.
+    /// If null, the current value will be preserved.
+    /// </summary>
+    public bool? IsActive { get; set; }
 }

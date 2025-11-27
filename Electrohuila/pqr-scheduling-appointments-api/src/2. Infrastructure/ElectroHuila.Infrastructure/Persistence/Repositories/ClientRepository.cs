@@ -184,7 +184,8 @@ public class ClientRepository : IClientRepository
     /// </remarks>
     public async Task<bool> ExistsAsync(int id)
     {
-        return await _context.Clients.AnyAsync(c => c.Id == id && c.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _context.Clients.CountAsync(c => c.Id == id && c.IsActive) > 0;
     }
 
     /// <summary>
@@ -200,7 +201,8 @@ public class ClientRepository : IClientRepository
     /// </remarks>
     public async Task<bool> ExistsByDocumentNumberAsync(string documentNumber)
     {
-        return await _context.Clients.AnyAsync(c => c.DocumentNumber == documentNumber && c.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _context.Clients.CountAsync(c => c.DocumentNumber == documentNumber && c.IsActive) > 0;
     }
 
     /// <summary>
@@ -252,7 +254,23 @@ public class ClientRepository : IClientRepository
     /// </remarks>
     public async Task<bool> ExistsByEmailAsync(string email)
     {
-        return await _context.Clients.AnyAsync(c => c.Email == email && c.IsActive);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _context.Clients.CountAsync(c => c.Email == email && c.IsActive) > 0;
+    }
+
+    /// <summary>
+    /// Obtiene el ID de un cliente por su número de cliente sin cargar entidades relacionadas.
+    /// Útil para validaciones rápidas que no requieren datos completos del cliente.
+    /// </summary>
+    /// <param name="clientNumber">Número único del cliente.</param>
+    /// <returns>ID del cliente si existe y está activo; de lo contrario, null.</returns>
+    public async Task<int?> GetClientIdByNumberAsync(string clientNumber)
+    {
+        return await _context.Clients
+            .AsNoTracking()
+            .Where(c => c.ClientNumber == clientNumber && c.IsActive)
+            .Select(c => (int?)c.Id)
+            .FirstOrDefaultAsync();
     }
 
     /// <summary>
@@ -266,7 +284,7 @@ public class ClientRepository : IClientRepository
     /// - Prefijo "CLI" para identificar el tipo de entidad
     /// - Fecha actual en formato YYYYMMDD para ordenamiento cronológico
     /// - GUID sin guiones para garantizar unicidad absoluta
-    /// 
+    ///
     /// Ejemplo: "CLI-20241002-a1b2c3d4e5f6789012345678901234ab"
     /// </remarks>
     private static string GenerateClientNumber()

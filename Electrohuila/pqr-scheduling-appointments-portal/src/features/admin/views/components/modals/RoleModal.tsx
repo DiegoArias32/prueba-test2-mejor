@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { FiX, FiSave, FiShield, FiCode, FiFileText } from 'react-icons/fi';
+import { FiX, FiSave, FiShield, FiCode } from 'react-icons/fi';
 import { ValidationUtils, FormErrors } from '@/shared/utils/validation.utils';
 
 interface RoleFormData {
   code: string;
   name: string;
-  description: string;
 }
 
 interface RoleModalProps {
@@ -27,8 +26,7 @@ export const RoleModal: React.FC<RoleModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<RoleFormData>({
     code: '',
-    name: '',
-    description: ''
+    name: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
@@ -37,14 +35,12 @@ export const RoleModal: React.FC<RoleModalProps> = ({
     if (item && mode === 'edit') {
       setFormData({
         code: item.code || '',
-        name: item.name || '',
-        description: item.description || ''
+        name: item.name || ''
       });
     } else {
       setFormData({
         code: '',
-        name: '',
-        description: ''
+        name: ''
       });
     }
     setErrors({});
@@ -86,16 +82,6 @@ export const RoleModal: React.FC<RoleModalProps> = ({
       newErrors.name = 'Nombre debe tener al menos 3 caracteres';
     } else if (formData.name.trim().length > 100) {
       newErrors.name = 'Nombre no puede tener más de 100 caracteres';
-    }
-
-    // Description validation (optional, but if provided must have min length)
-    if (formData.description && formData.description.trim().length > 0) {
-      if (formData.description.trim().length < 10) {
-        newErrors.description = 'Descripción debe tener al menos 10 caracteres';
-      }
-      if (formData.description.trim().length > 500) {
-        newErrors.description = 'Descripción no puede tener más de 500 caracteres';
-      }
     }
 
     setErrors(newErrors);
@@ -214,32 +200,6 @@ export const RoleModal: React.FC<RoleModalProps> = ({
                 {errors.name && (
                   <p className="mt-1 text-sm text-red-600">{errors.name}</p>
                 )}
-              </div>
-
-              {/* Description */}
-              <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-                  Descripción (Opcional)
-                </label>
-                <div className="relative">
-                  <FiFileText className="absolute left-3 top-3 text-gray-400" />
-                  <textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    rows={4}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none ${
-                      errors.description ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="Describe las responsabilidades y permisos de este rol..."
-                  />
-                </div>
-                {errors.description && (
-                  <p className="mt-1 text-sm text-red-600">{errors.description}</p>
-                )}
-                <p className="mt-1 text-xs text-gray-500">
-                  {formData.description.length}/500 caracteres
-                </p>
               </div>
 
               {/* Info Box */}

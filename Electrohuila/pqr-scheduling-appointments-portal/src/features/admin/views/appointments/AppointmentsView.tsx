@@ -9,6 +9,7 @@ import { AppointmentDto } from '@/services/api';
 import { StatusBadge } from '@/shared/components/StatusBadge';
 import { PaginationControls } from '../components/shared';
 import { getPaginatedData, formatDate, formatTime } from '../utils/tableUtils';
+import { AuthUtils } from '@/shared/utils/auth';
 
 interface AppointmentsViewProps {
   appointments: AppointmentDto[];
@@ -25,19 +26,23 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Check if user has permission to update appointments
+  const canUpdateAppointments = AuthUtils.hasFormPermission('APPOINTMENTS', 'update');
+
   // Filter appointments based on currentView
   const filteredAppointments = appointments.filter(apt => {
     const status = apt.status?.toUpperCase();
-    
+
     if (currentView === 'completed') {
       // "Completadas" tab - show only COMPLETED appointments
       return status === 'COMPLETED' || status === 'COMPLETADA';
     } else if (currentView === 'cancelled') {
-      // "No Asistidas" tab - show CANCELLED appointments only
-      return status === 'CANCELLED' || status === 'CANCELADA' || status === 'CANCELED';
+      // "No Asistidas" tab - show CANCELLED and NO_SHOW appointments
+      return status === 'CANCELLED' || status === 'CANCELADA' || status === 'CANCELED' ||
+             status === 'NO_SHOW' || status === 'NO ASISTIÓ' || status === 'NO ASISTIDA';
     } else {
       // "Pendientes" tab - show PENDING and CONFIRMED appointments only
-      return status === 'PENDING' || status === 'PENDIENTE' || 
+      return status === 'PENDING' || status === 'PENDIENTE' ||
              status === 'CONFIRMED' || status === 'CONFIRMADA';
     }
   });
@@ -104,7 +109,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                 ? 'Mostrando citas pendientes y confirmadas. Use los botones de acción para cambiar el estado.'
                 : currentView === 'completed'
                 ? 'Mostrando citas completadas (asistidas). Estas citas ya fueron finalizadas.'
-                : 'Mostrando citas no asistidas (canceladas). Estas citas ya fueron canceladas.'}
+                : 'Mostrando citas no asistidas. Incluye tanto clientes que no se presentaron como citas canceladas.'}
             </span>
           </div>
         </div>
@@ -193,7 +198,11 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                         </span>
                       ) : currentView === 'cancelled' ? (
                         <span className="text-gray-400 text-xs">
-                          Cita cancelada
+                          Cita no asistida
+                        </span>
+                      ) : !canUpdateAppointments ? (
+                        <span className="text-gray-400 text-xs">
+                          Sin permisos de actualización
                         </span>
                       ) : (
                         <div className="flex gap-2">

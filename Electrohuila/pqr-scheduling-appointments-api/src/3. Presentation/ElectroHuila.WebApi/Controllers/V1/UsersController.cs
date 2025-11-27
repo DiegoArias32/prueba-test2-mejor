@@ -8,6 +8,8 @@ using ElectroHuila.Application.Features.Users.Queries.GetUserById;
 using ElectroHuila.Application.Features.Users.Queries.GetUserByUsername;
 using ElectroHuila.Application.Features.Users.Queries.GetUserRoles;
 using ElectroHuila.Application.Features.Users.Queries.GetUserPermissions;
+using ElectroHuila.Application.Features.Users.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class UsersController : ApiController
 {
+    private readonly IUserRepository _userRepository;
+
+    public UsersController(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
     /// <summary>
     /// Obtiene todos los usuarios registrados en el sistema.
     /// </summary>
@@ -30,6 +38,18 @@ public class UsersController : ApiController
     public async Task<IActionResult> GetAll()
     {
         var query = new GetAllUsersQuery();
+        var result = await Mediator.Send(query);
+        return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Obtiene todos los usuarios incluyendo los inactivos.
+    /// </summary>
+    /// <returns>Lista de todos los usuarios (activos e inactivos)</returns>
+    [HttpGet("all-including-inactive")]
+    public async Task<IActionResult> GetAllIncludingInactive()
+    {
+        var query = new GetAllUsersIncludingInactiveQuery();
         var result = await Mediator.Send(query);
         return HandleResult(result);
     }
@@ -217,5 +237,45 @@ public class UsersController : ApiController
 
         var result = await Mediator.Send(command);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un usuario previamente desactivado.
+    /// Marca el usuario como activo en el sistema.
+    /// </summary>
+    /// <param name="id">ID del usuario a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user == null)
+            return NotFound(new { message = $"User with ID {id} not found" });
+
+        user.IsActive = true;
+        user.UpdatedAt = DateTime.UtcNow;
+        await _userRepository.UpdateAsync(user);
+
+        return Ok(new { success = true, message = "User activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un usuario del sistema.
+    /// Marca el usuario como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del usuario a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user == null)
+            return NotFound(new { message = $"User with ID {id} not found" });
+
+        user.IsActive = false;
+        user.UpdatedAt = DateTime.UtcNow;
+        await _userRepository.UpdateAsync(user);
+
+        return Ok(new { success = true, message = "User deactivated successfully" });
     }
 }

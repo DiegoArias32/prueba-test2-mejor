@@ -36,7 +36,8 @@ export class UserService extends BaseHttpService {
    * Create new user
    */
   async createUser(userData: CreateUserDto): Promise<UserDto> {
-    return this.post<UserDto>('/users', userData);
+    // Backend expects data wrapped in a UserDto property
+    return this.post<UserDto>('/users', { userDto: userData });
   }
 
   /**
@@ -54,12 +55,21 @@ export class UserService extends BaseHttpService {
   }
 
   /**
-   * Delete user (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete user (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalUser(id: number): Promise<boolean> {
-    throw new Error('⚠️ Endpoint /users/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<boolean>(`/users/delete-logical/${id}`);
+    const result = await this.patch<{ success: boolean; message: string }>(`/users/${id}/deactivate`, {});
+    return true;
+  }
+
+  /**
+   * Activate user (reactivate a deactivated user)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateUser(id: number): Promise<boolean> {
+    const result = await this.patch<{ success: boolean; message: string }>(`/users/${id}/activate`, {});
+    return true;
   }
 
   // ===== ROLE MANAGEMENT =====
@@ -100,12 +110,19 @@ export class UserService extends BaseHttpService {
   }
 
   /**
-   * Delete role (logical delete)
-   * TODO: Este endpoint no existe en la API backend - necesita ser implementado
+   * Delete role (logical delete / deactivate)
+   * Uses dedicated deactivate endpoint with PATCH method
    */
   async deleteLogicalRol(id: number): Promise<{ success: boolean; message: string }> {
-    throw new Error('⚠️ Endpoint /roles/delete-logical/{id} no implementado en la API backend');
-    // return this.patch<{ success: boolean; message: string }>(`/roles/delete-logical/${id}`);
+    return this.patch<{ success: boolean; message: string }>(`/roles/${id}/deactivate`, {});
+  }
+
+  /**
+   * Activate role (reactivate a deactivated role)
+   * Uses dedicated activate endpoint with PATCH method
+   */
+  async activateRol(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/roles/${id}/activate`, {});
   }
 
   /**

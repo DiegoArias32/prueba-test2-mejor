@@ -78,21 +78,10 @@ public class UserAssignmentRepository : IUserAssignmentRepository
     /// </summary>
     public async Task<List<int>> GetAssignedAppointmentTypeIdsAsync(int userId)
     {
-        _logger.LogInformation("DEBUG ASSIGNMENT REPO: Getting assignments for UserId: {UserId}", userId);
-
         var query = _context.UserAppointmentTypeAssignments
             .Where(ua => ua.UserId == userId && ua.IsActive);
 
-        var sql = query.ToQueryString();
-        _logger.LogInformation("DEBUG ASSIGNMENT REPO: SQL: {SQL}", sql);
-
-        var result = await query.Select(ua => ua.AppointmentTypeId).ToListAsync();
-
-        _logger.LogInformation("DEBUG ASSIGNMENT REPO: Found {Count} assignments: [{Ids}]",
-            result.Count,
-            string.Join(", ", result));
-
-        return result;
+        return await query.Select(ua => ua.AppointmentTypeId).ToListAsync();
     }
 
     /// <summary>
@@ -100,10 +89,11 @@ public class UserAssignmentRepository : IUserAssignmentRepository
     /// </summary>
     public async Task<bool> ExistsAsync(int userId, int appointmentTypeId)
     {
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _context.UserAppointmentTypeAssignments
-            .AnyAsync(ua => ua.UserId == userId
+            .CountAsync(ua => ua.UserId == userId
                          && ua.AppointmentTypeId == appointmentTypeId
-                         && ua.IsActive);
+                         && ua.IsActive) > 0;
     }
 
     /// <summary>
@@ -155,7 +145,8 @@ public class UserAssignmentRepository : IUserAssignmentRepository
     /// </summary>
     public async Task<bool> IsActiveAsync(int id)
     {
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _context.UserAppointmentTypeAssignments
-            .AnyAsync(ua => ua.Id == id && ua.IsActive);
+            .CountAsync(ua => ua.Id == id && ua.IsActive) > 0;
     }
 }

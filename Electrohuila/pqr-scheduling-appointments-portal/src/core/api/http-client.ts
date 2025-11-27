@@ -73,12 +73,42 @@ export class HttpClient {
         throw new Error('Sesión expirada. Por favor inicia sesión nuevamente.');
       }
 
-      // Manejo de errores
+      // Manejo de errores - Parse respuesta incluso cuando hay error
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({
-          message: 'Error desconocido'
-        }));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        let errorMessage = `HTTP error! status: ${response.status}`;
+
+        try {
+          const contentType = response.headers.get('content-type');
+          let errorData: any;
+
+          // Parse JSON si el content-type es application/json
+          if (contentType && contentType.includes('application/json')) {
+            errorData = await response.json();
+          } else {
+            // Si no es JSON, intenta leer como texto
+            const text = await response.text();
+            errorData = text;
+          }
+
+          // Extrae mensaje de error de múltiples posibles campos
+          if (typeof errorData === 'object' && errorData !== null) {
+            errorMessage =
+              errorData.error ||        // Campo 'error' (formato personalizado: HOLIDAY_NOT_AVAILABLE|mensaje)
+              errorData.detail ||       // Campo 'detail' (ProblemDetails de ASP.NET Core)
+              errorData.message ||      // Campo 'message'
+              errorData.title ||        // Campo 'title'
+              (typeof errorData === 'string' ? errorData : null) ||
+              `HTTP error! status: ${response.status}`;  // Fallback al mensaje por defecto con status
+          } else if (typeof errorData === 'string' && errorData.trim()) {
+            // Si es texto plano, usarlo como mensaje de error
+            errorMessage = errorData;
+          }
+        } catch {
+          // Si falla el parsing, usar el mensaje por defecto
+          // (errorMessage ya tiene el valor por defecto)
+        }
+
+        throw new Error(errorMessage);
       }
 
       return await response.json();

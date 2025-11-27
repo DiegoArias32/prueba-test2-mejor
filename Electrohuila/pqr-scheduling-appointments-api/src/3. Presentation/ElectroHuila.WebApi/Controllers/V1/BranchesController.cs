@@ -8,6 +8,7 @@ using ElectroHuila.Application.Features.Branches.Queries.GetActiveBranches;
 using ElectroHuila.Application.Features.Branches.Queries.GetBranchByCode;
 using ElectroHuila.Application.Features.Branches.Queries.GetMainBranch;
 using ElectroHuila.Application.Features.Branches.Queries.GetAllIncludingInactive;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,12 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class BranchesController : ApiController
 {
+    private readonly IBranchRepository _branchRepository;
+
+    public BranchesController(IBranchRepository branchRepository)
+    {
+        _branchRepository = branchRepository;
+    }
     /// <summary>
     /// Obtiene todas las sucursales registradas en el sistema.
     /// Incluye sucursales activas e inactivas.
@@ -158,5 +165,45 @@ public class BranchesController : ApiController
         var command = new DeleteLogicalBranchCommand(id);
         var result = await Mediator.Send(command);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa una sucursal previamente desactivada.
+    /// Marca la sucursal como activa en el sistema.
+    /// </summary>
+    /// <param name="id">ID de la sucursal a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var branch = await _branchRepository.GetByIdAsync(id);
+        if (branch == null)
+            return NotFound(new { message = $"Branch with ID {id} not found" });
+
+        branch.IsActive = true;
+        branch.UpdatedAt = DateTime.UtcNow;
+        await _branchRepository.UpdateAsync(branch);
+
+        return Ok(new { success = true, message = "Branch activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva una sucursal del sistema.
+    /// Marca la sucursal como inactiva sin eliminarla físicamente.
+    /// </summary>
+    /// <param name="id">ID de la sucursal a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var branch = await _branchRepository.GetByIdAsync(id);
+        if (branch == null)
+            return NotFound(new { message = $"Branch with ID {id} not found" });
+
+        branch.IsActive = false;
+        branch.UpdatedAt = DateTime.UtcNow;
+        await _branchRepository.UpdateAsync(branch);
+
+        return Ok(new { success = true, message = "Branch deactivated successfully" });
     }
 }

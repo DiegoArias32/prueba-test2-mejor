@@ -13,10 +13,10 @@ namespace ElectroHuila.Infrastructure.Services;
 
 /// <summary>
 /// EJEMPLO de cómo integrar los servicios externos en NotificationService
+/// NOTE: NotificationTemplateRepository was removed - templates are now handled by external services
 /// </summary>
 public class NotificationServiceExample : INotificationService
 {
-    private readonly INotificationTemplateRepository _templateRepository;
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IClientRepository _clientRepository;
     private readonly IBranchRepository _branchRepository;
@@ -27,7 +27,6 @@ public class NotificationServiceExample : INotificationService
     private readonly ILogger<NotificationService> _logger;
 
     public NotificationServiceExample(
-        INotificationTemplateRepository templateRepository,
         IAppointmentRepository appointmentRepository,
         IClientRepository clientRepository,
         IBranchRepository branchRepository,
@@ -37,7 +36,6 @@ public class NotificationServiceExample : INotificationService
         IConfiguration configuration,                      // NUEVO - Para leer configuración
         ILogger<NotificationService> logger)
     {
-        _templateRepository = templateRepository;
         _appointmentRepository = appointmentRepository;
         _clientRepository = clientRepository;
         _branchRepository = branchRepository;

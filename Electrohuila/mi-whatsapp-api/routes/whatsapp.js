@@ -372,6 +372,15 @@ router.post('/appointment-cancellation', async (req, res) => {
 });
 
 /**
+ * POST /whatsapp/appointment-completed
+ * Envía notificación de cita completada
+ * Body: { phoneNumber, data: { nombreCliente, fecha, hora, ubicacion, numeroCita?, tipoCita?, observaciones? } }
+ */
+router.post('/appointment-completed', async (req, res) => {
+    await sendTemplateMessage('cita_completada', req, res);
+});
+
+/**
  * GET /whatsapp/status
  * Obtiene el estado actual del servicio de WhatsApp
  */

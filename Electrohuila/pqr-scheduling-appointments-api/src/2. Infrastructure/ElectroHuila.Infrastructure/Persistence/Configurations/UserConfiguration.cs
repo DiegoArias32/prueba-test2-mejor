@@ -39,6 +39,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired()
             .HasMaxLength(500);
 
+        // Columnas opcionales que pueden no existir en la base de datos
+        // Se ignoran si no existen en el esquema actual
+        builder.Ignore(u => u.FullName);
+        builder.Ignore(u => u.IdentificationType);
+        builder.Ignore(u => u.IdentificationNumber);
+        builder.Ignore(u => u.Phone);
+        builder.Ignore(u => u.Address);
+
         builder.Property(u => u.AllowedTabs).HasColumnName("ALLOWED_TABS")
             .HasMaxLength(1000);
 

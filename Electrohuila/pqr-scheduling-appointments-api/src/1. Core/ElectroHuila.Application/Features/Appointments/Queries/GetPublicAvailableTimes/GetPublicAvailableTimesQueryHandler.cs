@@ -8,13 +8,16 @@ public class GetPublicAvailableTimesQueryHandler : IRequestHandler<GetPublicAvai
 {
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IAvailableTimeRepository _availableTimeRepository;
+    private readonly IHolidayRepository _holidayRepository;
 
     public GetPublicAvailableTimesQueryHandler(
         IAppointmentRepository appointmentRepository,
-        IAvailableTimeRepository availableTimeRepository)
+        IAvailableTimeRepository availableTimeRepository,
+        IHolidayRepository holidayRepository)
     {
         _appointmentRepository = appointmentRepository;
         _availableTimeRepository = availableTimeRepository;
+        _holidayRepository = holidayRepository;
     }
 
     public async Task<Result<IEnumerable<string>>> Handle(GetPublicAvailableTimesQuery request, CancellationToken cancellationToken)
@@ -23,6 +26,30 @@ public class GetPublicAvailableTimesQueryHandler : IRequestHandler<GetPublicAvai
         {
             if (request.BranchId <= 0)
                 return Result.Failure<IEnumerable<string>>("ID de sede requerido");
+
+            // Validate date - Check if Sunday
+            if (request.Date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return Result.Failure<IEnumerable<string>>("SUNDAY_NOT_AVAILABLE|Los domingos no se atienden citas");
+            }
+
+            // Validate date - Check if holiday
+            var holiday = await _holidayRepository.GetByDateAsync(
+                request.Date,
+                request.BranchId,
+                cancellationToken);
+
+            if (holiday != null)
+            {
+                var holidayName = holiday.HolidayName ?? "Día festivo";
+                return Result.Failure<IEnumerable<string>>($"HOLIDAY_NOT_AVAILABLE|No se puede agendar porque es {holidayName}");
+            }
+
+            // Validate date - Check if past date
+            if (request.Date.Date < DateTime.UtcNow.Date)
+            {
+                return Result.Failure<IEnumerable<string>>("PAST_DATE_NOT_AVAILABLE|No se pueden agendar citas en fechas pasadas");
+            }
 
             // Get configured times for the branch
             var configuredTimes = await _availableTimeRepository.GetByBranchIdAsync(request.BranchId);

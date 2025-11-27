@@ -5,10 +5,11 @@ import { FiX, FiSave, FiCalendar, FiFileText, FiClock, FiFile } from 'react-icon
 import { ValidationUtils, FormErrors } from '@/shared/utils/validation.utils';
 
 interface AppointmentTypeFormData {
+  id?: number;
   name: string;
   description: string;
   icon: string;
-  durationMinutes: number;
+  estimatedTimeMinutes: number;
   requiresDocumentation: boolean;
 }
 
@@ -16,7 +17,7 @@ interface AppointmentTypeModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (data: AppointmentTypeFormData) => Promise<void>;
-  item?: Partial<AppointmentTypeFormData>;
+  item?: Partial<AppointmentTypeFormData & { durationMinutes?: number }>;
   mode: 'create' | 'edit';
 }
 
@@ -42,7 +43,7 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
     name: '',
     description: '',
     icon: 'FiCalendar',
-    durationMinutes: 30,
+    estimatedTimeMinutes: 30,
     requiresDocumentation: false
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -51,10 +52,11 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
   useEffect(() => {
     if (item && mode === 'edit') {
       setFormData({
+        id: item.id,
         name: item.name || '',
         description: item.description || '',
         icon: item.icon || 'FiCalendar',
-        durationMinutes: item.durationMinutes || 30,
+        estimatedTimeMinutes: item.estimatedTimeMinutes || item.durationMinutes || 30,
         requiresDocumentation: item.requiresDocumentation || false
       });
     } else {
@@ -62,7 +64,7 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
         name: '',
         description: '',
         icon: 'FiCalendar',
-        durationMinutes: 30,
+        estimatedTimeMinutes: 30,
         requiresDocumentation: false
       });
     }
@@ -99,16 +101,16 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
     }
 
     // Duration validation
-    if (!formData.durationMinutes) {
-      newErrors.durationMinutes = 'Duración es obligatoria';
+    if (!formData.estimatedTimeMinutes) {
+      newErrors.estimatedTimeMinutes = 'Duración es obligatoria';
     } else {
-      const duration = Number(formData.durationMinutes);
+      const duration = Number(formData.estimatedTimeMinutes);
       if (isNaN(duration)) {
-        newErrors.durationMinutes = 'Duración debe ser un número válido';
+        newErrors.estimatedTimeMinutes = 'Duración debe ser un número válido';
       } else if (duration < 15) {
-        newErrors.durationMinutes = 'Duración mínima es 15 minutos';
+        newErrors.estimatedTimeMinutes = 'Duración mínima es 15 minutos';
       } else if (duration > 480) {
-        newErrors.durationMinutes = 'Duración máxima es 480 minutos (8 horas)';
+        newErrors.estimatedTimeMinutes = 'Duración máxima es 480 minutos (8 horas)';
       }
     }
 
@@ -137,7 +139,7 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
   const handleDurationChange = (value: string) => {
     const numValue = parseInt(value);
     if (!isNaN(numValue) || value === '') {
-      setFormData({ ...formData, durationMinutes: numValue || 0 });
+      setFormData({ ...formData, estimatedTimeMinutes: numValue || 0 });
     }
   };
 
@@ -253,36 +255,36 @@ export const AppointmentTypeModal: React.FC<AppointmentTypeModalProps> = ({
 
               {/* Duration Minutes */}
               <div>
-                <label htmlFor="durationMinutes" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="estimatedTimeMinutes" className="block text-sm font-medium text-gray-700 mb-2">
                   Duración (minutos) *
                 </label>
                 <div className="relative">
                   <FiClock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <input
-                    id="durationMinutes"
+                    id="estimatedTimeMinutes"
                     type="number"
                     min="15"
                     max="480"
                     step="15"
-                    value={formData.durationMinutes}
+                    value={formData.estimatedTimeMinutes}
                     onChange={(e) => handleDurationChange(e.target.value)}
                     className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-                      errors.durationMinutes ? 'border-red-500' : 'border-gray-300'
+                      errors.estimatedTimeMinutes ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="30"
                   />
                 </div>
-                {errors.durationMinutes && (
-                  <p className="mt-1 text-sm text-red-600">{errors.durationMinutes}</p>
+                {errors.estimatedTimeMinutes && (
+                  <p className="mt-1 text-sm text-red-600">{errors.estimatedTimeMinutes}</p>
                 )}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {[15, 30, 45, 60, 90, 120].map((minutes) => (
                     <button
                       key={minutes}
                       type="button"
-                      onClick={() => setFormData({ ...formData, durationMinutes: minutes })}
+                      onClick={() => setFormData({ ...formData, estimatedTimeMinutes: minutes })}
                       className={`px-3 py-1 text-sm rounded-lg border transition-colors ${
-                        formData.durationMinutes === minutes
+                        formData.estimatedTimeMinutes === minutes
                           ? 'bg-blue-500 text-white border-blue-500'
                           : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                       }`}

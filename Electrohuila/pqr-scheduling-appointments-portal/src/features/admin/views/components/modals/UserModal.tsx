@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { FiX, FiSave, FiUser, FiMail, FiPhone, FiMapPin, FiLock, FiCreditCard } from 'react-icons/fi';
+import { FiX, FiSave, FiUser, FiMail, FiLock } from 'react-icons/fi';
 import { ValidationUtils, FormErrors } from '@/shared/utils/validation.utils';
 
 interface Role {
@@ -13,11 +13,6 @@ interface Role {
 interface UserFormData {
   username: string;
   email: string;
-  fullName: string;
-  identificationType: string;
-  identificationNumber: string;
-  phone: string;
-  address: string;
   password?: string;
   roleIds: string[];
 }
@@ -35,14 +30,6 @@ interface UserModalProps {
   roles: Role[];
 }
 
-const IDENTIFICATION_TYPES = [
-  { value: 'CC', label: 'Cédula de Ciudadanía' },
-  { value: 'CE', label: 'Cédula de Extranjería' },
-  { value: 'TI', label: 'Tarjeta de Identidad' },
-  { value: 'PP', label: 'Pasaporte' },
-  { value: 'NIT', label: 'NIT' },
-];
-
 export const UserModal: React.FC<UserModalProps> = ({
   isOpen,
   onClose,
@@ -54,11 +41,6 @@ export const UserModal: React.FC<UserModalProps> = ({
   const [formData, setFormData] = useState<UserFormData>({
     username: '',
     email: '',
-    fullName: '',
-    identificationType: 'CC',
-    identificationNumber: '',
-    phone: '',
-    address: '',
     password: '',
     roleIds: []
   });
@@ -70,22 +52,12 @@ export const UserModal: React.FC<UserModalProps> = ({
       setFormData({
         username: item.username || '',
         email: item.email || '',
-        fullName: item.fullName || '',
-        identificationType: item.identificationType || 'CC',
-        identificationNumber: item.identificationNumber || '',
-        phone: item.phone || '',
-        address: item.address || '',
         roleIds: item.roles?.map((r) => r.id) || []
       });
     } else {
       setFormData({
         username: '',
         email: '',
-        fullName: '',
-        identificationType: 'CC',
-        identificationNumber: '',
-        phone: '',
-        address: '',
         password: '',
         roleIds: []
       });
@@ -107,30 +79,6 @@ export const UserModal: React.FC<UserModalProps> = ({
     const emailValidation = ValidationUtils.validateEmail(formData.email);
     if (!emailValidation.isValid) {
       newErrors.email = emailValidation.message;
-    }
-
-    // Full name validation
-    const nameValidation = ValidationUtils.validateName(formData.fullName, 'Nombre completo');
-    if (!nameValidation.isValid) {
-      newErrors.fullName = nameValidation.message;
-    }
-
-    // Identification number validation
-    const idValidation = ValidationUtils.validateIdentificationNumber(formData.identificationNumber);
-    if (!idValidation.isValid) {
-      newErrors.identificationNumber = idValidation.message;
-    }
-
-    // Phone validation
-    const phoneValidation = ValidationUtils.validatePhone(formData.phone, true);
-    if (!phoneValidation.isValid) {
-      newErrors.phone = phoneValidation.message;
-    }
-
-    // Address validation
-    const addressValidation = ValidationUtils.validateAddress(formData.address);
-    if (!addressValidation.isValid) {
-      newErrors.address = addressValidation.message;
     }
 
     // Password validation (only on create)
@@ -254,115 +202,6 @@ export const UserModal: React.FC<UserModalProps> = ({
                 </div>
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-
-              {/* Full Name */}
-              <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre Completo *
-                </label>
-                <input
-                  id="fullName"
-                  type="text"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-                    errors.fullName ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder="Ingrese nombre completo"
-                />
-                {errors.fullName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
-                )}
-              </div>
-
-              {/* Identification Type and Number */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="identificationType" className="block text-sm font-medium text-gray-700 mb-2">
-                    Tipo de Identificación *
-                  </label>
-                  <select
-                    id="identificationType"
-                    value={formData.identificationType}
-                    onChange={(e) => setFormData({ ...formData, identificationType: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  >
-                    {IDENTIFICATION_TYPES.map((type) => (
-                      <option key={type.value} value={type.value}>
-                        {type.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="identificationNumber" className="block text-sm font-medium text-gray-700 mb-2">
-                    Número de Identificación *
-                  </label>
-                  <div className="relative">
-                    <FiCreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <input
-                      id="identificationNumber"
-                      type="text"
-                      value={formData.identificationNumber}
-                      onChange={(e) => setFormData({ ...formData, identificationNumber: e.target.value })}
-                      className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-                        errors.identificationNumber ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Solo números"
-                    />
-                  </div>
-                  {errors.identificationNumber && (
-                    <p className="mt-1 text-sm text-red-600">{errors.identificationNumber}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Teléfono *
-                </label>
-                <div className="relative">
-                  <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-                      errors.phone ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="Solo números"
-                  />
-                </div>
-                {errors.phone && (
-                  <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
-                )}
-              </div>
-
-              {/* Address */}
-              <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
-                  Dirección *
-                </label>
-                <div className="relative">
-                  <FiMapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <input
-                    id="address"
-                    type="text"
-                    value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-                      errors.address ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="Ingrese dirección completa"
-                  />
-                </div>
-                {errors.address && (
-                  <p className="mt-1 text-sm text-red-600">{errors.address}</p>
                 )}
               </div>
 

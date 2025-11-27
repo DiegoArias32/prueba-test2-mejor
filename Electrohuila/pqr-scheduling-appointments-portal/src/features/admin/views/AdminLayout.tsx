@@ -35,7 +35,6 @@ import { TypesView } from './types/TypesView';
 import { TimesView } from './times/TimesView';
 import { PermissionsView } from './permissions/PermissionsView';
 import { HolidaysView } from './holidays/HolidaysView';
-import { NotificationTemplatesView } from './notifications/NotificationTemplatesView';
 import { SystemSettingsView } from './settings/SystemSettingsView';
 import { MyAssignedAppointmentsView } from './myappointments/MyAssignedAppointmentsView';
 import { EmployeeAssignmentsManager } from './employees/EmployeeAssignmentsManager';
@@ -94,19 +93,32 @@ export const AdminLayout: React.FC = () => {
   const [employeesTab, setEmployeesTab] = useState<'list' | 'assignments'>('list');
 
   // Dashboard & My Appointments Data
-  const [dashboardStats, setDashboardStats] = useState({
-    totalAppointments: 0,
-    completedAppointments: 0,
-    pendingAppointments: 0,
-    totalEmployees: 0,
-    totalBranches: 0,
-    totalAppointmentTypes: 0,
-    myAppointmentsToday: 0,
-    myPendingAppointments: 0,
-    myCompletedAppointments: 0
-  });
   const [myAppointments, setMyAppointments] = useState<AppointmentDto[]>([]);
   const [rolPermissions, setRolPermissions] = useState<RolPermissionSummaryDto[]>([]);
+
+  // Helper function to refresh entity data after activate/deactivate
+  const refreshEntityData = async (entityType: 'appointmentTypes' | 'branches' | 'users' | 'roles' | 'availableTimes' | 'clients') => {
+    switch (entityType) {
+      case 'appointmentTypes':
+        await admin.appointmentTypes.fetchAppointmentTypes();
+        break;
+      case 'branches':
+        await admin.branches.fetchBranches();
+        break;
+      case 'users':
+        await admin.users.fetchUsers();
+        break;
+      case 'roles':
+        await admin.roles.fetchRoles();
+        break;
+      case 'availableTimes':
+        await admin.availableTimes.fetchAvailableTimes();
+        break;
+      case 'clients':
+        await admin.clients.fetchClients();
+        break;
+    }
+  };
 
   // Enhanced Notifications with sounds and browser notifications
   const {
@@ -114,8 +126,6 @@ export const AdminLayout: React.FC = () => {
     addEnhancedNotification,
     markAsRead,
     clearAll,
-    soundsEnabled,
-    browserNotificationsEnabled,
     loadNotifications
   } = useEnhancedNotifications();
 
@@ -134,26 +144,8 @@ export const AdminLayout: React.FC = () => {
     info: toastInfo
   } = useToastNotifications();
 
-  // Legacy toast hook for existing code compatibility
-  const legacyToast = useToast();
-
   // Confirm Modal
   const { confirm, ConfirmDialog } = useConfirm();
-
-  // Load Dashboard Stats
-  const loadDashboardStats = React.useCallback(async () => {
-    try {
-      const stats = await adminRepository.getDashboardStats(currentUserId);
-      setDashboardStats(prevStats => ({
-        ...stats,
-        // Preserve the myCompletedAppointments count from previous state
-        // It will be updated separately when myAppointments changes
-        myCompletedAppointments: prevStats.myCompletedAppointments
-      }));
-    } catch {
-      // Silent error handling
-    }
-  }, [currentUserId]); // Depend on currentUserId to refetch when user changes
 
   // Load Role Permissions
   const loadRolPermissions = React.useCallback(async () => {
@@ -229,7 +221,7 @@ export const AdminLayout: React.FC = () => {
         );
 
         // Reload dashboard stats to update counters
-        loadDashboardStats();
+        admin.dashboardStats.fetchStats();
         break;
 
       case 'appointment_updated':
@@ -250,7 +242,7 @@ export const AdminLayout: React.FC = () => {
         }, 1000);
 
         // Reload dashboard stats
-        loadDashboardStats();
+        admin.dashboardStats.fetchStats();
         break;
 
       case 'appointment_cancelled':
@@ -271,7 +263,7 @@ export const AdminLayout: React.FC = () => {
         }, 1000);
 
         // Reload dashboard stats
-        loadDashboardStats();
+        admin.dashboardStats.fetchStats();
         break;
 
       case 'appointment_updated_old':
@@ -298,7 +290,7 @@ export const AdminLayout: React.FC = () => {
         );
 
         // Reload dashboard stats to update counters
-        loadDashboardStats();
+        admin.dashboardStats.fetchStats();
         break;
 
       case 'appointment_cancelled':
@@ -325,7 +317,7 @@ export const AdminLayout: React.FC = () => {
         );
 
         // Reload dashboard stats to update counters
-        loadDashboardStats();
+        admin.dashboardStats.fetchStats();
         break;
 
       case 'appointment_reminder':
@@ -365,7 +357,7 @@ export const AdminLayout: React.FC = () => {
     if (appointment) {
       await handleToggleAppointmentAttendance(appointment, true);
       await loadMyAppointments();
-      await loadDashboardStats();
+      await admin.dashboardStats.fetchStats();
       toastSuccess('Appointment Completed', `Appointment ${appointment.appointmentNumber} marked as completed`);
     }
   };
@@ -376,30 +368,46 @@ export const AdminLayout: React.FC = () => {
     if (appointment) {
       await handleToggleAppointmentAttendance(appointment, false);
       await loadMyAppointments();
-      await loadDashboardStats();
+      await admin.dashboardStats.fetchStats();
       toastWarning('Appointment No Show', `Appointment ${appointment.appointmentNumber} marked as no show`);
     }
   };
 
   // Handle Update Permission
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleUpdatePermission = async (_rolId: number, _formCode: string, _permissionData: PermissionUpdate) => {
+  const handleUpdatePermission = async (rolId: number, formCode: string, permissionData: PermissionUpdate) => {
     try {
-      // TODO: This needs to be updated to match the actual API structure
-      // The API expects RolId, FormId, and PermissionId, but we're receiving
-      // individual permission flags. Need to create/find a permission with
-      // these flags first, then assign it.
-      console.warn('handleUpdatePermission needs to be implemented properly');
-      toastWarning('Función no implementada', 'La actualización de permisos necesita ser implementada');
-      // await adminRepository.updateRolFormPermission({
-      //   RolId: rolId,
-      //   FormId: formCode, // This needs to be converted to a number ID
-      //   PermissionId: undefined // This needs to be determined based on permission flags
-      // });
-      // toastSuccess('Permiso Actualizado', 'Los permisos se actualizaron exitosamente');
-      // await loadRolPermissions();
+      // Find the form ID from formCode by searching across ALL roles
+      let formId: number | undefined;
+      
+      // Search in all rolPermissions to find the formId
+      for (const rolPerm of rolPermissions) {
+        const formPerm = rolPerm.formPermissions?.find(fp => fp.formCode === formCode);
+        if (formPerm) {
+          formId = formPerm.formId;
+          break;
+        }
+      }
+      
+      if (!formId) {
+        throw new Error(`Formulario ${formCode} no encontrado en el sistema`);
+      }
+
+      // Send the permission flags directly to the backend
+      // The backend will find or create the appropriate Permission record
+      await adminRepository.updateRolFormPermission({
+        RolId: rolId,
+        FormId: formId,
+        CanInsert: permissionData.canCreate,
+        CanUpdate: permissionData.canUpdate,
+        CanDelete: permissionData.canDelete,
+        CanView: permissionData.canRead
+      });
+
+      toastSuccess('Permiso Actualizado', 'Los permisos se actualizaron exitosamente');
+      await loadRolPermissions();
     } catch (err: unknown) {
-      toastError('Error', 'No se pudo actualizar el permiso');
+      const errorMessage = err instanceof Error ? err.message : 'No se pudo actualizar el permiso';
+      toastError('Error', errorMessage);
       throw err;
     }
   };
@@ -409,7 +417,7 @@ export const AdminLayout: React.FC = () => {
     setIsRefreshing(true);
     try {
       if (activeSection === 'dashboard') {
-        await loadDashboardStats();
+        await admin.dashboardStats.fetchStats();
       } else if (activeSection === 'my-appointments') {
         await loadMyAppointments();
       } else {
@@ -433,6 +441,7 @@ export const AdminLayout: React.FC = () => {
           email: data.email,
           isActive: data.isActive
         });
+        await refreshEntityData('users');
         toastSuccess('Usuario Actualizado', 'El usuario se actualizó exitosamente');
       } else {
         if (!data.username || !data.email || !data.password || !data.roleIds) {
@@ -444,9 +453,9 @@ export const AdminLayout: React.FC = () => {
           password: data.password,
           roleIds: data.roleIds
         });
+        await refreshEntityData('users');
         toastSuccess('Usuario Creado', 'El usuario se creó exitosamente');
       }
-      // TODO: Refresh user list
     } catch (err) {
       toastError('Error', 'No se pudo guardar el usuario');
       throw err;
@@ -465,7 +474,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.deleteLogicalUser(id);
-      // TODO: Refresh data
+      await refreshEntityData('users');
       toastSuccess('Usuario Desactivado', `El usuario fue desactivado exitosamente`);
     } catch {
       toastError('Error', 'No se pudo desactivar el usuario');
@@ -484,7 +493,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.activateUser(id);
-      // TODO: Refresh data
+      await refreshEntityData('users');
       toastSuccess('Usuario Activado', `El usuario fue activado exitosamente`);
     } catch {
       toastError('Error', 'No se pudo activar el usuario');
@@ -501,6 +510,7 @@ export const AdminLayout: React.FC = () => {
           code: data.code,
           isActive: data.isActive
         });
+        await refreshEntityData('roles');
         toastSuccess('Rol Actualizado', 'El rol se actualizó exitosamente');
       } else {
         if (!data.name || !data.code) {
@@ -511,9 +521,9 @@ export const AdminLayout: React.FC = () => {
           code: data.code,
           isActive: true
         });
+        await refreshEntityData('roles');
         toastSuccess('Rol Creado', 'El rol se creó exitosamente');
       }
-      // TODO: Refresh data
     } catch (err) {
       toastError('Error', 'No se pudo guardar el rol');
       throw err;
@@ -532,7 +542,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.deleteLogicalRol(id);
-      // TODO: Refresh data
+      await refreshEntityData('roles');
       toastSuccess('Rol Desactivado', `El rol fue desactivado exitosamente`);
     } catch {
       toastError('Error', 'No se pudo desactivar el rol');
@@ -551,7 +561,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.activateRol(id);
-      // TODO: Refresh data
+      await refreshEntityData('roles');
       toastSuccess('Rol Activado', `El rol fue activado exitosamente`);
     } catch {
       toastError('Error', 'No se pudo activar el rol');
@@ -573,14 +583,15 @@ export const AdminLayout: React.FC = () => {
           isMain: data.isMain,
           isActive: data.isActive
         });
+        await refreshEntityData('branches');
         toastSuccess('Sede Actualizada', 'La sede se actualizó exitosamente');
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, isEnabled: _isEnabled, ...createData } = data;
         await adminRepository.createBranch(createData as Omit<BranchDto, 'id'>);
+        await refreshEntityData('branches');
         toastSuccess('Sede Creada', 'La sede se creó exitosamente');
       }
-      // TODO: Refresh data
     } catch (err) {
       toastError('Error', 'No se pudo guardar la sede');
       throw err;
@@ -599,7 +610,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.deleteLogicalBranch(id);
-      // TODO: Refresh data
+      await refreshEntityData('branches');
       toastSuccess('Sede Desactivada', `La sede fue desactivada exitosamente`);
     } catch {
       toastError('Error', 'No se pudo desactivar la sede');
@@ -618,7 +629,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.activateBranch(id);
-      // TODO: Refresh data
+      await refreshEntityData('branches');
       toastSuccess('Sede Activada', `La sede fue activada exitosamente`);
     } catch {
       toastError('Error', 'No se pudo activar la sede');
@@ -638,14 +649,15 @@ export const AdminLayout: React.FC = () => {
           requiresDocumentation: data.requiresDocumentation,
           isActive: data.isActive
         });
+        await refreshEntityData('appointmentTypes');
         toastSuccess('Tipo de Cita Actualizado', 'El tipo de cita se actualizó exitosamente');
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, isEnabled: _isEnabled, ...createData } = data;
         await adminRepository.createAppointmentType(createData as Omit<AppointmentTypeDto, 'id'>);
+        await refreshEntityData('appointmentTypes');
         toastSuccess('Tipo de Cita Creado', 'El tipo de cita se creó exitosamente');
       }
-      // TODO: Refresh data
     } catch (err) {
       toastError('Error', 'No se pudo guardar el tipo de cita');
       throw err;
@@ -664,7 +676,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.deleteLogicalAppointmentType(id);
-      // TODO: Refresh data
+      await refreshEntityData('appointmentTypes');
       toastSuccess('Tipo de Cita Desactivado', `El tipo de cita fue desactivado exitosamente`);
     } catch {
       toastError('Error', 'No se pudo desactivar el tipo de cita');
@@ -683,9 +695,10 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.activateAppointmentType(id);
-      // TODO: Refresh data
+      await refreshEntityData('appointmentTypes');
       toastSuccess('Tipo de Cita Activado', `El tipo de cita fue activado exitosamente`);
-    } catch {
+    } catch (error) {
+      console.error('❌ Error activating appointment type:', error);
       toastError('Error', 'No se pudo activar el tipo de cita');
     }
   };
@@ -701,14 +714,15 @@ export const AdminLayout: React.FC = () => {
           appointmentTypeId: data.appointmentTypeId,
           isActive: data.isActive
         });
+        await refreshEntityData('availableTimes');
         toastSuccess('Hora Disponible Actualizada', 'La hora disponible se actualizó exitosamente');
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, isEnabled: _isEnabled, branchName: _branchName, appointmentTypeName: _appointmentTypeName, ...createData } = data;
         await adminRepository.createAvailableTime(createData as Omit<AvailableTimeDto, 'id'>);
+        await refreshEntityData('availableTimes');
         toastSuccess('Hora Disponible Creada', 'La hora disponible se creó exitosamente');
       }
-      // TODO: Refresh data
     } catch (err) {
       toastError('Error', 'No se pudo guardar la hora disponible');
       throw err;
@@ -726,7 +740,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.deleteLogicalAvailableTime(id);
-      // TODO: Refresh data
+      await refreshEntityData('availableTimes');
       toastSuccess('Hora Desactivada', `La hora fue desactivada exitosamente`);
     } catch {
       toastError('Error', 'No se pudo desactivar la hora disponible');
@@ -744,7 +758,7 @@ export const AdminLayout: React.FC = () => {
     if (!confirmed) return;
     try {
       await adminRepository.activateAvailableTime(id);
-      // TODO: Refresh data
+      await refreshEntityData('availableTimes');
       toastSuccess('Hora Activada', `La hora fue activada exitosamente`);
     } catch {
       toastError('Error', 'No se pudo activar la hora disponible');
@@ -807,51 +821,48 @@ export const AdminLayout: React.FC = () => {
   };
 
   // Real-time updates with polling
+  // Only poll when WebSocket is NOT connected (WebSocket provides real-time updates)
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser?.id) return;
 
     // Initial load
-    loadDashboardStats();
     loadMyAppointments();
-    loadRolPermissions();
+    admin.dashboardStats.fetchStats();
 
-    // Polling interval - only if WebSocket is not connected
-    const pollInterval = wsConnected ? 60000 : 30000;
-    const interval = setInterval(() => {
-      if (!wsConnected) {
-        loadDashboardStats();
+    // Only poll if WebSocket is NOT connected
+    if (!wsConnected) {
+      console.log('📡 WebSocket disconnected - starting polling (every 2 minutes)');
+      const interval = setInterval(() => {
+        console.log('🔄 Polling for updates (WebSocket inactive)');
         loadMyAppointments();
-      } else {
-        loadDashboardStats();
-      }
-    }, pollInterval);
+        admin.dashboardStats.fetchStats();
+      }, 120000); // Reduced from 60000 to 120000 (2 minutes)
 
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser?.id, wsConnected]); // Only depend on currentUser.id and wsConnected, not the callback functions
+      return () => {
+        console.log('🛑 Stopping polling interval');
+        clearInterval(interval);
+      };
+    } else {
+      console.log('✅ WebSocket connected - polling disabled');
+    }
+  }, [currentUser?.id, wsConnected]); // Added wsConnected dependency
 
-  // Update completed appointments count when myAppointments changes
-  useEffect(() => {
-    const myCompletedCount = myAppointments.filter(
-      apt => apt.status?.toLowerCase() === 'completed'
-    ).length;
-    setDashboardStats(prevStats => ({
-      ...prevStats,
-      myCompletedAppointments: myCompletedCount
-    }));
-  }, [myAppointments]);
+  // Note: myCompletedAppointments is now calculated in the hook stats
+  // This useEffect is no longer needed as the dashboard stats are managed by useDashboardStats hook
 
-  // Auto-connect WebSocket
+  // Auto-connect WebSocket once on mount
+  // Empty dependency array prevents infinite loop - SignalR service handles reconnection automatically
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token && !wsConnected) {
+    if (token) {
       signalRService.connect(token);
     }
 
+    // Disconnect only on component unmount (when user logs out or leaves admin panel)
     return () => {
       signalRService.disconnect();
     };
-  }, [wsConnected]);
+  }, []); // Empty dependencies - only run once on mount to avoid infinite reconnection loop
 
   // Sync section with tab
   useEffect(() => {
@@ -891,8 +902,11 @@ export const AdminLayout: React.FC = () => {
             }
             break;
           case 'empleados':
-            if (users.length === 0) {
-              await admin.users.fetchUsers();
+            if (users.length === 0 || roles.length === 0) {
+              await Promise.all([
+                admin.users.fetchUsers(),
+                roles.length === 0 ? admin.roles.fetchRoles() : Promise.resolve()
+              ]);
               loadedSectionsRef.current.add('empleados');
             }
             break;
@@ -961,7 +975,6 @@ export const AdminLayout: React.FC = () => {
       'horas-disponibles': 'Horas Disponibles',
       'permisos': 'Permisos',
       'festivos': 'Festivos',
-      'plantillas': 'Plantillas',
       'settings': 'Configuración'
     };
     return tabs.map(tab => ({ id: tab, name: tabNames[tab] || tab }));
@@ -979,7 +992,6 @@ export const AdminLayout: React.FC = () => {
       case 'horas-disponibles': return 'Horas Disponibles';
       case 'permisos': return 'Permisos';
       case 'festivos': return 'Festivos';
-      case 'plantillas': return 'Plantillas de Notificación';
       case 'settings': return 'Configuración del Sistema';
       default: return '';
     }
@@ -1086,7 +1098,7 @@ export const AdminLayout: React.FC = () => {
         <main className="flex-1 overflow-auto p-8">
           {activeSection === 'dashboard' && (
             <Dashboard
-              stats={dashboardStats}
+              stats={admin.dashboardStats.stats}
               recentAppointments={appointments.slice(0, 10).map(apt => ({
                 id: apt.id,
                 appointmentNumber: apt.appointmentNumber || '',
@@ -1244,13 +1256,6 @@ export const AdminLayout: React.FC = () => {
             />
           )}
 
-          {activeSection === 'plantillas' && (
-            <NotificationTemplatesView
-              hasPermission={hasPermissionWrapper}
-              onExportSuccess={(msg) => toastSuccess('Exportado', msg)}
-              onExportWarning={(msg) => toastWarning('Sin Datos', msg)}
-            />
-          )}
 
           {activeSection === 'settings' && (
             <SystemSettingsView />

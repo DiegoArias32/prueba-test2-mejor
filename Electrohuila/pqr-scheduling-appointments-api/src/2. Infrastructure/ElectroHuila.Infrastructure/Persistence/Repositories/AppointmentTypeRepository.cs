@@ -95,10 +95,13 @@ public class AppointmentTypeRepository : BaseRepository<AppointmentType>, IAppoi
     /// <remarks>
     /// Útil para validaciones de unicidad antes de crear o actualizar tipos de cita.
     /// La verificación incluye tanto registros activos como inactivos.
+    ///
+    /// NOTA: Se usa CountAsync en lugar de AnyAsync para evitar el bug del proveedor Oracle EF Core
+    /// que genera literales "True/False" en lugar de 1/0 en queries CASE WHEN EXISTS.
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(at => at.Name == name);
+        return await _dbSet.CountAsync(at => at.Name == name) > 0;
     }
 
     /// <summary>
@@ -112,12 +115,15 @@ public class AppointmentTypeRepository : BaseRepository<AppointmentType>, IAppoi
     /// <strong>Nota importante:</strong> La entidad AppointmentType no tiene propiedad Code,
     /// por lo que este método utiliza la propiedad Name como identificador alternativo.
     /// Se recomienda revisar el modelo de datos si se requiere un campo Code específico.
+    ///
+    /// NOTA: Se usa CountAsync en lugar de AnyAsync para evitar el bug del proveedor Oracle EF Core
+    /// que genera literales "True/False" en lugar de 1/0 en queries CASE WHEN EXISTS.
     /// </remarks>
     public async Task<bool> ExistsByCodeAsync(string code)
     {
         // Note: AppointmentType doesn't have Code property
         // Using Name as identifier instead
-        return await _dbSet.AnyAsync(at => at.Name == code);
+        return await _dbSet.CountAsync(at => at.Name == code) > 0;
     }
 
     /// <summary>

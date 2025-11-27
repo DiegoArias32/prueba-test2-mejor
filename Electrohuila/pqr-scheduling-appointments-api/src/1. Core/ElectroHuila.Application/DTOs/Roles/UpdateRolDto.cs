@@ -15,4 +15,10 @@ public class UpdateRolDto
     /// The updated code identifier for the role.
     /// </summary>
     public string Code { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Indicates whether the role is active.
+    /// If null, the current value will be preserved.
+    /// </summary>
+    public bool? IsActive { get; set; }
 }

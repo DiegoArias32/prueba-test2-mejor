@@ -36,6 +36,12 @@ public interface IUserRepository
     Task<IEnumerable<User>> GetAllAsync();
 
     /// <summary>
+    /// Retrieves all users including inactive ones from the system.
+    /// </summary>
+    /// <returns>A collection of all users (active and inactive).</returns>
+    Task<IEnumerable<User>> GetAllIncludingInactiveAsync();
+
+    /// <summary>
     /// Retrieves all active users from the system.
     /// </summary>
     /// <returns>A collection of active users.</returns>

@@ -94,4 +94,11 @@ public interface IClientRepository
     /// <param name="email">The email address to check.</param>
     /// <returns>True if a client with the given email exists; otherwise, false.</returns>
     Task<bool> ExistsByEmailAsync(string email);
+
+    /// <summary>
+    /// Gets the client ID by their client number without loading related entities.
+    /// </summary>
+    /// <param name="clientNumber">The unique client number.</param>
+    /// <returns>The client ID if found; otherwise, null.</returns>
+    Task<int?> GetClientIdByNumberAsync(string clientNumber);
 }

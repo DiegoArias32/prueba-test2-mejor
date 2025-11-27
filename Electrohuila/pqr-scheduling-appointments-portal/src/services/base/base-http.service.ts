@@ -65,7 +65,21 @@ export class BaseHttpService {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: 'Error desconocido' }));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        // Backend can return errors in multiple formats:
+        // 1. { error: "message" } - from ApiController BadRequest
+        // 2. { error: "...", errors: {...} } - from ValidationException
+        // 3. { message: "..." } - from other sources
+        const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      // Handle empty responses (e.g., 200 OK with no body from logical delete operations)
+      const contentType = response.headers.get('content-type');
+      const contentLength = response.headers.get('content-length');
+
+      // If no content, return success object
+      if (contentLength === '0' || !contentType?.includes('application/json')) {
+        return { success: true, message: 'Operation completed successfully' } as T;
       }
 
       return await response.json();
@@ -94,7 +108,21 @@ export class BaseHttpService {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: 'Error desconocido' }));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        // Backend can return errors in multiple formats:
+        // 1. { error: "message" } - from ApiController BadRequest
+        // 2. { error: "...", errors: {...} } - from ValidationException
+        // 3. { message: "..." } - from other sources
+        const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      // Handle empty responses
+      const contentType = response.headers.get('content-type');
+      const contentLength = response.headers.get('content-length');
+
+      // If no content, return success object
+      if (contentLength === '0' || !contentType?.includes('application/json')) {
+        return { success: true, message: 'Operation completed successfully' } as T;
       }
 
       return await response.json();

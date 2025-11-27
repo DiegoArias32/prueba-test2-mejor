@@ -54,10 +54,7 @@ export const useAdminAppointments = (repository: AdminRepository, userId?: numbe
     setLoading(true);
     setError(null);
     try {
-      await repository.updateAppointment({
-        ...data,
-        id
-      });
+      await repository.updateAppointment(id, data);
       setAppointments(prev => prev.map(a => a.id === id ? { ...a, ...data } : a));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error updating appointment');
@@ -71,20 +68,21 @@ export const useAdminAppointments = (repository: AdminRepository, userId?: numbe
     setLoading(true);
     setError(null);
     try {
-      const newStatus = attended ? 'Completada' : 'No Asistida';
+      // StatusIds: 1=PENDING, 2=CONFIRMED, 3=NO_SHOW, 4=COMPLETED, 5=CANCELLED
+      const statusId = attended ? 4 : 3; // 4=COMPLETED, 3=NO_SHOW
+      const statusName = attended ? 'Completada' : 'No Asistida';
+
       const updateData: UpdateAppointmentDto = {
-        id: appointment.id,
-        appointmentNumber: appointment.appointmentNumber,
         appointmentDate: appointment.appointmentDate,
         appointmentTime: appointment.appointmentTime,
-        status: newStatus,
-        observations: appointment.observations,
-        clientId: appointment.clientId,
+        statusId: statusId,
+        notes: appointment.observations,
         branchId: appointment.branchId,
         appointmentTypeId: appointment.appointmentTypeId
       };
-      await repository.updateAppointment(updateData);
-      setAppointments(prev => prev.map(a => a.id === appointment.id ? { ...a, status: newStatus } : a));
+
+      await repository.updateAppointment(appointment.id, updateData);
+      setAppointments(prev => prev.map(a => a.id === appointment.id ? { ...a, status: statusName, statusId: statusId } : a));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error toggling attendance');
       throw err;

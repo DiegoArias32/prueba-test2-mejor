@@ -65,8 +65,8 @@ export class AdminRepository {
     return await apiService.getAllAppointmentsIncludingInactive();
   }
 
-  async updateAppointment(data: UpdateAppointmentDto): Promise<{ success: boolean; message: string }> {
-    return await apiService.updateAppointment(data);
+  async updateAppointment(id: number, data: UpdateAppointmentDto): Promise<{ success: boolean; message: string }> {
+    return await apiService.updateAppointment(id, data);
   }
 
   // ============================================
@@ -89,8 +89,8 @@ export class AdminRepository {
     return await apiService.deleteLogicalUser(id);
   }
 
-  async activateUser(id: number): Promise<UserDto> {
-    return await apiService.updateUser({ id, isActive: true } as UpdateUserDto);
+  async activateUser(id: number): Promise<boolean> {
+    return await apiService.activateUser(id);
   }
 
   async deleteUser(id: number): Promise<boolean> {
@@ -122,7 +122,7 @@ export class AdminRepository {
   }
 
   async activateRol(id: number): Promise<{ success: boolean; message: string }> {
-    return await apiService.updateRol({ id, isActive: true } as UpdateRolDto);
+    return await apiService.activateRol(id);
   }
 
   async deleteRol(id: number): Promise<{ success: boolean; message: string }> {
@@ -154,7 +154,7 @@ export class AdminRepository {
   }
 
   async activateBranch(id: number): Promise<{ success: boolean; message: string }> {
-    return await apiService.updateBranch({ id, isActive: true } as UpdateBranchDto);
+    return await apiService.activateBranch(id);
   }
 
   async deleteBranch(id: number): Promise<{ success: boolean; message: string }> {
@@ -186,7 +186,7 @@ export class AdminRepository {
   }
 
   async activateAppointmentType(id: number): Promise<{ success: boolean; message: string }> {
-    return await apiService.updateAppointmentType({ id, isActive: true } as UpdateAppointmentTypeDto);
+    return await apiService.activateAppointmentType(id);
   }
 
   async deleteAppointmentType(id: number): Promise<{ success: boolean; message: string }> {
@@ -218,7 +218,7 @@ export class AdminRepository {
   }
 
   async activateAvailableTime(id: number): Promise<{ success: boolean; message: string }> {
-    return await apiService.updateAvailableTime({ id, isActive: true } as UpdateAvailableTimeDto);
+    return await apiService.activateAvailableTime(id);
   }
 
   async deleteAvailableTime(id: number): Promise<{ success: boolean; message: string }> {
@@ -266,6 +266,11 @@ export class AdminRepository {
 
   async getDashboardStats(userId?: number): Promise<DashboardStatsDto> {
     try {
+      // ⚠️ PERFORMANCE NOTE: This calls getMyAssignedAppointments() which duplicates
+      // the same data already loaded in AdminLayout.tsx (loadMyAppointments)
+      // OPTIMIZATION OPPORTUNITY: Dashboard could reuse appointments already loaded
+      // instead of making another API call. Consider passing appointments as parameter.
+
       // For non-admin users, use their assigned appointments
       const appointmentsPromise = userId
         ? this.getMyAssignedAppointments(userId)

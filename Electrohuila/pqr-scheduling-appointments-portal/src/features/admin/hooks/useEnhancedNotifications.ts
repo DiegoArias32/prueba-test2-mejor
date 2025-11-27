@@ -26,6 +26,9 @@ export interface EnhancedNotificationHookReturn extends NotificationHookReturn {
 
   // Enhanced add notification with automatic browser/sound notifications
   addEnhancedNotification: (notification: any) => void;
+
+  // Backwards compatibility
+  clearAll: () => void;
 }
 
 /**

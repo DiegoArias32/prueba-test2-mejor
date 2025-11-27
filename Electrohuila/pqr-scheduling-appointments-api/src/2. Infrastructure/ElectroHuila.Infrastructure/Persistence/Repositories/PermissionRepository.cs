@@ -106,7 +106,8 @@ public class PermissionRepository : BaseRepository<Permission>, IPermissionRepos
     /// </remarks>
     public async Task<bool> ExistsByNameAsync(string name)
     {
-        return await _dbSet.AnyAsync(p => p.Id.ToString() == name);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(p => p.Id.ToString() == name) > 0;
     }
 
     /// <summary>
@@ -163,7 +164,8 @@ public class PermissionRepository : BaseRepository<Permission>, IPermissionRepos
     public async Task<bool> ExistsByActionAsync(string action)
     {
         // Permission doesn't have an Action property, check by Id instead
-        return await _dbSet.AnyAsync(p => p.Id > 0);
+        // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
+        return await _dbSet.CountAsync(p => p.Id > 0) > 0;
     }
 
     /// <summary>

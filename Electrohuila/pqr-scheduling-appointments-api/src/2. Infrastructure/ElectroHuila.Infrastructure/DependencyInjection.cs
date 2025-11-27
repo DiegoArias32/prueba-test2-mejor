@@ -47,8 +47,6 @@ public static class DependencyInjection
 
         // ========== OBTENER PROVEEDOR DE BASE DE DATOS ==========
         var databaseProvider = configuration["DatabaseProvider"] ?? "Oracle";
-        Console.WriteLine($"=== DATABASE PROVIDER CONFIGURATION ===");
-        Console.WriteLine($"Selected Provider: {databaseProvider}");
 
         // ========== CONFIGURACIÓN DE BASE DE DATOS ORACLE (SI APLICA) ==========
         if (databaseProvider.Equals("Oracle", StringComparison.OrdinalIgnoreCase))
@@ -58,12 +56,6 @@ public static class DependencyInjection
             if (!string.IsNullOrEmpty(walletPath))
             {
                 Environment.SetEnvironmentVariable("TNS_ADMIN", walletPath);
-                Console.WriteLine($"TNS_ADMIN configured: {walletPath}");
-                Console.WriteLine($"Wallet exists: {System.IO.Directory.Exists(walletPath)}");
-            }
-            else
-            {
-                Console.WriteLine("INFO: WalletPath is not configured (not required for Oracle RDS)");
             }
         }
 
@@ -74,22 +66,18 @@ public static class DependencyInjection
         {
             case "ORACLE":
                 connectionString = configuration.GetConnectionString("OracleConnection");
-                Console.WriteLine($"Using Oracle Database");
                 break;
 
             case "SQLSERVER":
                 connectionString = configuration.GetConnectionString("SqlServerConnection");
-                Console.WriteLine($"Using SQL Server Database");
                 break;
 
             case "POSTGRESQL":
                 connectionString = configuration.GetConnectionString("PostgreSqlConnection");
-                Console.WriteLine($"Using PostgreSQL Database");
                 break;
 
             case "MYSQL":
                 connectionString = configuration.GetConnectionString("MySqlConnection");
-                Console.WriteLine($"Using MySQL Database");
                 break;
 
             default:
@@ -97,16 +85,10 @@ public static class DependencyInjection
         }
 
         // Validar cadena de conexión
-        Console.WriteLine($"Connection String: {(string.IsNullOrEmpty(connectionString) ? "EMPTY or NULL" : "Found")}");
-        Console.WriteLine($"Connection String Length: {connectionString?.Length ?? 0}");
-        
         if (string.IsNullOrEmpty(connectionString))
         {
             throw new InvalidOperationException($"{databaseProvider}Connection string is not configured in appsettings.json!");
         }
-
-        Console.WriteLine($"Connection String Preview: {connectionString.Substring(0, Math.Min(50, connectionString.Length))}...");
-        Console.WriteLine($"=== END DATABASE CONFIGURATION ===\n");
 
         // ========== REGISTRO DEL DBCONTEXT FACTORY ==========
         // Registrar el factory que creará DbContext dinámicamente por request
@@ -151,8 +133,7 @@ public static class DependencyInjection
         services.AddScoped<ISystemSettingRepository, SystemSettingRepository>();
 
         // ========== REPOSITORIOS DE NOTIFICACIONES ==========
-        // Repositorios para plantillas y gestión de notificaciones
-        services.AddScoped<INotificationTemplateRepository, NotificationTemplateRepository>();
+        // Repositorio para gestión de notificaciones
         services.AddScoped<INotificationRepository, NotificationRepository>();
 
         // ========== REPOSITORIOS DE FESTIVOS Y DOCUMENTOS ==========

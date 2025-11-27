@@ -22,6 +22,31 @@ public class UserDto
     public string Email { get; set; } = string.Empty;
 
     /// <summary>
+    /// Full name of the user.
+    /// </summary>
+    public string? FullName { get; set; }
+
+    /// <summary>
+    /// Identification type (e.g., "CC", "TI", "CE", "PP", "NIT").
+    /// </summary>
+    public string? IdentificationType { get; set; }
+
+    /// <summary>
+    /// Identification number.
+    /// </summary>
+    public string? IdentificationNumber { get; set; }
+
+    /// <summary>
+    /// Contact phone number.
+    /// </summary>
+    public string? Phone { get; set; }
+
+    /// <summary>
+    /// Physical address.
+    /// </summary>
+    public string? Address { get; set; }
+
+    /// <summary>
     /// Comma-separated list of tab identifiers the user is allowed to access in the UI.
     /// </summary>
     public string? AllowedTabs { get; set; }
@@ -40,4 +65,9 @@ public class UserDto
     /// Indicates whether this user account is currently active.
     /// </summary>
     public bool IsActive { get; set; }
+
+    /// <summary>
+    /// List of role names assigned to this user.
+    /// </summary>
+    public IEnumerable<string> Roles { get; set; } = new List<string>();
 }

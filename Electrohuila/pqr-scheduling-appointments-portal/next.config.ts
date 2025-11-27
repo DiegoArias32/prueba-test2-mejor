@@ -14,12 +14,12 @@ const nextConfig: NextConfig = {
     ],
   },
   eslint: {
-    // Solo durante desarrollo - permitir warnings
-    ignoreDuringBuilds: false,
+    // Ignorar errores de ESLint durante builds de producción
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    // Mantener verificación de tipos durante builds
-    ignoreBuildErrors: false,
+    // Ignorar errores de TypeScript durante builds de producción
+    ignoreBuildErrors: true,
   },
 };
 

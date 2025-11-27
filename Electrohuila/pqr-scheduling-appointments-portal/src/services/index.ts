@@ -10,7 +10,6 @@ import { UserService } from './users/user.service';
 import { CatalogService } from './catalogs/catalog.service';
 import { PermissionService } from './permissions/permission.service';
 import { HolidayService } from './holidays/holiday.service';
-import { NotificationTemplateService } from './notifications/notification-template.service';
 import { NotificationService } from './notifications/notification.service';
 import { SystemSettingService } from './system/system-setting.service';
 import { appointmentDocumentService } from './documents/appointment-document.service';
@@ -24,7 +23,6 @@ export const userService = new UserService();
 export const catalogService = new CatalogService();
 export const permissionService = new PermissionService();
 export const holidayService = new HolidayService();
-export const notificationTemplateService = new NotificationTemplateService();
 export const notificationService = new NotificationService();
 export const systemSettingService = new SystemSettingService();
 export const assignmentService = new AssignmentService();
@@ -60,6 +58,7 @@ export const apiService = {
   updateUser: userService.updateUser.bind(userService),
   deleteUser: userService.deleteUser.bind(userService),
   deleteLogicalUser: userService.deleteLogicalUser.bind(userService),
+  activateUser: userService.activateUser.bind(userService),
 
   // Role methods
   getRoles: userService.getRoles.bind(userService),
@@ -68,6 +67,7 @@ export const apiService = {
   updateRol: userService.updateRol.bind(userService),
   deleteRol: userService.deleteRol.bind(userService),
   deleteLogicalRol: userService.deleteLogicalRol.bind(userService),
+  activateRol: userService.activateRol.bind(userService),
   getRolByCode: userService.getRolByCode.bind(userService),
   getRolesByUserId: userService.getRolesByUserId.bind(userService),
   getAllRolesIncludingInactive: userService.getAllRolesIncludingInactive.bind(userService),
@@ -98,6 +98,7 @@ export const apiService = {
   updateAvailableTime: appointmentService.updateAvailableTime.bind(appointmentService),
   deleteAvailableTime: appointmentService.deleteAvailableTime.bind(appointmentService),
   deleteLogicalAvailableTime: appointmentService.deleteLogicalAvailableTime.bind(appointmentService),
+  activateAvailableTime: appointmentService.activateAvailableTime.bind(appointmentService),
   getAvailableTimesByBranch: appointmentService.getAvailableTimesByBranch.bind(appointmentService),
   getAvailableTimesByAppointmentType: appointmentService.getAvailableTimesByAppointmentType.bind(appointmentService),
   getAllAvailableTimesIncludingInactive: appointmentService.getAllAvailableTimesIncludingInactive.bind(appointmentService),
@@ -132,6 +133,7 @@ export const apiService = {
   updateClient: catalogService.updateClient.bind(catalogService),
   deleteClient: catalogService.deleteClient.bind(catalogService),
   deleteLogicalClient: catalogService.deleteLogicalClient.bind(catalogService),
+  activateClient: catalogService.activateClient.bind(catalogService),
   getClientByNumber: catalogService.getClientByNumber.bind(catalogService),
   getAllClientsIncludingInactive: catalogService.getAllClientsIncludingInactive.bind(catalogService),
   validatePublicClient: catalogService.validatePublicClient.bind(catalogService),
@@ -145,6 +147,7 @@ export const apiService = {
   updateBranch: catalogService.updateBranch.bind(catalogService),
   deleteBranch: catalogService.deleteBranch.bind(catalogService),
   deleteLogicalBranch: catalogService.deleteLogicalBranch.bind(catalogService),
+  activateBranch: catalogService.activateBranch.bind(catalogService),
   getActiveBranches: catalogService.getActiveBranches.bind(catalogService),
   getAllBranchesIncludingInactive: catalogService.getAllBranchesIncludingInactive.bind(catalogService),
   getPublicBranches: catalogService.getPublicBranches.bind(catalogService),
@@ -157,6 +160,7 @@ export const apiService = {
   updateAppointmentType: catalogService.updateAppointmentType.bind(catalogService),
   deleteAppointmentType: catalogService.deleteAppointmentType.bind(catalogService),
   deleteLogicalAppointmentType: catalogService.deleteLogicalAppointmentType.bind(catalogService),
+  activateAppointmentType: catalogService.activateAppointmentType.bind(catalogService),
   getActiveAppointmentTypes: catalogService.getActiveAppointmentTypes.bind(catalogService),
   getAllAppointmentTypesIncludingInactive: catalogService.getAllAppointmentTypesIncludingInactive.bind(catalogService),
   getPublicAppointmentTypes: catalogService.getPublicAppointmentTypes.bind(catalogService),
@@ -228,17 +232,6 @@ export const apiService = {
   formatHolidayDateForDisplay: holidayService.formatDateForDisplay.bind(holidayService),
   formatHolidayDateForAPI: holidayService.formatDateForAPI.bind(holidayService),
 
-  // Notification template methods
-  getNotificationTemplates: notificationTemplateService.getNotificationTemplates.bind(notificationTemplateService),
-  getNotificationTemplateById: notificationTemplateService.getNotificationTemplateById.bind(notificationTemplateService),
-  getNotificationTemplateByCode: notificationTemplateService.getNotificationTemplateByCode.bind(notificationTemplateService),
-  createNotificationTemplate: notificationTemplateService.createNotificationTemplate.bind(notificationTemplateService),
-  updateNotificationTemplate: notificationTemplateService.updateNotificationTemplate.bind(notificationTemplateService),
-  deleteNotificationTemplate: notificationTemplateService.deleteNotificationTemplate.bind(notificationTemplateService),
-  activateNotificationTemplate: notificationTemplateService.activateNotificationTemplate.bind(notificationTemplateService),
-  validatePlaceholders: notificationTemplateService.validatePlaceholders.bind(notificationTemplateService),
-  replacePlaceholders: notificationTemplateService.replacePlaceholders.bind(notificationTemplateService),
-
   // System setting methods
   getSystemSettings: systemSettingService.getSystemSettings.bind(systemSettingService),
   getSystemSettingByKey: systemSettingService.getSystemSettingByKey.bind(systemSettingService),
@@ -289,9 +282,6 @@ export * from './permissions/permission.types';
 
 // Holiday types
 export * from './holidays/holiday.types';
-
-// Notification template types
-export * from './notifications/notification-template.types';
 
 // System setting types
 export * from './system/system-setting.types';

@@ -42,8 +42,10 @@ export const useUsers = (repository: AdminRepository): UseUsersReturn => {
     setLoading(true);
     setError(null);
     try {
+      // Always fetch all users (including inactive) to have complete data
       const data = await repository.getUsers();
-      setUsers(activeOnly ? data.filter(u => u.isActive) : data.filter(u => !u.isActive));
+      // Store all users - UsersView will filter them based on currentView
+      setUsers(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading users');
     } finally {
@@ -117,10 +119,15 @@ export const useUsers = (repository: AdminRepository): UseUsersReturn => {
     try {
       if (logical) {
         await repository.deleteLogicalUser(id);
+        // Update local state to mark as inactive instead of removing
+        setUsers(prev => prev.map(u =>
+          u.id === id ? { ...u, isActive: false } : u
+        ));
       } else {
         await repository.deleteUser(id);
+        // Physical delete - remove from list
+        setUsers(prev => prev.filter(u => u.id !== id));
       }
-      setUsers(prev => prev.filter(u => u.id !== id));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error deleting user');
       throw err;
@@ -134,7 +141,10 @@ export const useUsers = (repository: AdminRepository): UseUsersReturn => {
     setError(null);
     try {
       await repository.activateUser(id);
-      setUsers(prev => prev.filter(u => u.id !== id));
+      // Update local state to mark as active instead of removing
+      setUsers(prev => prev.map(u =>
+        u.id === id ? { ...u, isActive: true } : u
+      ));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error activating user');
       throw err;
