@@ -78,12 +78,20 @@ export const TimesView: React.FC<TimesViewProps> = ({
     setCurrentPage(1);
   };
 
-  const handleSaveTime = async (formData: { time: string; branchId: string; appointmentTypeId: string | null }) => {
+  const handleSaveTime = async (formData: { id?: number; time: string; branchId: string; appointmentTypeId: string | null }) => {
     const converted: Partial<AvailableTimeDto> = {
       time: formData.time,
       branchId: parseInt(formData.branchId),
-      appointmentTypeId: formData.appointmentTypeId ? parseInt(formData.appointmentTypeId) : undefined
+      appointmentTypeId: formData.appointmentTypeId && formData.appointmentTypeId !== '' 
+        ? parseInt(formData.appointmentTypeId) 
+        : undefined
     };
+    
+    // If editing, include the id
+    if (formData.id) {
+      converted.id = formData.id;
+    }
+    
     await onSaveTime(converted);
   };
 
@@ -237,7 +245,12 @@ export const TimesView: React.FC<TimesViewProps> = ({
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         onSave={handleSaveTime}
-        item={selectedItem ? { time: selectedItem.time, branchId: String(selectedItem.branchId), appointmentTypeId: selectedItem.appointmentTypeId ? String(selectedItem.appointmentTypeId) : null } : undefined}
+        item={selectedItem ? { 
+          id: selectedItem.id, 
+          time: selectedItem.time, 
+          branchId: String(selectedItem.branchId), 
+          appointmentTypeId: selectedItem.appointmentTypeId ? String(selectedItem.appointmentTypeId) : null 
+        } : undefined}
         mode={modalMode}
         branches={branches.map(b => ({ id: String(b.id), code: b.code, name: b.name, city: b.city }))}
         appointmentTypes={appointmentTypes.map(at => ({ id: String(at.id), name: at.name, icon: at.icon || '' }))}

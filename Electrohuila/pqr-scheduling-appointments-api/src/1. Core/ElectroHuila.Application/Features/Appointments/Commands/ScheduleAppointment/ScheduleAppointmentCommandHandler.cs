@@ -10,11 +10,13 @@ namespace ElectroHuila.Application.Features.Appointments.Commands.ScheduleAppoin
 public class ScheduleAppointmentCommandHandler : IRequestHandler<ScheduleAppointmentCommand, Result<AppointmentDto>>
 {
     private readonly IAppointmentRepository _appointmentRepository;
+    private readonly ISystemSettingRepository _systemSettingRepository;
     private readonly IMapper _mapper;
 
-    public ScheduleAppointmentCommandHandler(IAppointmentRepository appointmentRepository, IMapper mapper)
+    public ScheduleAppointmentCommandHandler(IAppointmentRepository appointmentRepository, ISystemSettingRepository systemSettingRepository, IMapper mapper)
     {
         _appointmentRepository = appointmentRepository;
+        _systemSettingRepository = systemSettingRepository;
         _mapper = mapper;
     }
 
@@ -27,9 +29,31 @@ public class ScheduleAppointmentCommandHandler : IRequestHandler<ScheduleAppoint
             const int COMPLETED_STATUS_ID = 4;
             const int CANCELLED_STATUS_ID = 5;
 
-            // Check availability first
-            var appointments = await _appointmentRepository.GetByBranchIdAsync(request.AppointmentDto.BranchId);
-            var hasConflict = appointments.Any(a =>
+            // Get max appointments per day setting
+            var maxAppointmentsSetting = await _systemSettingRepository.GetValueAsync("MAX_APPOINTMENTS_PER_DAY", cancellationToken);
+            var maxAppointmentsPerDay = 50; // default value
+            if (!string.IsNullOrEmpty(maxAppointmentsSetting) && int.TryParse(maxAppointmentsSetting, out var maxValue))
+            {
+                maxAppointmentsPerDay = maxValue;
+            }
+
+            // Check if max appointments per day would be exceeded
+            // Optimizado: Usar CountAsync en lugar de traer todas las citas
+            var appointmentsOnSameDayCount = await _appointmentRepository.CountAppointmentsByDateAsync(
+                request.AppointmentDto.BranchId,
+                request.AppointmentDto.AppointmentDate,
+                CANCELLED_STATUS_ID,
+                cancellationToken);
+
+            if (appointmentsOnSameDayCount >= maxAppointmentsPerDay)
+            {
+                return Result.Failure<AppointmentDto>($"No se pueden agendar más citas para este día. Máximo permitido: {maxAppointmentsPerDay} citas por día.");
+            }
+
+            // Check availability for specific time slot
+            // Obtener solo las citas del día para verificar conflicto de horario
+            var appointmentsOnDate = await _appointmentRepository.GetByBranchIdAsync(request.AppointmentDto.BranchId);
+            var hasConflict = appointmentsOnDate.Any(a =>
                 a.AppointmentDate.Date == request.AppointmentDto.AppointmentDate.Date &&
                 a.AppointmentTime == request.AppointmentDto.AppointmentTime &&
                 a.StatusId != CANCELLED_STATUS_ID &&

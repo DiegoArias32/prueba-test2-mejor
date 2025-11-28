@@ -815,7 +815,8 @@ export const AdminLayout: React.FC = () => {
       await admin.holidays.activateHoliday(id);
       await admin.holidays.fetchHolidays();
       toastSuccess('Festivo Activado', `El festivo fue activado exitosamente`);
-    } catch {
+    } catch (error) {
+      console.error('Error activating holiday:', error);
       toastError('Error', 'No se pudo activar el festivo');
     }
   };
@@ -831,19 +832,14 @@ export const AdminLayout: React.FC = () => {
 
     // Only poll if WebSocket is NOT connected
     if (!wsConnected) {
-      console.log('📡 WebSocket disconnected - starting polling (every 2 minutes)');
       const interval = setInterval(() => {
-        console.log('🔄 Polling for updates (WebSocket inactive)');
         loadMyAppointments();
         admin.dashboardStats.fetchStats();
       }, 120000); // Reduced from 60000 to 120000 (2 minutes)
 
       return () => {
-        console.log('🛑 Stopping polling interval');
         clearInterval(interval);
       };
-    } else {
-      console.log('✅ WebSocket connected - polling disabled');
     }
   }, [currentUser?.id, wsConnected]); // Added wsConnected dependency
 
@@ -929,8 +925,13 @@ export const AdminLayout: React.FC = () => {
             }
             break;
           case 'horas-disponibles':
-            if (availableTimes.length === 0) {
-              await admin.availableTimes.fetchAvailableTimes();
+            // Load available times, branches, and appointment types for the form
+            if (availableTimes.length === 0 || branches.length === 0 || appointmentTypes.length === 0) {
+              await Promise.all([
+                availableTimes.length === 0 ? admin.availableTimes.fetchAvailableTimes() : Promise.resolve(),
+                branches.length === 0 ? admin.branches.fetchBranches() : Promise.resolve(),
+                appointmentTypes.length === 0 ? admin.appointmentTypes.fetchAppointmentTypes() : Promise.resolve()
+              ]);
               loadedSectionsRef.current.add('horas-disponibles');
             }
             break;

@@ -52,7 +52,7 @@ export const HolidaysView: React.FC<HolidaysViewProps> = ({
   // Filter by type
   const filteredByType = filterType === 'all'
     ? filteredByStatus
-    : filteredByStatus.filter(h => h.holidayType === filterType);
+    : filteredByStatus.filter(h => h.holidayType.toUpperCase() === filterType.toUpperCase());
 
   // Filter by year
   const filteredByYear = filteredByType.filter(h => {

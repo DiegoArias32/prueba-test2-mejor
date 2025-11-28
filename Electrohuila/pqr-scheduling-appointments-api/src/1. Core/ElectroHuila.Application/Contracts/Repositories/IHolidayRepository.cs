@@ -41,4 +41,20 @@ public interface IHolidayRepository : IBaseRepository<Holiday>
     /// Obtiene los festivos locales de una sucursal
     /// </summary>
     Task<IEnumerable<Holiday>> GetBranchHolidaysAsync(int branchId, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Obtiene festivos paginados, ordenados por fecha descendente
+    /// </summary>
+    /// <param name="pageNumber">Número de página (basado en 1)</param>
+    /// <param name="pageSize">Cantidad de registros por página</param>
+    /// <param name="cancellationToken">Token de cancelación</param>
+    /// <returns>Lista paginada de festivos</returns>
+    Task<IEnumerable<Holiday>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Obtiene el total de festivos activos
+    /// </summary>
+    /// <param name="cancellationToken">Token de cancelación</param>
+    /// <returns>Total de festivos</returns>
+    Task<int> CountAsync(CancellationToken cancellationToken = default);
 }

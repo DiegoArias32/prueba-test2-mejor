@@ -72,4 +72,18 @@ public interface IAppointmentRepository
     /// <param name="appointmentTypeIds">IDs de tipos de cita para filtrar</param>
     /// <returns>Lista de citas con datos relacionados cargados</returns>
     Task<IEnumerable<Appointment>> GetAppointmentsWithDetailsAsync(IEnumerable<int> appointmentTypeIds);
+
+    /// <summary>
+    /// Cuenta las citas de una sucursal en una fecha específica, excluyendo un estado
+    /// </summary>
+    /// <param name="branchId">ID de la sucursal</param>
+    /// <param name="date">Fecha de las citas</param>
+    /// <param name="excludeStatusId">ID del estado a excluir (ej: CANCELADO)</param>
+    /// <param name="cancellationToken">Token de cancelación</param>
+    /// <returns>Cantidad de citas en esa fecha</returns>
+    Task<int> CountAppointmentsByDateAsync(
+        int branchId,
+        DateTime date,
+        int excludeStatusId,
+        CancellationToken cancellationToken = default);
 }

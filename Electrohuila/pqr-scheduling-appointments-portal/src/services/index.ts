@@ -225,6 +225,8 @@ export const apiService = {
   createCompanyHoliday: holidayService.createCompanyHoliday.bind(holidayService),
   updateHoliday: holidayService.updateHoliday.bind(holidayService),
   deleteHoliday: holidayService.deleteHoliday.bind(holidayService),
+  activateHoliday: holidayService.activateHoliday.bind(holidayService),
+  deactivateHoliday: holidayService.deactivateHoliday.bind(holidayService),
   getHolidaysByType: holidayService.getHolidaysByType.bind(holidayService),
   getHolidaysByYear: holidayService.getHolidaysByYear.bind(holidayService),
   getHolidaysByMonthYear: holidayService.getHolidaysByMonthYear.bind(holidayService),

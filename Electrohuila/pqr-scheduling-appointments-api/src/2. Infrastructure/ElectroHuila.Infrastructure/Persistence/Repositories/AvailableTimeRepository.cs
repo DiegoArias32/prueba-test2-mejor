@@ -213,16 +213,16 @@ public class AvailableTimeRepository : BaseRepository<AvailableTime>, IAvailable
     /// </remarks>
     public async Task<bool> IsTimeSlotAvailableAsync(int branchId, string time, int? appointmentTypeId = null)
     {
-        var query = _dbSet.Where(at => at.BranchId == branchId && at.IsActive);
+        var query = _dbSet.Where(at => at.BranchId == branchId && at.IsActive && at.Time == time);
 
         if (appointmentTypeId.HasValue)
         {
             query = query.Where(at => at.AppointmentTypeId == appointmentTypeId.Value);
         }
 
-        // Check if the time exists in the available times
+        // Return true if NO slot exists (available to create), false if it already exists
         // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
-        return await query.CountAsync(at => at.Time == time) > 0;
+        return await query.CountAsync() == 0;
     }
 
     /// <summary>

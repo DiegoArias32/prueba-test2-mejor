@@ -49,10 +49,11 @@ export const UserModal: React.FC<UserModalProps> = ({
 
   useEffect(() => {
     if (item && mode === 'edit') {
+      const roleIds = item.roleIds || [];
       setFormData({
         username: item.username || '',
         email: item.email || '',
-        roleIds: item.roles?.map((r) => r.id) || []
+        roleIds: roleIds
       });
     } else {
       setFormData({

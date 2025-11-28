@@ -44,11 +44,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     /// <summary>
     /// Obtiene todas las entidades del repositorio.
+    /// Optimizado con AsNoTracking para mejorar performance en consultas de solo lectura.
     /// </summary>
     /// <returns>Colección de todas las entidades.</returns>
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet.AsNoTracking().ToListAsync();
     }
 
     /// <summary>

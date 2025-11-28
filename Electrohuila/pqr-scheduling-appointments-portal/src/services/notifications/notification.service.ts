@@ -37,7 +37,6 @@ export class NotificationService extends BaseHttpService {
         const unreadInAppNotifications = response.items.filter(n =>
           n.type === 'IN_APP' && !n.isRead
         );
-        console.log(`[NotificationService] Loaded ${response.items.length} total notifications, filtered to ${unreadInAppNotifications.length} unread IN_APP notifications`);
         return unreadInAppNotifications;
       }
 

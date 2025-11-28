@@ -249,7 +249,12 @@ export const UsersView: React.FC<UsersViewProps> = ({
         item={selectedItem ? {
           username: selectedItem.username,
           email: selectedItem.email,
-          roleIds: selectedItem.roles?.map(String) || []
+          roleIds: selectedItem.roles
+            ?.map(roleName => {
+              const role = roles.find(r => r.name === roleName || r.code === roleName);
+              return role ? String(role.id) : null;
+            })
+            .filter((id): id is string => id !== null) || []
         } : undefined}
         mode={modalMode}
         roles={roles.map(r => ({ ...r, id: String(r.id) }))}

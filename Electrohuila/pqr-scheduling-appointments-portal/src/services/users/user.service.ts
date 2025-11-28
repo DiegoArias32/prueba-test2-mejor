@@ -44,7 +44,8 @@ export class UserService extends BaseHttpService {
    * Update user
    */
   async updateUser(updateData: UpdateUserDto): Promise<UserDto> {
-    return this.put<UserDto>('/users', updateData);
+    const { id, ...data } = updateData;
+    return this.put<UserDto>(`/users/${id}/update-with-roles`, { id, ...data });
   }
 
   /**
@@ -99,7 +100,8 @@ export class UserService extends BaseHttpService {
    * Update role
    */
   async updateRol(rol: UpdateRolDto): Promise<{ success: boolean; message: string }> {
-    return this.put<{ success: boolean; message: string }>('/roles', rol);
+    const { id, ...data } = rol;
+    return this.put<{ success: boolean; message: string }>(`/roles/${id}`, data);
   }
 
   /**

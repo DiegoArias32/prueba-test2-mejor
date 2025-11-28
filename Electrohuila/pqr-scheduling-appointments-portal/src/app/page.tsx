@@ -95,17 +95,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Sparkles className="w-5 h-5 text-[#56C2E1]" />
-              <span className="text-sm font-semibold text-[#203461]">
-                Plataforma Digital de Servicios
-              </span>
-            </motion.div>
+
 
             <motion.h1
               className="text-6xl md:text-7xl font-bold text-[#203461] mb-4 leading-tight"
@@ -261,33 +251,6 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
-
-          {/* Bottom Features */}
-          <motion.div
-            className="grid md:grid-cols-3 gap-6 mt-16"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-          >
-            {[
-              { title: '100% Digital', desc: 'Gestión completamente en línea', icon: '🌐' },
-              { title: 'Rápido y Seguro', desc: 'Protección de datos garantizada', icon: '🔒' },
-              { title: '24/7 Disponible', desc: 'Acceso en cualquier momento', icon: '⏰' }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1 + index * 0.1 }}
-                whileHover={{ y: -5, shadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}
-              >
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <h4 className="font-bold text-[#203461] mb-2">{item.title}</h4>
-                <p className="text-sm text-gray-600">{item.desc}</p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </section>

@@ -96,6 +96,24 @@ export class HolidayService extends BaseHttpService {
   }
 
   /**
+   * Activate holiday
+   * @param id - Holiday ID
+   * @returns Promise with success response
+   */
+  async activateHoliday(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/holidays/${id}/activate`, {});
+  }
+
+  /**
+   * Deactivate holiday
+   * @param id - Holiday ID
+   * @returns Promise with success response
+   */
+  async deactivateHoliday(id: number): Promise<{ success: boolean; message: string }> {
+    return this.patch<{ success: boolean; message: string }>(`/holidays/${id}/deactivate`, {});
+  }
+
+  /**
    * Get holidays by type
    * @param type - Holiday type (National, Local, Company)
    * @returns Promise with filtered holidays

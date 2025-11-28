@@ -1,7 +1,9 @@
 using ElectroHuila.Application.Contracts.Repositories;
+using ElectroHuila.Application.Contracts.Services;
 using ElectroHuila.Application.Features.Appointments.Commands.CancelAppointment;
 using ElectroHuila.Domain.Entities.Appointments;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -14,6 +16,8 @@ namespace ElectroHuila.Application.UnitTests.Features.Appointments;
 public class CancelAppointmentCommandHandlerTests
 {
     private readonly Mock<IAppointmentRepository> _appointmentRepositoryMock;
+    private readonly Mock<INotificationService> _notificationServiceMock;
+    private readonly Mock<ILogger<CancelAppointmentCommandHandler>> _loggerMock;
     private readonly CancelAppointmentCommandHandler _handler;
 
     // StatusIds constants
@@ -30,7 +34,12 @@ public class CancelAppointmentCommandHandlerTests
     public CancelAppointmentCommandHandlerTests()
     {
         _appointmentRepositoryMock = new Mock<IAppointmentRepository>();
-        _handler = new CancelAppointmentCommandHandler(_appointmentRepositoryMock.Object);
+        _notificationServiceMock = new Mock<INotificationService>();
+        _loggerMock = new Mock<ILogger<CancelAppointmentCommandHandler>>();
+        _handler = new CancelAppointmentCommandHandler(
+            _appointmentRepositoryMock.Object,
+            _notificationServiceMock.Object,
+            _loggerMock.Object);
     }
 
     /// <summary>
@@ -517,5 +526,267 @@ public class CancelAppointmentCommandHandlerTests
         // Verificar que solo se actualizaron los campos esperados
         appointment.StatusId.Should().Be(CANCELLED_STATUS_ID);
         appointment.CancellationReason.Should().Be(cancellationReason);
+    }
+
+    /// <summary>
+    /// Verifica que el manejador envíe notificación de cancelación exitosamente.
+    /// Debe llamar al servicio de notificaciones con los parámetros correctos.
+    /// </summary>
+    [Fact]
+    public async Task Handle_Should_Send_Cancellation_Notification_Successfully()
+    {
+        // Arrange
+        var appointmentId = 11;
+        var cancellationReason = "Cliente solicitó cancelación";
+        var command = new CancelAppointmentCommand(appointmentId, cancellationReason);
+
+        var appointment = new Appointment
+        {
+            Id = appointmentId,
+            AppointmentNumber = "APT-011",
+            StatusId = PENDING_STATUS_ID,
+            ClientId = 1,
+            BranchId = 1,
+            AppointmentTypeId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            AppointmentTime = "10:00 AM"
+        };
+
+        _appointmentRepositoryMock
+            .Setup(x => x.GetByIdAsync(appointmentId))
+            .ReturnsAsync(appointment);
+
+        _appointmentRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Appointment>()))
+            .Returns(Task.CompletedTask);
+
+        _notificationServiceMock
+            .Setup(x => x.SendAppointmentCancellationAsync(appointmentId, cancellationReason, It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+
+        _notificationServiceMock.Verify(
+            x => x.SendAppointmentCancellationAsync(appointmentId, cancellationReason, It.IsAny<CancellationToken>()),
+            Times.Once);
+    }
+
+    /// <summary>
+    /// Verifica que el manejador complete la cancelación aunque la notificación falle.
+    /// La falla en notificaciones no debe impedir la cancelación de la cita.
+    /// </summary>
+    [Fact]
+    public async Task Handle_Should_Complete_Cancellation_Even_If_Notification_Fails()
+    {
+        // Arrange
+        var appointmentId = 12;
+        var cancellationReason = "Prueba notificación fallida";
+        var command = new CancelAppointmentCommand(appointmentId, cancellationReason);
+
+        var appointment = new Appointment
+        {
+            Id = appointmentId,
+            AppointmentNumber = "APT-012",
+            StatusId = CONFIRMED_STATUS_ID,
+            ClientId = 1,
+            BranchId = 1,
+            AppointmentTypeId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(2),
+            AppointmentTime = "02:00 PM"
+        };
+
+        _appointmentRepositoryMock
+            .Setup(x => x.GetByIdAsync(appointmentId))
+            .ReturnsAsync(appointment);
+
+        _appointmentRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Appointment>()))
+            .Returns(Task.CompletedTask);
+
+        _notificationServiceMock
+            .Setup(x => x.SendAppointmentCancellationAsync(appointmentId, It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new Exception("Error al enviar notificación"));
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+        appointment.StatusId.Should().Be(CANCELLED_STATUS_ID);
+        appointment.CancellationReason.Should().Be(cancellationReason);
+
+        _appointmentRepositoryMock.Verify(
+            x => x.UpdateAsync(It.IsAny<Appointment>()),
+            Times.Once);
+    }
+
+    /// <summary>
+    /// Verifica que el manejador use "No especificado" cuando la razón de cancelación es null.
+    /// Debe enviar una razón predeterminada al servicio de notificaciones.
+    /// </summary>
+    [Fact]
+    public async Task Handle_Should_Use_Default_Reason_When_CancellationReason_Is_Null()
+    {
+        // Arrange
+        var appointmentId = 13;
+        string? cancellationReason = null;
+        var command = new CancelAppointmentCommand(appointmentId, cancellationReason);
+
+        var appointment = new Appointment
+        {
+            Id = appointmentId,
+            AppointmentNumber = "APT-013",
+            StatusId = PENDING_STATUS_ID,
+            ClientId = 1,
+            BranchId = 1,
+            AppointmentTypeId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            AppointmentTime = "11:00 AM"
+        };
+
+        _appointmentRepositoryMock
+            .Setup(x => x.GetByIdAsync(appointmentId))
+            .ReturnsAsync(appointment);
+
+        _appointmentRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Appointment>()))
+            .Returns(Task.CompletedTask);
+
+        _notificationServiceMock
+            .Setup(x => x.SendAppointmentCancellationAsync(appointmentId, "No especificado", It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+
+        _notificationServiceMock.Verify(
+            x => x.SendAppointmentCancellationAsync(appointmentId, "No especificado", It.IsAny<CancellationToken>()),
+            Times.Once);
+    }
+
+    /// <summary>
+    /// Verifica que el logger registre información cuando se envía la notificación.
+    /// Debe registrar tanto el inicio como el éxito del envío.
+    /// </summary>
+    [Fact]
+    public async Task Handle_Should_Log_Notification_Sending_Information()
+    {
+        // Arrange
+        var appointmentId = 14;
+        var cancellationReason = "Verificando logs";
+        var command = new CancelAppointmentCommand(appointmentId, cancellationReason);
+
+        var appointment = new Appointment
+        {
+            Id = appointmentId,
+            AppointmentNumber = "APT-014",
+            StatusId = PENDING_STATUS_ID,
+            ClientId = 1,
+            BranchId = 1,
+            AppointmentTypeId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            AppointmentTime = "03:00 PM"
+        };
+
+        _appointmentRepositoryMock
+            .Setup(x => x.GetByIdAsync(appointmentId))
+            .ReturnsAsync(appointment);
+
+        _appointmentRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Appointment>()))
+            .Returns(Task.CompletedTask);
+
+        _notificationServiceMock
+            .Setup(x => x.SendAppointmentCancellationAsync(appointmentId, cancellationReason, It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+
+        _loggerMock.Verify(
+            x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Enviando notificación de cancelación")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
+
+        _loggerMock.Verify(
+            x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Notificación de cancelación enviada exitosamente")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
+    }
+
+    /// <summary>
+    /// Verifica que el logger registre error cuando falla el envío de notificación.
+    /// Debe registrar la excepción pero no fallar la operación.
+    /// </summary>
+    [Fact]
+    public async Task Handle_Should_Log_Error_When_Notification_Fails()
+    {
+        // Arrange
+        var appointmentId = 15;
+        var cancellationReason = "Verificando error log";
+        var command = new CancelAppointmentCommand(appointmentId, cancellationReason);
+        var notificationException = new Exception("Error en servicio de notificación");
+
+        var appointment = new Appointment
+        {
+            Id = appointmentId,
+            AppointmentNumber = "APT-015",
+            StatusId = PENDING_STATUS_ID,
+            ClientId = 1,
+            BranchId = 1,
+            AppointmentTypeId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            AppointmentTime = "04:00 PM"
+        };
+
+        _appointmentRepositoryMock
+            .Setup(x => x.GetByIdAsync(appointmentId))
+            .ReturnsAsync(appointment);
+
+        _appointmentRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Appointment>()))
+            .Returns(Task.CompletedTask);
+
+        _notificationServiceMock
+            .Setup(x => x.SendAppointmentCancellationAsync(appointmentId, cancellationReason, It.IsAny<CancellationToken>()))
+            .ThrowsAsync(notificationException);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+
+        _loggerMock.Verify(
+            x => x.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Error al enviar notificación de cancelación")),
+                notificationException,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
     }
 }

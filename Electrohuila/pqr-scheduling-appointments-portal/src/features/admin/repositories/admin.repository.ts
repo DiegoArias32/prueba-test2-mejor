@@ -397,17 +397,12 @@ export class AdminRepository {
     return await apiService.deleteHoliday(id);
   }
 
-  async activateHoliday(id: number): Promise<HolidayDto> {
-    // Since there's no direct activate endpoint, we need to update the holiday
-    // This assumes the backend sets isActive to true when updating
-    const holiday = await apiService.getHolidayById(id);
-    return await apiService.updateHoliday({
-      id: holiday.id,
-      holidayDate: holiday.holidayDate,
-      holidayName: holiday.holidayName,
-      holidayType: holiday.holidayType,
-      branchId: holiday.branchId
-    });
+  async activateHoliday(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiService.activateHoliday(id);
+  }
+
+  async deactivateHoliday(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiService.deactivateHoliday(id);
   }
 }
 

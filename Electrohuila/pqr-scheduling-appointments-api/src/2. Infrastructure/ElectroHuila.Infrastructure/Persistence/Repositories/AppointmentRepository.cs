@@ -259,4 +259,28 @@ public class AppointmentRepository : IAppointmentRepository
 
         return await query.ToListAsync();
     }
+
+    /// <summary>
+    /// Cuenta las citas de una sucursal en una fecha específica, excluyendo un estado.
+    /// Optimizado con AsNoTracking y CountAsync para mejor rendimiento.
+    /// </summary>
+    /// <param name="branchId">ID de la sucursal</param>
+    /// <param name="date">Fecha de las citas</param>
+    /// <param name="excludeStatusId">ID del estado a excluir (ej: 5 = CANCELADO)</param>
+    /// <param name="cancellationToken">Token de cancelación</param>
+    /// <returns>Cantidad de citas en esa fecha</returns>
+    public async Task<int> CountAppointmentsByDateAsync(
+        int branchId,
+        DateTime date,
+        int excludeStatusId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Appointments
+            .AsNoTracking()
+            .Where(a => a.BranchId == branchId
+                     && a.AppointmentDate.Date == date.Date
+                     && a.StatusId != excludeStatusId
+                     && a.IsActive)
+            .CountAsync(cancellationToken);
+    }
 }

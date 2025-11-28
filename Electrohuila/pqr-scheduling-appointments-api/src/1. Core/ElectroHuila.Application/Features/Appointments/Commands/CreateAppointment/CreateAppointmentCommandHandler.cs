@@ -15,6 +15,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
     private readonly IHolidayRepository _holidayRepository;
     private readonly IBranchRepository _branchRepository;
     private readonly IUserAssignmentRepository _userAssignmentRepository;
+    private readonly ISystemSettingRepository _systemSettingRepository;
     private readonly IMapper _mapper;
     private readonly ISignalRNotificationService _signalRService;
     private readonly INotificationService _notificationService;
@@ -24,6 +25,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
         IHolidayRepository holidayRepository,
         IBranchRepository branchRepository,
         IUserAssignmentRepository userAssignmentRepository,
+        ISystemSettingRepository systemSettingRepository,
         IMapper mapper,
         ISignalRNotificationService signalRService,
         INotificationService notificationService)
@@ -32,6 +34,7 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
         _holidayRepository = holidayRepository;
         _branchRepository = branchRepository;
         _userAssignmentRepository = userAssignmentRepository;
+        _systemSettingRepository = systemSettingRepository;
         _mapper = mapper;
         _signalRService = signalRService;
         _notificationService = notificationService;
@@ -73,6 +76,28 @@ public class CreateAppointmentCommandHandler : IRequestHandler<CreateAppointment
             if (appointmentDate.Date < DateTime.UtcNow.Date)
             {
                 return Result.Failure<AppointmentDto>("No se pueden agendar citas en fechas pasadas");
+            }
+
+            // Get max appointments per day setting
+            var maxAppointmentsSetting = await _systemSettingRepository.GetValueAsync("MAX_APPOINTMENTS_PER_DAY", cancellationToken);
+            var maxAppointmentsPerDay = 50; // default value
+            if (!string.IsNullOrEmpty(maxAppointmentsSetting) && int.TryParse(maxAppointmentsSetting, out var maxValue))
+            {
+                maxAppointmentsPerDay = maxValue;
+            }
+
+            // Check if max appointments per day would be exceeded
+            // Optimizado: Usar CountAsync en lugar de traer todas las citas y contarlas en memoria
+            const int CANCELLED_STATUS_ID = 5;
+            var appointmentsOnSameDayCount = await _appointmentRepository.CountAppointmentsByDateAsync(
+                appointment.BranchId,
+                appointmentDate,
+                CANCELLED_STATUS_ID,
+                cancellationToken);
+
+            if (appointmentsOnSameDayCount >= maxAppointmentsPerDay)
+            {
+                return Result.Failure<AppointmentDto>($"No se pueden agendar más citas para este día. Máximo permitido: {maxAppointmentsPerDay} citas por día.");
             }
 
             appointment.AppointmentNumber = GenerateAppointmentNumber();

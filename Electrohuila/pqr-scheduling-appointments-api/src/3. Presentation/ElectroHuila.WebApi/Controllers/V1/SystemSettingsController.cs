@@ -60,7 +60,6 @@ public class SystemSettingsController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>La configuración creada con su ID asignado</returns>
     [HttpPost]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -80,7 +79,6 @@ public class SystemSettingsController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>La configuración actualizada</returns>
     [HttpPut("{id:int}")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,7 +104,6 @@ public class SystemSettingsController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>La configuración actualizada con el nuevo valor</returns>
     [HttpPatch("value")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

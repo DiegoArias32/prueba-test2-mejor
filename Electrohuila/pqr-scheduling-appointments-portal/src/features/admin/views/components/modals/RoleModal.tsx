@@ -5,6 +5,7 @@ import { FiX, FiSave, FiShield, FiCode } from 'react-icons/fi';
 import { ValidationUtils, FormErrors } from '@/shared/utils/validation.utils';
 
 interface RoleFormData {
+  id?: number;
   code: string;
   name: string;
 }
@@ -25,6 +26,7 @@ export const RoleModal: React.FC<RoleModalProps> = ({
   mode
 }) => {
   const [formData, setFormData] = useState<RoleFormData>({
+    id: undefined,
     code: '',
     name: ''
   });
@@ -34,11 +36,13 @@ export const RoleModal: React.FC<RoleModalProps> = ({
   useEffect(() => {
     if (item && mode === 'edit') {
       setFormData({
+        id: (item as any).id,
         code: item.code || '',
         name: item.name || ''
       });
     } else {
       setFormData({
+        id: undefined,
         code: '',
         name: ''
       });

@@ -142,13 +142,13 @@ export class AppointmentService extends BaseHttpService {
 
   /**
    * Update available time
-   * FIXED: Cambiado de /availabletimes/update a /availabletimes/{id} con PATCH
+   * Uses PUT method to match backend endpoint
    */
   async updateAvailableTime(availableTime: UpdateAvailableTimeDto): Promise<{ success: boolean; message: string }> {
     if (!availableTime.id) {
       throw new Error('AvailableTime ID is required for update');
     }
-    return this.patch<{ success: boolean; message: string }>(`/availabletimes/${availableTime.id}`, availableTime);
+    return this.put<{ success: boolean; message: string }>(`/availabletimes/${availableTime.id}`, availableTime);
   }
 
   /**

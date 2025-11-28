@@ -42,29 +42,11 @@ const SETTING_CATEGORIES: SettingCategoryConfig[] = [
     ],
   },
   {
-    id: 'notifications',
-    label: 'Notificaciones',
-    description: 'Configuraciones de notificaciones por email y SMS',
-    icon: 'bell',
-    settings: [
-      'EMAIL_NOTIFICATIONS_ENABLED',
-      'SMS_NOTIFICATIONS_ENABLED',
-      'APPOINTMENT_REMINDER_HOURS',
-    ],
-  },
-  {
     id: 'businessHours',
     label: 'Horarios de Atención',
     description: 'Horarios de operación del sistema',
     icon: 'clock',
     settings: ['BUSINESS_HOURS_START', 'BUSINESS_HOURS_END'],
-  },
-  {
-    id: 'general',
-    label: 'General',
-    description: 'Otras configuraciones del sistema',
-    icon: 'settings',
-    settings: [],
   },
 ];
 
@@ -155,8 +137,8 @@ export const SystemSettingsView: React.FC = () => {
   const organizedSettings = useMemo(() => {
     const result: Record<SettingCategory, SystemSettingDto[]> = {
       appointments: [],
-      notifications: [],
       businessHours: [],
+      notifications: [],
       general: [],
     };
 
@@ -168,19 +150,13 @@ export const SystemSettingsView: React.FC = () => {
 
       if (!matchesSearch) return;
 
-      let categoryFound = false;
-
       for (const category of SETTING_CATEGORIES) {
         if (category.settings.includes(setting.settingKey)) {
           result[category.id as SettingCategory].push(setting);
-          categoryFound = true;
           break;
         }
       }
-
-      if (!categoryFound) {
-        result.general.push(setting);
-      }
+      // No agregamos a 'general' - solo mostramos configuraciones categorizadas
     });
 
     return result;

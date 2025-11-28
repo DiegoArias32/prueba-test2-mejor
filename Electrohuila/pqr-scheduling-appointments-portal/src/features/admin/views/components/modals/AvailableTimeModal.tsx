@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiX, FiSave, FiClock, FiHome, FiCalendar } from 'react-icons/fi';
 import { ValidationUtils, FormErrors } from '@/shared/utils/validation.utils';
+import { apiService } from '@/services';
 
 interface Branch {
   id: string;
@@ -18,6 +19,7 @@ interface AppointmentType {
 }
 
 interface AvailableTimeFormData {
+  id?: number;
   time: string;
   branchId: string;
   appointmentTypeId: string | null;
@@ -33,10 +35,10 @@ interface AvailableTimeModalProps {
   appointmentTypes: AppointmentType[];
 }
 
-// Generate time options from 6:00 AM to 6:00 PM in 30-minute intervals
-const generateTimeOptions = (): string[] => {
+// Generate time options based on business hours
+const generateTimeOptions = (startHour: number = 6, endHour: number = 18): string[] => {
   const times: string[] = [];
-  for (let hour = 6; hour <= 18; hour++) {
+  for (let hour = startHour; hour <= endHour; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
       const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
       times.push(timeString);
@@ -44,8 +46,6 @@ const generateTimeOptions = (): string[] => {
   }
   return times;
 };
-
-const TIME_OPTIONS = generateTimeOptions();
 
 export const AvailableTimeModal: React.FC<AvailableTimeModalProps> = ({
   isOpen,
@@ -63,10 +63,37 @@ export const AvailableTimeModal: React.FC<AvailableTimeModalProps> = ({
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
+  const [businessHours, setBusinessHours] = useState({ start: 6, end: 18 });
+  const [timeOptions, setTimeOptions] = useState<string[]>(generateTimeOptions(6, 18));
+
+  // Load business hours from system settings
+  useEffect(() => {
+    const loadBusinessHours = async () => {
+      try {
+        const settings = await apiService.getSystemSettings();
+        const startSetting = settings.find(s => s.settingKey === 'BUSINESS_HOURS_START');
+        const endSetting = settings.find(s => s.settingKey === 'BUSINESS_HOURS_END');
+        
+        const startHour = startSetting ? parseInt(startSetting.settingValue.split(':')[0]) : 6;
+        const endHour = endSetting ? parseInt(endSetting.settingValue.split(':')[0]) : 18;
+        
+        setBusinessHours({ start: startHour, end: endHour });
+        setTimeOptions(generateTimeOptions(startHour, endHour));
+      } catch (error) {
+        console.error('Error loading business hours:', error);
+        // Keep defaults
+      }
+    };
+
+    if (isOpen) {
+      loadBusinessHours();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (item && mode === 'edit') {
       setFormData({
+        id: item.id,
         time: item.time || '08:00',
         branchId: item.branchId || '',
         appointmentTypeId: item.appointmentTypeId || null
@@ -93,10 +120,10 @@ export const AvailableTimeModal: React.FC<AvailableTimeModalProps> = ({
       if (!timeRegex.test(formData.time)) {
         newErrors.time = 'Formato de hora inválido. Debe ser HH:mm (ej: 08:00)';
       } else {
-        // Validate time is within business hours (6:00 - 18:00)
+        // Validate time is within business hours (dynamic from system settings)
         const [hours, minutes] = formData.time.split(':').map(Number);
-        if (hours < 6 || hours > 18 || (hours === 18 && minutes > 0)) {
-          newErrors.time = 'La hora debe estar entre 06:00 y 18:00';
+        if (hours < businessHours.start || hours > businessHours.end || (hours === businessHours.end && minutes > 0)) {
+          newErrors.time = `La hora debe estar entre ${businessHours.start.toString().padStart(2, '0')}:00 y ${businessHours.end.toString().padStart(2, '0')}:00`;
         }
       }
     }
@@ -188,7 +215,7 @@ export const AvailableTimeModal: React.FC<AvailableTimeModalProps> = ({
                     }`}
                   >
                     <option value="">Seleccione una hora</option>
-                    {TIME_OPTIONS.map((time) => (
+                    {timeOptions.map((time) => (
                       <option key={time} value={time}>
                         {time} ({formatTime12Hour(time)})
                       </option>
@@ -199,7 +226,7 @@ export const AvailableTimeModal: React.FC<AvailableTimeModalProps> = ({
                   <p className="mt-1 text-sm text-red-600">{errors.time}</p>
                 )}
                 <p className="mt-1 text-xs text-gray-500">
-                  Horario de atención: 6:00 AM - 6:00 PM
+                  Horario de atención: {businessHours.start.toString().padStart(2, '0')}:00 - {businessHours.end.toString().padStart(2, '0')}:00
                 </p>
               </div>
 

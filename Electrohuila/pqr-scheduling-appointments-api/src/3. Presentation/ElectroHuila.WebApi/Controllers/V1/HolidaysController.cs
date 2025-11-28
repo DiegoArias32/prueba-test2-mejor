@@ -8,6 +8,7 @@ using ElectroHuila.Application.Features.Holidays.Queries.GetAllHolidays;
 using ElectroHuila.Application.Features.Holidays.Queries.GetHolidayById;
 using ElectroHuila.Application.Features.Holidays.Queries.GetHolidaysByDateRange;
 using ElectroHuila.Application.Features.Holidays.Queries.CheckIfHoliday;
+using ElectroHuila.Application.Contracts.Repositories;
 using ElectroHuila.WebApi.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,20 +23,36 @@ namespace ElectroHuila.WebApi.Controllers.V1;
 [Authorize]
 public class HolidaysController : ApiController
 {
+    private readonly IHolidayRepository _holidayRepository;
+
+    public HolidaysController(IHolidayRepository holidayRepository)
+    {
+        _holidayRepository = holidayRepository;
+    }
 
     /// <summary>
-    /// Obtiene todos los festivos registrados en el sistema.
+    /// Obtiene todos los festivos registrados en el sistema con paginación.
     /// Incluye festivos nacionales, locales y de empresa.
     /// </summary>
+    /// <param name="pageNumber">Número de página (predeterminado: 1)</param>
+    /// <param name="pageSize">Cantidad de registros por página (predeterminado: 20)</param>
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
-    /// <returns>Lista completa de festivos</returns>
+    /// <returns>Lista paginada de festivos</returns>
     [HttpGet]
+    [ResponseCache(Duration = 300)] // Cache 5 minutos
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll(
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 20,
+        CancellationToken cancellationToken = default)
     {
-        var query = new GetAllHolidaysQuery();
+        var query = new GetAllHolidaysQuery
+        {
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
         var result = await Mediator.Send(query, cancellationToken);
         return HandleResult(result);
     }
@@ -101,7 +118,6 @@ public class HolidaysController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>El festivo creado con su ID asignado</returns>
     [HttpPost("national")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -121,7 +137,6 @@ public class HolidaysController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>El festivo creado con su ID asignado</returns>
     [HttpPost("local")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -141,7 +156,6 @@ public class HolidaysController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>El festivo creado con su ID asignado</returns>
     [HttpPost("company")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -161,7 +175,6 @@ public class HolidaysController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>El festivo actualizado</returns>
     [HttpPut("{id:int}")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -187,7 +200,6 @@ public class HolidaysController : ApiController
     /// <param name="cancellationToken">Token de cancelación para la operación asíncrona</param>
     /// <returns>Confirmación de eliminación exitosa</returns>
     [HttpDelete("{id:int}")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -197,5 +209,45 @@ public class HolidaysController : ApiController
         var command = new DeleteHolidayCommand(id);
         var result = await Mediator.Send(command, cancellationToken);
         return HandleResult(result);
+    }
+
+    /// <summary>
+    /// Activa un festivo previamente desactivado.
+    /// Marca el festivo como activo en el sistema.
+    /// </summary>
+    /// <param name="id">ID del festivo a activar</param>
+    /// <returns>Confirmación de activación exitosa</returns>
+    [HttpPatch("{id:int}/activate")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        var holiday = await _holidayRepository.GetByIdAsync(id);
+        if (holiday == null)
+            return NotFound(new { message = $"Holiday with ID {id} not found" });
+
+        holiday.IsActive = true;
+        holiday.UpdatedAt = DateTime.UtcNow;
+        await _holidayRepository.UpdateAsync(holiday);
+
+        return Ok(new { success = true, message = "Holiday activated successfully" });
+    }
+
+    /// <summary>
+    /// Desactiva un festivo del sistema.
+    /// Marca el festivo como inactivo sin eliminarlo físicamente.
+    /// </summary>
+    /// <param name="id">ID del festivo a desactivar</param>
+    /// <returns>Confirmación de desactivación exitosa</returns>
+    [HttpPatch("{id:int}/deactivate")]
+    public async Task<IActionResult> Deactivate(int id)
+    {
+        var holiday = await _holidayRepository.GetByIdAsync(id);
+        if (holiday == null)
+            return NotFound(new { message = $"Holiday with ID {id} not found" });
+
+        holiday.IsActive = false;
+        holiday.UpdatedAt = DateTime.UtcNow;
+        await _holidayRepository.UpdateAsync(holiday);
+
+        return Ok(new { success = true, message = "Holiday deactivated successfully" });
     }
 }
