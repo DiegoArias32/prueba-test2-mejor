@@ -4,6 +4,7 @@ using ElectroHuila.Infrastructure.Persistence;
 using ElectroHuila.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Xunit;
 
 namespace ElectroHuila.Infrastructure.UnitTests.Repositories;
@@ -606,13 +607,10 @@ public class AvailableTimeRepositoryTests : IDisposable
 
     private AppointmentType CreateTestAppointmentType()
     {
-        return new AppointmentType
-        {
-            Name = $"Test Type {Guid.NewGuid()}",
-            Description = "Test Description",
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
-        };
+        return AppointmentType.Create(
+            $"TYPE{Guid.NewGuid().ToString().Substring(0, 8)}",
+            $"Test Type {Guid.NewGuid()}",
+            "Test Description");
     }
 
     private AvailableTime CreateTestAvailableTime(int branchId, int appointmentTypeId, string time)

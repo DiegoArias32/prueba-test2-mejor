@@ -282,7 +282,7 @@ public class RefreshTokenCommandHandlerTests
         // Assert
         result.Should().NotBeNull();
         result.IsFailure.Should().BeTrue();
-        result.Value.Should().BeNull();
+        result.Data.Should().BeNull();
     }
 
     /// <summary>

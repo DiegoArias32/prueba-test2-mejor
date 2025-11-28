@@ -1,5 +1,7 @@
 using AutoMapper;
 using ElectroHuila.Application.Contracts.Repositories;
+using ElectroHuila.Application.Contracts.Notifications;
+using ElectroHuila.Application.Contracts.Services;
 using ElectroHuila.Application.DTOs.Appointments;
 using ElectroHuila.Application.Features.Appointments.Commands.CreateAppointment;
 using ElectroHuila.Domain.Entities.Appointments;
@@ -19,7 +21,11 @@ public class CreateAppointmentCommandHandlerTests
     private readonly Mock<IAppointmentRepository> _appointmentRepositoryMock;
     private readonly Mock<IHolidayRepository> _holidayRepositoryMock;
     private readonly Mock<IBranchRepository> _branchRepositoryMock;
+    private readonly Mock<IUserAssignmentRepository> _userAssignmentRepositoryMock;
+    private readonly Mock<ISystemSettingRepository> _systemSettingRepositoryMock;
     private readonly Mock<IMapper> _mapperMock;
+    private readonly Mock<ISignalRNotificationService> _signalRServiceMock;
+    private readonly Mock<INotificationService> _notificationServiceMock;
     private readonly CreateAppointmentCommandHandler _handler;
 
     /// <summary>
@@ -31,12 +37,20 @@ public class CreateAppointmentCommandHandlerTests
         _appointmentRepositoryMock = new Mock<IAppointmentRepository>();
         _holidayRepositoryMock = new Mock<IHolidayRepository>();
         _branchRepositoryMock = new Mock<IBranchRepository>();
+        _userAssignmentRepositoryMock = new Mock<IUserAssignmentRepository>();
+        _systemSettingRepositoryMock = new Mock<ISystemSettingRepository>();
         _mapperMock = new Mock<IMapper>();
+        _signalRServiceMock = new Mock<ISignalRNotificationService>();
+        _notificationServiceMock = new Mock<INotificationService>();
         _handler = new CreateAppointmentCommandHandler(
             _appointmentRepositoryMock.Object,
             _holidayRepositoryMock.Object,
             _branchRepositoryMock.Object,
-            _mapperMock.Object);
+            _userAssignmentRepositoryMock.Object,
+            _systemSettingRepositoryMock.Object,
+            _mapperMock.Object,
+            _signalRServiceMock.Object,
+            _notificationServiceMock.Object);
     }
 
     /// <summary>

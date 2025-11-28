@@ -24,14 +24,16 @@ public class JwtTokenGeneratorTests
     {
         _configurationMock = new Mock<IConfiguration>();
 
-        _configurationMock.Setup(x => x["Jwt:Secret"])
+        _configurationMock.Setup(x => x["Jwt:Key"])
             .Returns("SuperSecretKeyForTestingPurposesOnly123456789");
         _configurationMock.Setup(x => x["Jwt:Issuer"])
             .Returns("ElectroHuila");
         _configurationMock.Setup(x => x["Jwt:Audience"])
             .Returns("ElectroHuila.Client");
-        _configurationMock.Setup(x => x["Jwt:ExpirationMinutes"])
-            .Returns("60");
+        _configurationMock.Setup(x => x["Jwt:ExpirationHours"])
+            .Returns("1");
+        _configurationMock.Setup(x => x["Jwt:RefreshExpirationDays"])
+            .Returns("7");
 
         _tokenGenerator = new JwtTokenGenerator(_configurationMock.Object);
     }
@@ -51,8 +53,11 @@ public class JwtTokenGeneratorTests
             Email = "test@example.com"
         };
 
+        var roles = new List<string> { "Admin" };
+        var permissions = new List<string> { "Read", "Write" };
+
         // Act
-        var token = _tokenGenerator.GenerateToken(user);
+        var token = _tokenGenerator.GenerateToken(user, roles, permissions);
 
         // Assert
         token.Should().NotBeNullOrEmpty();
@@ -74,8 +79,11 @@ public class JwtTokenGeneratorTests
             Email = "test@example.com"
         };
 
+        var roles = new List<string> { "Admin" };
+        var permissions = new List<string> { "Read", "Write" };
+
         // Act
-        var token = _tokenGenerator.GenerateToken(user);
+        var token = _tokenGenerator.GenerateToken(user, roles, permissions);
 
         // Assert
         token.Should().NotBeNullOrEmpty();

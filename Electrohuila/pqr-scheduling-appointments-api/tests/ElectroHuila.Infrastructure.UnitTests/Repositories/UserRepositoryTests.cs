@@ -3,6 +3,7 @@ using ElectroHuila.Infrastructure.Persistence;
 using ElectroHuila.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Xunit;
 
 namespace ElectroHuila.Infrastructure.UnitTests.Repositories;
@@ -594,7 +595,7 @@ public class UserRepositoryTests : IDisposable
         await _context.RolUsers.AddAsync(rolUser);
         await _context.SaveChangesAsync();
 
-        var rolFormPermission = new RolFormPermission
+        var rolFormPermi = new RolFormPermi
         {
             RolId = role.Id,
             FormId = form.Id,
@@ -602,7 +603,7 @@ public class UserRepositoryTests : IDisposable
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
-        await _context.RolFormPermissions.AddAsync(rolFormPermission);
+        await _context.RolFormPermis.AddAsync(rolFormPermi);
         await _context.SaveChangesAsync();
 
         // Act
@@ -610,8 +611,7 @@ public class UserRepositoryTests : IDisposable
 
         // Assert
         result.Should().NotBeNull();
-        var resultObj = result as dynamic;
-        resultObj.Should().NotBeNull();
+        result.Should().BeOfType<object>();
     }
 
     /// <summary>
@@ -668,7 +668,7 @@ public class UserRepositoryTests : IDisposable
         return new Rol
         {
             Name = $"Role {Guid.NewGuid()}",
-            Description = "Test Role",
+            Code = $"CODE{Guid.NewGuid().ToString().Substring(0, 8)}",
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
@@ -680,7 +680,6 @@ public class UserRepositoryTests : IDisposable
         {
             Name = $"Form {Guid.NewGuid()}",
             Code = $"CODE{Guid.NewGuid().ToString().Substring(0, 8)}",
-            Description = "Test Form",
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
@@ -690,7 +689,6 @@ public class UserRepositoryTests : IDisposable
     {
         return new Permission
         {
-            Name = "Test Permission",
             CanRead = true,
             CanCreate = true,
             CanUpdate = true,

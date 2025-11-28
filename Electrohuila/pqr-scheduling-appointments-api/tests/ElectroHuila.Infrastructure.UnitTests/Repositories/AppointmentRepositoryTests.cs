@@ -2,10 +2,12 @@ using ElectroHuila.Domain.Entities.Appointments;
 using ElectroHuila.Domain.Entities.Catalogs;
 using ElectroHuila.Domain.Entities.Clients;
 using ElectroHuila.Domain.Entities.Locations;
+using ElectroHuila.Domain.Enums;
 using ElectroHuila.Infrastructure.Persistence;
 using ElectroHuila.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -486,10 +488,14 @@ public class AppointmentRepositoryTests : IDisposable
         await _context.AppointmentTypes.AddAsync(appointmentType);
 
         // Create statuses
-        var pendingStatus = new AppointmentStatus { Id = 1, Name = "PENDING", IsActive = true, CreatedAt = DateTime.UtcNow };
-        var confirmedStatus = new AppointmentStatus { Id = 2, Name = "CONFIRMED", IsActive = true, CreatedAt = DateTime.UtcNow };
-        var noShowStatus = new AppointmentStatus { Id = 3, Name = "NO_SHOW", IsActive = true, CreatedAt = DateTime.UtcNow };
-        var completedStatus = new AppointmentStatus { Id = 4, Name = "COMPLETED", IsActive = true, CreatedAt = DateTime.UtcNow };
+        var pendingStatus = AppointmentStatus.Create("PENDING", "Pending", "Pending Status");
+        pendingStatus.GetType().GetProperty("Id")!.SetValue(pendingStatus, 1);
+        var confirmedStatus = AppointmentStatus.Create("CONFIRMED", "Confirmed", "Confirmed Status");
+        confirmedStatus.GetType().GetProperty("Id")!.SetValue(confirmedStatus, 2);
+        var noShowStatus = AppointmentStatus.Create("NO_SHOW", "No Show", "No Show Status");
+        noShowStatus.GetType().GetProperty("Id")!.SetValue(noShowStatus, 3);
+        var completedStatus = AppointmentStatus.Create("COMPLETED", "Completed", "Completed Status");
+        completedStatus.GetType().GetProperty("Id")!.SetValue(completedStatus, 4);
 
         await _context.AppointmentStatuses.AddRangeAsync(pendingStatus, confirmedStatus, noShowStatus, completedStatus);
         await _context.SaveChangesAsync();
@@ -534,7 +540,8 @@ public class AppointmentRepositoryTests : IDisposable
         await _context.Branches.AddAsync(branch);
         await _context.AppointmentTypes.AddAsync(appointmentType);
 
-        var pendingStatus = new AppointmentStatus { Id = 1, Name = "PENDING", IsActive = true, CreatedAt = DateTime.UtcNow };
+        var pendingStatus = AppointmentStatus.Create("PENDING", "Pending", "Pending Status");
+        pendingStatus.GetType().GetProperty("Id")!.SetValue(pendingStatus, 1);
         await _context.AppointmentStatuses.AddAsync(pendingStatus);
         await _context.SaveChangesAsync();
 
@@ -609,9 +616,8 @@ public class AppointmentRepositoryTests : IDisposable
         return new Client
         {
             DocumentNumber = Guid.NewGuid().ToString().Substring(0, 10),
-            DocumentType = "CC",
-            FirstName = "Test",
-            LastName = "Client",
+            DocumentType = DocumentType.CC,
+            FullName = "Test Client",
             Email = $"test{Guid.NewGuid()}@example.com",
             Phone = "1234567890",
             IsActive = true,
@@ -632,24 +638,18 @@ public class AppointmentRepositoryTests : IDisposable
 
     private AppointmentType CreateTestAppointmentType()
     {
-        return new AppointmentType
-        {
-            Name = $"Test Type {Guid.NewGuid()}",
-            Description = "Test Description",
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
-        };
+        return AppointmentType.Create(
+            $"TYPE{Guid.NewGuid().ToString().Substring(0, 8)}",
+            $"Test Type {Guid.NewGuid()}",
+            "Test Description");
     }
 
     private AppointmentStatus CreateTestAppointmentStatus()
     {
-        return new AppointmentStatus
-        {
-            Name = "PENDING",
-            Description = "Pending Status",
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
-        };
+        return AppointmentStatus.Create(
+            "PENDING",
+            "Pending",
+            "Pending Status");
     }
 
     private Appointment CreateTestAppointment(int clientId, int branchId, int appointmentTypeId)

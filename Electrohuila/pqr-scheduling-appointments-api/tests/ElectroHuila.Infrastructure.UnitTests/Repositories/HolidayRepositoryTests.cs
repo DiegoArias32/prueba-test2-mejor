@@ -4,6 +4,7 @@ using ElectroHuila.Infrastructure.Persistence;
 using ElectroHuila.Infrastructure.Persistence.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Xunit;
 
 namespace ElectroHuila.Infrastructure.UnitTests.Repositories;

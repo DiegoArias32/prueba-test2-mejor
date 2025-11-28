@@ -26,8 +26,8 @@ public class AppointmentRepository : IAppointmentRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-        // Validar que la conexión esté configurada
-        if (_context.Database.GetDbConnection() == null)
+        // Validar que la conexión esté configurada (solo para proveedores relacionales)
+        if (_context.Database.IsRelational() && _context.Database.GetDbConnection() == null)
         {
             _logger.LogError("Database connection is not configured properly in AppointmentRepository");
             throw new InvalidOperationException("Database connection is not configured properly");
@@ -209,7 +209,7 @@ public class AppointmentRepository : IAppointmentRepository
     public async Task<IEnumerable<Appointment>> GetPendingOrNoShowAppointmentsByDocumentNumberAsync(string documentNumber)
     {
         // StatusIds: 1=PENDING, 2=CONFIRMED, 3=NO_SHOW, 4=COMPLETED, 5=CANCELLED
-        var pendingStatuses = new[] { 1, 2, 3 };
+        var pendingStatuses = new List<int> { 1, 2, 3 };
 
         return await _context.Appointments
             .AsNoTracking()
@@ -230,7 +230,7 @@ public class AppointmentRepository : IAppointmentRepository
     public async Task<bool> HasPendingOrNoShowAppointmentsAsync(string documentNumber)
     {
         // StatusIds: 1=PENDING, 2=CONFIRMED, 3=NO_SHOW, 4=COMPLETED, 5=CANCELLED
-        var pendingStatuses = new[] { 1, 2, 3 };
+        var pendingStatuses = new List<int> { 1, 2, 3 };
 
         // Using CountAsync instead of AnyAsync to avoid Oracle EF Core bug that generates "True/False" literals
         return await _context.Appointments
