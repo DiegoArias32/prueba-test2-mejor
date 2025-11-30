@@ -17,6 +17,28 @@ builder.Services.AddControllers(); // Habilita soporte para controladores MVC
 builder.Services.AddEndpointsApiExplorer(); // Habilita exploración de endpoints para Swagger
 builder.Services.AddHttpContextAccessor(); // Permite inyectar IHttpContextAccessor para acceder al contexto HTTP
 
+// ========== CONFIGURACIÓN DE COMPRESIÓN DE RESPUESTAS (PERFORMANCE) ==========
+// Habilita compresión GZIP/Brotli para reducir el tamaño de las respuestas HTTP en 70-80%
+// Mejora significativamente el rendimiento en clientes móviles y conexiones lentas
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true; // IMPORTANTE: Habilitar para HTTPS (por defecto está deshabilitado por seguridad)
+    options.Providers.Add<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProvider>();
+    options.Providers.Add<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider>();
+});
+
+// Configurar nivel de compresión Brotli (más eficiente que GZIP)
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>(options =>
+{
+    options.Level = System.IO.Compression.CompressionLevel.Fastest; // Fastest para mejor balance performance/compresión
+});
+
+// Configurar nivel de compresión GZIP (fallback para clientes que no soporten Brotli)
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>(options =>
+{
+    options.Level = System.IO.Compression.CompressionLevel.Fastest; // Fastest para mejor performance
+});
+
 // ========== CONFIGURACIÓN DE COMPORTAMIENTO DE API ==========
 // Deshabilitar transformación automática de ProblemDetails
 // Permite que los controladores retornen formatos de error personalizados sin wrapping automático
@@ -75,38 +97,17 @@ Utiliza el parámetro `?database=` en cualquier endpoint para seleccionar:
 
 - PROXIMAMENTE
 
-### Entornos Disponibles
+### Entorno Disponible
 
-- **DEV**: http://localhost:5000 - Desarrollo local
-- **STAGING**: http://localhost:5001 - Pre-producción
-- **QA**: http://localhost:5002 - Control de calidad
-- **PROD**: http://localhost:8080 - Producción
+- **AWS PROD**: https://8papi9muvp.us-east-2.awsapprunner.com
         "
     });
 
-    // Configuración de múltiples servidores (entornos)
+    // Configuración del servidor (AWS App Runner)
     options.AddServer(new OpenApiServer
     {
-        Url = "http://localhost:5000",
-        Description = "DEV - Entorno de Desarrollo"
-    });
-
-    options.AddServer(new OpenApiServer
-    {
-        Url = "http://localhost:5001",
-        Description = "STAGING - Pre-Producción"
-    });
-
-    options.AddServer(new OpenApiServer
-    {
-        Url = "http://localhost:5002",
-        Description = "QA - Control de Calidad"
-    });
-
-    options.AddServer(new OpenApiServer
-    {
-        Url = "http://localhost:8080",
-        Description = "PRODUCTION - Producción"
+        Url = "https://8papi9muvp.us-east-2.awsapprunner.com",
+        Description = "AWS App Runner - Producción"
     });
 
     // Incluir comentarios XML para documentación detallada
@@ -188,8 +189,11 @@ builder.Services.AddCors(options =>
                 "http://localhost:4200",
                 "https://localhost:3000",
                 "https://localhost:3001",
-                "https://localhost:4200"
+                "https://localhost:4200",
+                "https://master.dvhx1nlzb7qbn.amplifyapp.com", // Dominio correcto de Amplify
+                "https://master.d2okx7truwtsji.amplifyapp.com"
               )
+              .SetIsOriginAllowedToAllowWildcardSubdomains()
               .AllowAnyMethod()
               .AllowAnyHeader()
               .WithExposedHeaders("*") // Permitir todos los headers de respuesta (requerido para WebSocket)
@@ -210,6 +214,12 @@ app.UseSwaggerUI(options =>
 });
 
 // ========== CONFIGURACIÓN DEL PIPELINE DE MIDDLEWARE ==========
+
+// ========== HABILITAR COMPRESIÓN DE RESPUESTAS (DEBE ESTAR PRIMERO) ==========
+// IMPORTANTE: UseResponseCompression debe estar ANTES de UseStaticFiles, UseCors, UseRouting
+// para que comprima todas las respuestas HTTP (JSON, HTML, etc.)
+app.UseResponseCompression();
+
 // Middleware para manejo global de excepciones (debe estar primero para capturar todas las excepciones)
 app.UseExceptionHandling();
 

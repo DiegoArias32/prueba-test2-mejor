@@ -87,13 +87,12 @@ CREATE TABLE ADMIN.SystemSettings (
 );
 ```
 
-**Datos pre-cargados (8 configuraciones):**
+**Datos pre-cargados (7 configuraciones):**
 - `MAX_APPOINTMENTS_PER_DAY` = 50
 - `APPOINTMENT_CANCELLATION_HOURS` = 24
 - `EMAIL_NOTIFICATIONS_ENABLED` = true
 - `SMS_NOTIFICATIONS_ENABLED` = false
 - `APPOINTMENT_REMINDER_HOURS` = 24
-- `MAX_RESCHEDULE_ATTEMPTS` = 3
 - `BUSINESS_HOURS_START` = 08:00
 - `BUSINESS_HOURS_END` = 17:00
 

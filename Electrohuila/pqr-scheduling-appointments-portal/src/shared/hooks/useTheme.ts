@@ -79,7 +79,7 @@ export const useTheme = () => {
         }
 
         // Obtener tema desde la API - OPCIONAL, si falla usa el tema por defecto
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1'}/theme/active`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://8papi9muvp.us-east-2.awsapprunner.com/api/v1'}/theme/active`);
 
         if (!response.ok) {
           // No lanzar error, simplemente usar el tema por defecto

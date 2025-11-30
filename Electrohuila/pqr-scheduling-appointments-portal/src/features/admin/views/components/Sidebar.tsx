@@ -158,8 +158,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           name: 'Sistema',
           icon: FiSliders,
           color: 'text-cyan-500',
-          bgColor: 'bg-cyan-50',
-          alwaysVisible: true
+          bgColor: 'bg-cyan-50'
         }
       ]
     }

@@ -61,10 +61,6 @@ Se implementó un sistema completo de configuraciones dinámicas que permite mod
 4. Valida contra límite configurado
 5. Permite/rechaza agendamiento según disponibilidad
 
-### ❌ MAX_RESCHEDULE_ATTEMPTS
-**Estado**: No implementado por decisión del usuario
-**Razón**: Requiere modificaciones a entidad Appointment y lógica de conteo
-
 ## Archivos Modificados
 
 ### Frontend

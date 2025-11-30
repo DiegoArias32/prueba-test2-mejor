@@ -20,6 +20,17 @@ interface SettingCardProps {
   autoSaveDelay?: number;
 }
 
+// Mapa de traducciones para nombres de configuraciones
+const SETTING_NAME_TRANSLATIONS: Record<string, string> = {
+  'MAX_APPOINTMENTS_PER_DAY': 'MÁXIMO DE CITAS POR DÍA',
+  'APPOINTMENT_CANCELLATION_HOURS': 'HORAS DE CANCELACIÓN DE CITA',
+  'BUSINESS_HOURS_START': 'HORA DE INICIO DE ATENCIÓN',
+  'BUSINESS_HOURS_END': 'HORA DE FIN DE ATENCIÓN',
+  'EMAIL_NOTIFICATIONS_ENABLED': 'NOTIFICACIONES POR EMAIL HABILITADAS',
+  'SMS_NOTIFICATIONS_ENABLED': 'NOTIFICACIONES POR SMS HABILITADAS',
+  'APPOINTMENT_REMINDER_HOURS': 'HORAS DE RECORDATORIO DE CITA',
+};
+
 export const SettingCard: React.FC<SettingCardProps> = ({
   setting,
   onSave,
@@ -256,7 +267,7 @@ export const SettingCard: React.FC<SettingCardProps> = ({
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
           <h4 className="text-sm font-semibold text-gray-900">
-            {setting.settingKey.replace(/_/g, ' ')}
+            {SETTING_NAME_TRANSLATIONS[setting.settingKey] || setting.settingKey.replace(/_/g, ' ')}
           </h4>
           <p className="text-xs text-gray-500 mt-1">{setting.description}</p>
         </div>

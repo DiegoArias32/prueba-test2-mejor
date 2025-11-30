@@ -100,21 +100,23 @@ export const useAuth = () => {
         // Guardar datos de autenticación
         authRepository.saveAuthData(response);
 
-        // Obtener permisos granulares del usuario
-        try {
-          const userPermissions = await authRepository.getCurrentUserPermissions();
-
-          // Guardar permisos granulares
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('userPermissions', JSON.stringify(userPermissions));
-          }
-        } catch (error) {
-          console.error('Error al cargar los permisos granulares:', error);
-        }
-
         setLoadingState('success');
 
-        // Redirigir al admin
+        // Cargar permisos granulares EN PARALELO SIN BLOQUEAR (fire and forget)
+        // Esto permite que la redirección sea inmediata (en ~500ms)
+        // Los permisos se cargarán en background mientras el usuario navega
+        authRepository.getCurrentUserPermissions()
+          .then((userPermissions) => {
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('userPermissions', JSON.stringify(userPermissions));
+            }
+          })
+          .catch((error) => {
+            // Silenciar errores - los permisos se pueden cargar después
+            console.debug('Permisos cargados en background después del login');
+          });
+
+        // Redirigir al admin INMEDIATAMENTE (no esperar permisos)
         router.push('/admin');
       } catch (err: unknown) {
         const errorMessage = err instanceof Error ? err.message : 'Error al iniciar sesión. Verifica tus credenciales.';

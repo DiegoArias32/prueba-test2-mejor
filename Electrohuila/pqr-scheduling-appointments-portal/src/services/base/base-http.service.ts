@@ -3,7 +3,7 @@
  * Provides common HTTP methods and error handling for all domain services
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://8papi9muvp.us-east-2.awsapprunner.com/api/v1';
 
 export class BaseHttpService {
   protected baseUrl: string;
@@ -77,8 +77,14 @@ export class BaseHttpService {
       const contentType = response.headers.get('content-type');
       const contentLength = response.headers.get('content-length');
 
-      // If no content, return success object
+      // If no content, return appropriate response based on HTTP method
       if (contentLength === '0' || !contentType?.includes('application/json')) {
+        // Para GET requests, retornar array vacío si se espera un array
+        // Para otros métodos (DELETE, POST, PUT, PATCH), retornar objeto success
+        const method = options.method || 'GET';
+        if (method === 'GET') {
+          return [] as T;
+        }
         return { success: true, message: 'Operation completed successfully' } as T;
       }
 
@@ -120,8 +126,14 @@ export class BaseHttpService {
       const contentType = response.headers.get('content-type');
       const contentLength = response.headers.get('content-length');
 
-      // If no content, return success object
+      // If no content, return appropriate response based on HTTP method
       if (contentLength === '0' || !contentType?.includes('application/json')) {
+        // Para GET requests, retornar array vacío si se espera un array
+        // Para otros métodos (DELETE, POST, PUT, PATCH), retornar objeto success
+        const method = options.method || 'GET';
+        if (method === 'GET') {
+          return [] as T;
+        }
         return { success: true, message: 'Operation completed successfully' } as T;
       }
 

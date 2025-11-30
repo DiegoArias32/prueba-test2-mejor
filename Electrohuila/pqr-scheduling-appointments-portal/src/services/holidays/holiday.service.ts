@@ -19,7 +19,9 @@ export class HolidayService extends BaseHttpService {
    * @returns Promise with array of holidays
    */
   async getHolidays(): Promise<HolidayDto[]> {
-    return this.get<HolidayDto[]>('/holidays');
+    const response = await this.get<{ items: HolidayDto[] }>('/holidays');
+    // Extraer el array items del objeto paginado
+    return response.items || [];
   }
 
   /**

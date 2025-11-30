@@ -154,7 +154,6 @@ export function getSettingConstraints(key: string): {
   const constraints: Record<string, { min?: number; max?: number; required?: boolean }> = {
     MAX_APPOINTMENTS_PER_DAY: { min: 1, max: 500, required: true },
     APPOINTMENT_CANCELLATION_HOURS: { min: 0, max: 72, required: true },
-    MAX_RESCHEDULE_ATTEMPTS: { min: 0, max: 10, required: true },
     APPOINTMENT_REMINDER_HOURS: { min: 0, max: 168, required: true }, // 7 days max
   };
 

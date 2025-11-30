@@ -278,27 +278,6 @@ export const LoginView: React.FC = () => {
                 </AnimatedButton>
               </motion.div>
             </form>
-
-            {/* Demo Credentials Info */}
-            <motion.div
-              className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-            >
-              <div className="flex items-start">
-                <AlertCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-blue-800 font-medium text-sm mb-1">Credenciales de prueba:</p>
-                  <p className="text-blue-700 text-sm">
-                    Usuario: <code className="bg-blue-100 px-1 rounded">admin</code>
-                  </p>
-                  <p className="text-blue-700 text-sm">
-                    Contraseña: <code className="bg-blue-100 px-1 rounded">admin123</code>
-                  </p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
 

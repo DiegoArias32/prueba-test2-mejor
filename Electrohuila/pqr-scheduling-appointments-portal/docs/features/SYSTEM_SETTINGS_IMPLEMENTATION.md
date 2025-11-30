@@ -40,7 +40,6 @@ Se ha implementado un panel completo de administración para gestionar la Config
 Restricciones predefinidas:
 - `MAX_APPOINTMENTS_PER_DAY`: 1-500
 - `APPOINTMENT_CANCELLATION_HOURS`: 0-72
-- `MAX_RESCHEDULE_ATTEMPTS`: 0-10
 - `APPOINTMENT_REMINDER_HOURS`: 0-168
 
 ### 3. Componentes (Components)
@@ -101,8 +100,7 @@ const SETTING_CATEGORIES = [
     icon: 'calendar',
     settings: [
       'MAX_APPOINTMENTS_PER_DAY',
-      'APPOINTMENT_CANCELLATION_HOURS',
-      'MAX_RESCHEDULE_ATTEMPTS'
+      'APPOINTMENT_CANCELLATION_HOURS'
     ]
   },
   {
@@ -197,16 +195,15 @@ PUT    /api/v1/systemsettings/{id}     // Actualizar completa
 PATCH  /api/v1/systemsettings/value    // Actualizar solo valor
 ```
 
-## Configuraciones Pre-cargadas en la API (8)
+## Configuraciones Pre-cargadas en la API (7)
 
 1. **MAX_APPOINTMENTS_PER_DAY** (Number): 50
 2. **APPOINTMENT_CANCELLATION_HOURS** (Number): 24
 3. **EMAIL_NOTIFICATIONS_ENABLED** (Boolean): true
 4. **SMS_NOTIFICATIONS_ENABLED** (Boolean): false
 5. **APPOINTMENT_REMINDER_HOURS** (Number): 24
-6. **MAX_RESCHEDULE_ATTEMPTS** (Number): 3
-7. **BUSINESS_HOURS_START** (Time): 08:00
-8. **BUSINESS_HOURS_END** (Time): 17:00
+6. **BUSINESS_HOURS_START** (Time): 08:00
+7. **BUSINESS_HOURS_END** (Time): 17:00
 
 ## Estructura de Archivos Creados
 

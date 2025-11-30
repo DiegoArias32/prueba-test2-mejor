@@ -156,6 +156,10 @@ public static class DependencyInjection
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+        // ========== SERVICIO DE GENERACIÓN DE NÚMEROS ==========
+        // Servicio para generar números únicos de citas
+        services.AddScoped<IAppointmentNumberGenerator, AppointmentNumberGenerator>();
+
         // ========== SERVICIO DE PROVEEDOR DE BASE DE DATOS ==========
         // Servicio para gestionar el proveedor de base de datos dinámicamente
         // IMPORTANTE: Debe ser Scoped para permitir cambios por request HTTP

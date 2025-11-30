@@ -128,13 +128,29 @@ export const PermissionsManager: React.FC<PermissionsManagerProps> = ({
     }
   };
 
-  // Get unique form codes from rolPermissions
+  // Lista de códigos de formularios permitidos (solo los que existen en el menú lateral)
+  const ALLOWED_FORM_CODES = [
+    'appointments', 'APPOINTMENTS',
+    'appointment-types', 'APPOINTMENT_TYPES',
+    'available-times', 'AVAILABLE_TIMES',
+    'users', 'USERS',
+    'roles', 'ROLES',
+    'permissions', 'PERMISSIONS',
+    'branches', 'BRANCHES',
+    'holidays', 'HOLIDAYS',
+    'settings', 'SETTINGS'
+  ];
+
+  // Get unique form codes from rolPermissions (filtered by allowed forms)
   const getFormCodes = () => {
     const formCodesSet = new Set<string>();
     // Extract form codes from all role permissions
     rolPermissions.forEach(rolPerm => {
       rolPerm.formPermissions?.forEach(form => {
-        formCodesSet.add(form.formCode);
+        // Solo agregar si está en la lista de formularios permitidos
+        if (ALLOWED_FORM_CODES.includes(form.formCode)) {
+          formCodesSet.add(form.formCode);
+        }
       });
     });
     return Array.from(formCodesSet).sort();
@@ -143,13 +159,47 @@ export const PermissionsManager: React.FC<PermissionsManagerProps> = ({
   // Get form display name
   const getFormDisplayName = (formCode: string) => {
     const formNames: { [key: string]: string } = {
+      // Formularios válidos del sistema (kebab-case)
+      'appointments': 'Citas',
+      'appointment-types': 'Tipos de Cita',
+      'available-times': 'Horarios Disponibles',
+      'branches': 'Sucursales',
+      'clients': 'Clientes',
+      'new-accounts': 'Nuevas Cuentas',
+      'project-news': 'Proyectos Nuevos',
+      'users': 'Usuarios',
+      'roles': 'Roles',
+      'permissions': 'Permisos',
+      'forms': 'Formularios',
+      'modules': 'Módulos',
+
+      // Formularios válidos del sistema (UPPER_CASE)
       'APPOINTMENTS': 'Citas',
-      'USERS': 'Empleados',
-      'ROLES': 'Roles',
-      'BRANCHES': 'Sedes',
       'APPOINTMENT_TYPES': 'Tipos de Cita',
-      'AVAILABLE_TIMES': 'Horas Disponibles',
-      'PERMISSIONS': 'Permisos'
+      'AVAILABLE_TIMES': 'Horarios Disponibles',
+      'BRANCHES': 'Sucursales',
+      'CLIENTS': 'Clientes',
+      'NEW_ACCOUNTS': 'Nuevas Cuentas',
+      'PROJECT_NEWS': 'Proyectos Nuevos',
+      'USERS': 'Usuarios',
+      'ROLES': 'Roles',
+      'PERMISSIONS': 'Permisos',
+      'FORMS': 'Formularios',
+      'MODULES': 'Módulos',
+
+      // Formularios adicionales (kebab-case)
+      'settings': 'Configuración',
+      'theme-settings': 'Configuración de Tema',
+      'documents': 'Documentos',
+      'holidays': 'Festivos',
+      'notifications': 'Notificaciones',
+
+      // Formularios adicionales (UPPER_CASE)
+      'SETTINGS': 'Configuración',
+      'THEME_SETTINGS': 'Configuración de Tema',
+      'DOCUMENTS': 'Documentos',
+      'HOLIDAYS': 'Festivos',
+      'NOTIFICATIONS': 'Notificaciones'
     };
     return formNames[formCode] || formCode;
   };

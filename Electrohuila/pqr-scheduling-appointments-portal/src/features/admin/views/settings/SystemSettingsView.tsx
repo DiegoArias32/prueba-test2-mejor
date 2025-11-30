@@ -38,7 +38,6 @@ const SETTING_CATEGORIES: SettingCategoryConfig[] = [
     settings: [
       'MAX_APPOINTMENTS_PER_DAY',
       'APPOINTMENT_CANCELLATION_HOURS',
-      'MAX_RESCHEDULE_ATTEMPTS',
     ],
   },
   {

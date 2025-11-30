@@ -43,9 +43,11 @@ export const useHolidays = (repository: AdminRepository): UseHolidaysReturn => {
     setError(null);
     try {
       const data = await repository.getHolidays();
-      setHolidays(data);
+      // La validación defensiva se mantiene pero ahora debería siempre pasar
+      setHolidays(Array.isArray(data) ? data : []);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error loading holidays');
+      setHolidays([]); // Asegurar array vacío en caso de error
     } finally {
       setLoading(false);
     }

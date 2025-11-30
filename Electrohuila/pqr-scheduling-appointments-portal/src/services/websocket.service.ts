@@ -37,15 +37,15 @@ class SignalRService {
   constructor() {
     // Get API base URL from environment variable
     const apiUrl = typeof window !== 'undefined'
-      ? process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1'
-      : 'http://localhost:5000/api/v1';
+      ? process.env.NEXT_PUBLIC_API_URL || 'https://8papi9muvp.us-east-2.awsapprunner.com/api/v1'
+      : 'https://8papi9muvp.us-east-2.awsapprunner.com/api/v1';
 
     // Remove /api/v1 suffix and add /hubs/notifications
     const baseUrl = apiUrl.replace(/\/api\/v\d+$/, '');
 
     // Backend SignalR endpoint
     // Development: http://localhost:5000/hubs/notifications
-    // Production: https://api.electrohuila.com/hubs/notifications
+    // Production: https://8papi9muvp.us-east-2.awsapprunner.com/hubs/notifications
     this.url = `${baseUrl}/hubs/notifications`;
   }
 

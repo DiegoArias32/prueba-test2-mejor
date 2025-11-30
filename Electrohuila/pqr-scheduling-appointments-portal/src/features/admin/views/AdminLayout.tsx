@@ -851,7 +851,22 @@ export const AdminLayout: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      signalRService.connect(token);
+      // Conectar a SignalR en background SIN bloquear el render
+      // Usar setTimeout con 0 para desplazar la conexión fuera del flujo de renderizado
+      const connectionHandle = setTimeout(async () => {
+        try {
+          await signalRService.connect(token);
+        } catch (error) {
+          // Silenciar errores de conexión - SignalR reintenará automáticamente
+          console.debug('SignalR connection failed, will retry automatically');
+        }
+      }, 100); // Esperar 100ms después de que el componente se monte completamente
+
+      // Limpiar el timeout si el componente se desmonta antes de conectar
+      return () => {
+        clearTimeout(connectionHandle);
+        signalRService.disconnect();
+      };
     }
 
     // Disconnect only on component unmount (when user logs out or leaves admin panel)

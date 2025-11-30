@@ -1,0 +1,87 @@
+=================================================================================
+ARCHIVOS IMPLEMENTADOS - SINCRONIZACIÓN DE NOTIFICACIONES APP MAUI
+=================================================================================
+
+📁 NUEVOS ARCHIVOS CREADOS
+=================================================================================
+
+1. ✅ NotificationApiService.cs
+   Ruta: pqr-scheduling-appointments-app/Services/Notifications/NotificationApiService.cs
+   Descripción: Servicio para consumir endpoints del backend API
+   Métodos:
+   - GetMyNotificationsAsync(pageNumber, pageSize)
+   - GetUnreadCountAsync()
+   - MarkAsReadAsync(notificationId)
+   - MarkAllAsReadAsync(userId)
+
+2. ✅ PagedResult.cs
+   Ruta: pqr-scheduling-appointments-app/Models/Common/PagedResult.cs
+   Descripción: Modelo genérico para respuestas paginadas del API
+
+=================================================================================
+📝 ARCHIVOS MODIFICADOS
+=================================================================================
+
+3. ✅ NotificationDto.cs
+   Ruta: pqr-scheduling-appointments-app/Models/Notifications/NotificationDto.cs
+   Cambios:
+   - Actualizado para coincidir con backend API
+   - Agregados atributos [JsonPropertyName]
+   - Nuevas propiedades: UserId, ClientId, AppointmentId, Status, etc.
+   - Iconos Font Awesome por tipo de notificación
+
+4. ✅ NotificationStorageService.cs
+   Ruta: pqr-scheduling-appointments-app/Services/Notifications/NotificationStorageService.cs
+   Cambios:
+   - Agregado método SyncWithBackendAsync()
+   - Agregado método UpdateNotificationAsync()
+   - Lógica de combinación de notificaciones backend + local
+
+5. ✅ NotificationsViewModel.cs
+   Ruta: pqr-scheduling-appointments-app/ViewModels/NotificationsViewModel.cs
+   Cambios:
+   - Inyección de INotificationApiService y IAuthService
+   - LoadNotificationsAsync() ahora sincroniza con API
+   - MarkAsReadAsync() actualiza en API + local
+   - MarkAllAsReadAsync() usa userId actual
+   - Nueva propiedad LastSyncTime
+
+6. ✅ ConfigurationService.cs
+   Ruta: pqr-scheduling-appointments-app/Services/Configuration/ConfigurationService.cs
+   Cambios:
+   - API_BASE_URL actualizada a producción AWS
+   - SIGNALR_HUB_URL actualizada a producción AWS
+   - Comentarios para cambiar entre desarrollo/producción
+
+7. ✅ MauiProgram.cs
+   Ruta: pqr-scheduling-appointments-app/MauiProgram.cs
+   Cambios:
+   - Registrado INotificationApiService
+   - Registrado NotificationStorageService como Singleton
+   - Registrado NotificationsViewModel como Transient
+   - Registrado NotificationsPage como Transient
+
+=================================================================================
+📊 RESUMEN DE IMPLEMENTACIÓN
+=================================================================================
+
+Total de archivos creados: 2
+Total de archivos modificados: 5
+Total de archivos afectados: 7
+
+Backend API URL: https://8i6rrjp9sb.us-east-2.awsapprunner.com
+
+Endpoints implementados:
+✅ GET  /api/v1/notifications/my-notifications?pageNumber=1&pageSize=20
+✅ GET  /api/v1/notifications/unread-count
+✅ PATCH /api/v1/notifications/{notificationId}/mark-read
+✅ PATCH /api/v1/notifications/user/{userId}/mark-all-read
+
+Características:
+✅ Sincronización bidireccional (App ↔ Backend)
+✅ Modo offline con almacenamiento local
+✅ Filtrado automático (type='IN_APP', ID <= 1000000000000)
+✅ Manejo de errores con fallback
+✅ Logs detallados en consola
+
+=================================================================================
